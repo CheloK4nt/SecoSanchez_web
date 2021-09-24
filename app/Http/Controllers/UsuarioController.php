@@ -26,7 +26,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('usuarios.register');
     }
 
     /**
@@ -37,7 +37,15 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuarios = new Usuario();
+        $usuarios->nombre = $request->nombre;
+        $usuarios->apellido = $request->apellido;
+        $usuarios->direccion = $request->direccion;
+        $usuarios->email = $request->email;
+        $usuarios->password = $request->password;
+
+        $usuarios->save();
+        return redirect(route('usuarios.create'));
     }
 
     /**
