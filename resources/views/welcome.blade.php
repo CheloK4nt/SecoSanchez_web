@@ -11,7 +11,7 @@
 
         <!-- Styles -->
         <style>
-            html, body {
+            /* html, body {
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
@@ -60,11 +60,35 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            } */
+
+            .logo {
+                position: absolute;
+                right: 50%;
+                top: 3%;
+                content: '';
+                transition: 1s;
+                border-radius: 50px;
+                z-index:1
+            }
+
+            .logo:hover{
+                transform: scale(1.5);
+                transition: 0.15s;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+
+        {{-- LOGO --}}
+
+        <div class="logo">
+            <img src="/img/cuadrado.jpg" alt="" width="100">
+        </div>
+
+        {{-- FIN LOGO --}}
+
+        {{-- <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -72,7 +96,7 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
-                        <a href="{{route('usuarios.create')}}">Registrar</a>
+                        <a href="{{route('usuarios.register')}}">Registrar</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -97,6 +121,6 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </body>
 </html>
