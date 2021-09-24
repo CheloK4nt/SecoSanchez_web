@@ -6,6 +6,7 @@ use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginUsuarioRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -42,7 +43,7 @@ class UsuarioController extends Controller
         $usuarios->apellido = $request->apellido;
         $usuarios->direccion = $request->direccion;
         $usuarios->email = $request->email;
-        $usuarios->password = $request->password;
+        $usuarios->password = Hash::make('$request->password');
 
         $usuarios->save();
         return redirect(route('usuarios.create'));
