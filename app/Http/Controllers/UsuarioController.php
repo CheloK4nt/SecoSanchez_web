@@ -43,7 +43,7 @@ class UsuarioController extends Controller
         $usuarios->apellido = $request->apellido;
         $usuarios->direccion = $request->direccion;
         $usuarios->email = $request->email;
-        $usuarios->password = Hash::make('$request->password');
+        $usuarios->password = Hash::make($request->password);
 
         $usuarios->save();
         return redirect(route('usuarios.create'));
