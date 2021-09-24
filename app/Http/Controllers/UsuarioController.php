@@ -25,7 +25,7 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function register()
     {
         return view('usuarios.register');
     }
@@ -46,7 +46,7 @@ class UsuarioController extends Controller
         $usuarios->password = Hash::make($request->password);
 
         $usuarios->save();
-        return redirect(route('usuarios.create'));
+        return redirect(route('welcome'));
     }
 
     /**
