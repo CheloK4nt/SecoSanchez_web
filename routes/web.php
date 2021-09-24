@@ -22,5 +22,5 @@ Route::view('/login','usuarios.login')->name('login');
 Route::post('/usuarios/login', 'UsuarioController@login')->name('usuarios.login');
 
 // REGISTER
-Route::get('/usuarios/register','UsuarioController@create')->name('usuarios.create');
-Route::post('/usuarios','UsuarioController@store')->name('usuarios.store');
+Route::get('/register','UsuarioController@create')->name('usuarios.create');
+Route::post('/usuarios/register','UsuarioController@store')->name('usuarios.store');
