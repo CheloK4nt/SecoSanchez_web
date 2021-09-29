@@ -48,10 +48,19 @@
 
         .btn-success {
             background-color: #3a9b96;
-            border: 0px;
+            border-color: #ffffff;
+            btn-border-radius: 100px;
             width: 100%;
             margin-top: 20px;
 
+        }
+
+        .btn-secondary {
+            background-color: #6d6d6d;
+            border-color: #ffffff;
+            btn-border-radius: 100px;
+            width: 100%;
+            margin-top: 20px;
         }
 
         .btn-success:hover {
@@ -63,11 +72,12 @@
         }
 
         .form-control:focus {
-            border-color: rgba(58, 155, 150, 0.438);
+            border-color: rgb(255, 255, 255);
             box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 8px rgba(31, 160, 160, 0.6);
         }
 
         .formulario {
+            padding-left: 10%;
             background: rgba(0, 0, 0, 0.842);
             padding: 20px;
             transition: 1s ease all;
@@ -93,7 +103,7 @@
 
 <body>
     <div class="container">
-        <div class="row justify-content-center pt-5 mt-5 mr-1">
+        <div class="row justify-content-center pt-5 mt-5 ">
             <div class="col-md-4 formulario p-5 rounded">
                 <form class="needs-validation" action="{{ route('usuarios.login') }}" method="POST" novalidate>
                     @csrf
@@ -120,15 +130,14 @@
                         <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
                     </div>
                     <button type="submit" class="btn btn-success">Ingresar</button>
+                    <a class="btn btn-secondary" href="{{route('inicio')}}" role="button">Volver</a>
 
                     {{-- MENSAJES DE ERROR --}}
                     <div class="container mt-4">
                         @if ($errors->any())
                         <div class="alert alert-info padding-top 5">
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li class="mt-2">{{ $error }}</li>
-                                @endforeach
+                                <li class="mt-2">{{ $errors->first() }}</li>
                             </ul>
                         </div>
                     @endif

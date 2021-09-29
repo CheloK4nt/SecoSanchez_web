@@ -11,6 +11,11 @@ use Validator;
 
 class UsuarioController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->except(['login','register', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -124,5 +129,10 @@ class UsuarioController extends Controller
             //credenciales incorrectas
             return redirect()->route('login');
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('inicio');
     }
 }

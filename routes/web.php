@@ -19,6 +19,8 @@ Route::view('/welcome','welcome')->name('welcome');
 
 Route::view('','home.index')->name('inicio');
 
+
+// -------------------- U S U A R I O S -------------------- //
 // CONTACTO
 Route::get('/contacto','ContactoController@index')->name('contacto.index');
 Route::post('/home/contacto', 'ContactoController@email')->name('contacto.email');
@@ -27,6 +29,10 @@ Route::post('/home/contacto', 'ContactoController@email')->name('contacto.email'
 Route::view('/login','usuarios.login')->name('login');
 Route::post('/usuarios/login', 'UsuarioController@login')->name('usuarios.login');
 
+//LOGOUT
+Route::get('/usuarios/logout', 'UsuarioController@logout')->name('usuarios.logout');
+
 // REGISTER
 Route::get('/register','UsuarioController@register')->name('usuarios.register');
 Route::post('/usuarios/register','UsuarioController@store')->name('usuarios.store');
+// --------------- F I N    U S U A R I O S ------------------ //

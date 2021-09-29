@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>SecoSanchezWeb</title>
+        <title class="text-color white">SecoSanchezWeb</title>
     
         {{-- CSS --}}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    
-        {{-- BUNDLE --}}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-        </script>
-    
-        {{-- SEPARATE --}}
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-            integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-            integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
-        </script>
+
+        {{-- JQUERY --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
         {{-- BOOTSTRAP --}}
         <meta charset="utf-8">
@@ -29,9 +19,8 @@
     
         {{-- FONT AWESOME --}}
         <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
-    
-        {{-- JQUERY --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     
         {{-- STYLES --}}
 
@@ -40,23 +29,56 @@
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;900&family=Source+Sans+Pro:ital,wght@0,300;0,700;1,400&display=swap" rel="stylesheet">
         <style>
             body{
-	            font-family: 'Source Sans Pro', sans-serif;
-	            font-size: 18;
+                padding-top: 10px;
+                background-image: url(/img/fondo2pac.png);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+                background-color: rgba(255, 255, 255, 0);
+                animation: change 5s infinite ease-out;
             }
 
-            .nav{
-	            font-family: 'Source Sans Pro', sans-serif;
-	            font-size: large;
+            @keyframes change{
+                20%
+                {
+                    background-image: url(/img/notoriousfondo.png)
+                }
             }
-            h1{
-	            font-family: 'Playfair Display', serif;
-	            font-weight: 500;
-	            font-size: 30;
-            }
+
         </style>
     </head>
-<body>
+    
+<header>
     @include('partials.navbar')
-    <h1>SecoSanchezWeb</h1>
+</header>
+
+<body>
+
+    
+
+    {{-- BUNDLE --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
 </body>
+<footer>
+    @include('partials.footer')
+</footer>
+
+<svg>
+    <defs>
+     <filter id='goo'>
+      <feGaussianBlur in='SourceGraphic' 
+      stdDeviation='10' result='name'/>
+       <feColorMatrix in='name' mode='matrix'
+           values='1 0 0 0 0
+                   0 1 0 0 0 
+                   0 0 1 0 0
+                   0 0 0 30 -15 ' result='aab'/>
+       <feBlend in='SourceGraphic' in2='aab'/>
+      </filter>
+    </defs>
+</svg>
+
 </html>
