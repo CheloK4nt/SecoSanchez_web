@@ -21,6 +21,10 @@ Route::view('','home.index')->name('inicio');
 
 
 // -------------------- U S U A R I O S -------------------- //
+// CONTACTO
+Route::get('/contacto','ContactoController@index')->name('contacto.index');
+Route::post('/home/contacto', 'ContactoController@email')->name('contacto.email');
+
 // LOGIN
 Route::view('/login','usuarios.login')->name('login');
 Route::post('/usuarios/login', 'UsuarioController@login')->name('usuarios.login');
