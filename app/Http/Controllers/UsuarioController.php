@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginUsuarioRequest;
 use Illuminate\Support\Facades\Hash;
+use Validator;
 
 class UsuarioController extends Controller
 {
@@ -25,7 +26,7 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function register()
     {
         return view('usuarios.register');
     }
@@ -38,15 +39,34 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuarios = new Usuario();
-        $usuarios->nombre = $request->nombre;
-        $usuarios->apellido = $request->apellido;
-        $usuarios->direccion = $request->direccion;
-        $usuarios->email = $request->email;
-        $usuarios->password = Hash::make($request->password);
+        $rules = [
+            'email' => 'email|unique:usuarios,email',
+            'password' => 'min:8',
+            'cpassword' => 'min:8|same:password',
+        ];
 
-        $usuarios->save();
-        return redirect(route('usuarios.create'));
+        $messages = [
+            'email.email' => 'El formato de su correo electrónico es inválido.',
+            'email.unique' => 'Ya existe un usuario registrado con este correo electrónico.',
+            'password.min' => 'La contraseña debe tener al menos 8 carácteres.',
+            'cpassword.min' => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
+            'cpassword.same' => 'Las contraseñas no coinciden.'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) :
+            return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
+        else :
+            $usuarios = new Usuario();
+            $usuarios->nombre = $request->nombre;
+            $usuarios->apellido = $request->apellido;
+            $usuarios->direccion = $request->direccion;
+            $usuarios->email = $request->email;
+            $usuarios->password = Hash::make($request->password);
+
+            $usuarios->save();
+            return redirect(route('inicio'));
+        endif;
     }
 
     /**
@@ -94,8 +114,9 @@ class UsuarioController extends Controller
         //
     }
 
-    public function login(LoginUsuarioRequest $request){
-        $credenciales = $request->only('email','password');
+    public function login(LoginUsuarioRequest $request)
+    {
+        $credenciales = $request->only('email', 'password');
         if (Auth::attempt($credenciales)) {
             //credenciales correctas
             return redirect()->route('inicio');
@@ -103,6 +124,5 @@ class UsuarioController extends Controller
             //credenciales incorrectas
             return redirect()->route('login');
         }
-        
     }
 }
