@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Registro</title>
+    <title>Contacto</title>
 
     {{-- CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -48,7 +48,7 @@
         .btn-success {
             background-color: #3a9b96;
             border: 0px;
-            width: 100%;
+            width: 25%;
             margin-top: 20px;
 
         }
@@ -56,8 +56,8 @@
         .btn-secondary {
             background-color: #6d6d6d;
             border-color: #ffffff;
-            btn-border-radius: 100px;
-            width: 100%;
+            /*btn-border-radius: 100px;*/
+            width: 25%;
             margin-top: 20px;
 
         }
@@ -103,76 +103,76 @@
 <body>
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 mr-1">
-            <div class="col-md-4 formulario p-5 mb-5 rounded">
-                <form class="needs-validation" action="{{ route('usuarios.store') }}" method="POST" novalidate>
+            <div class="row-md-4 formulario p-5 mb-5 rounded w-75">
+                <form class=" row g-3 needs-validation" action="{{ route('contacto.email') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: white">Registro</h1>
+                        <h1 class="text-ligh titulo-login" style="color: white">Contacto</h1>
                     </div>
                     {{-- INPUT NOMBRE --}}
-                    <label for="nombre" style="color: white">Nombre:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="nombre" name="nombre"
-                            placeholder="Ingrese su nombre..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                    <div class="col-md-6">
+                        <label for="nombre" style="color: white">Nombre:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                placeholder="Ingrese su nombre..." required>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                        </div>
                     </div>
 
                     {{-- INPUT APELLIDO --}}
-                    <label for="apellido" style="color: white">Apellido:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
-                        <input type="text" class="form-control" id="apellido" name="apellido"
-                            placeholder="Ingrese su apellido..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
-                    </div>
-
-                    {{-- INPUT DIRECCION --}}
-                    <label for="direccion" style="color: white">Dirección:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marked-alt"></i></span>
-                        <input type="text" class="form-control" id="direccion" name="direccion"
-                            placeholder="Ingrese su dirección..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su dirección.</div>
+                    <div class="col-md-6">
+                        <label for="apellido" style="color: white">Apellido:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                            <input type="text" class="form-control" id="apellido" name="apellido"
+                                placeholder="Ingrese su apellido..." required>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                        </div>
                     </div>
 
                     {{-- INPUT CORREO --}}
-                    <label for="email" style="color: white">Correo electrónico:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
-                        <input type="text" class="form-control" id="email" name="email"
-                            placeholder="Ingrese su correo... " required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                    <div class="col-md-6">
+                        <label for="email" style="color: white">Correo electrónico:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                            <input type="text" class="form-control" id="email" name="email"
+                                placeholder="Ingrese su correo... " required>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                        </div>
                     </div>
 
-                    {{-- INPUT CONTRASEÑA --}}
-                    <label for="password" style="color: white">Contraseña:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Ingrese su contraseña..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+                    {{-- INPUT TELÉFONO --}}
+                    <div class="col-md-6">
+                        <label for="telefono" style="color: white">Teléfono:</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></i></span>
+                            <input type="text" class="form-control" id="telefono" name="telefono"placeholder="Ingrese su teléfono... " required>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
+                        </div>
                     </div>
 
-                    {{-- INPUT C-CONTRASEÑA --}}
-                    <label for="cpassword" style="color: white">Confirme contraseña:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock"></i></span>
-                        <input type="password" class="form-control" id="cpassword" name="cpassword"
-                            placeholder="Confirme su contraseña..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, confirme su contraseña.</div>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-success">Registrar</button>
+                    {{-- INPUT MENSAJE --}}
+                    <div class="col-md-12">
+                        <label for="mensaje" style="color: white">Mensaje:</label>
+                        <div class="input-group mb-3">
+                            <textarea type="text"  style="height: 200px" class="form-control" id="mensaje" name="mensaje"
+                                placeholder="Ingrese su mensaje... " required></textarea>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Por favor, ingrese su mensaje.</div>
+                        </div>
                     </div>
 
-                    <a class="btn btn-secondary" href="{{ route('inicio') }}" role="button">Volver</a>
+                    {{-- BOTÓN ENVIAR --}}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success" name="enviar">Enviar</button>
+                    </div>
+                    {{--  BOTÓN VOLVER --}}
+                    {{-- <a class="btn btn-secondary" href="{{ route('inicio') }}" role="button">Volver</a> --}}
                 </form>
                 <!-------------- MENSAJE DE ALERTA --------------->
                 @if ($errors->any())
@@ -211,5 +211,10 @@
                 })
         })()
     </script>
+
+    {{-- ENVÍO DE CORREO --}}
+    
+
 </body>
+
 </html>
