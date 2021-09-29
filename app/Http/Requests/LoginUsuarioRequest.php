@@ -24,14 +24,14 @@ class LoginUsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'exists:usuarios,email'
+            'email' => 'exists:usuarios,email',
         ];
     }
 
     public function messages()
-{
-    return [
-        'email.exists' => 'Credenciales incorrectas.',
-    ];
-}
+    {
+        return [
+            'email.exists' => 'Credenciales incorrectas.',
+        ];
+    }
 }

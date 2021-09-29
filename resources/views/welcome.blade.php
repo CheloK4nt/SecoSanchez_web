@@ -1,126 +1,401 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>Laravel</title>
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css" />
 
-        <!-- Styles -->
-        <style>
-            /* html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <style>
 
-            .full-height {
-                height: 100vh;
-            }
+      li{
+        list-style-type: none;
+        margin: 5px;
+      }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+      body{
+        padding-top: 10px;
+        background-image: url(/img/fondo2pac.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: rgb(255, 255, 255);
+      }
 
-            .position-ref {
-                position: relative;
-            }
+      .navbar{
+        background-color: black;
+      }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+      /* ----------DISEÑO LOGO BUTTON---------- */
+      .logo-btn{
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: rgb(255, 255, 255);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-decoration: none;
+        font-family: consolas;
+        font-size: 20px;
+        overflow: hidden;
+        transition: 0.2s;
+      }
 
-            .content {
-                text-align: center;
-            }
+      .logo-btn span{
+        position: absolute;
+        display: block;
+      }
 
-            .title {
-                font-size: 84px;
-            }
+      .logo-btn:hover{
+        color: black;
+        background-color: rgb(255, 255, 255);
+      }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+      .logo-btn span:hover{
+        color: black;
+      }
+      /* ----------FIN DISEÑO LOGO BUTTON---------- */
 
-            .m-b-md {
-                margin-bottom: 30px;
-            } */
+      /* ----------ANIMACION LOGO BUTTON---------- */
 
-            .logo {
-                position: absolute;
-                right: 50%;
-                top: 3%;
-                content: '';
-                transition: 1s;
-                border-radius: 50px;
-                z-index:1
-            }
+      /* Linea superior */
+      .logo-btn span:nth-child(1){
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, white);
+        animation: animate1 1s linear infinite;
+      }
 
-            .logo:hover{
-                transform: scale(1.5);
-                transition: 0.15s;
-            }
-        </style>
-    </head>
-    <body>
+      .logo-btn:hover span:nth-child(1){
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0));
+      }
 
-        {{-- LOGO --}}
+      @keyframes animate1{
+        0%
+        {
+          left: -100%;
+        }
+        50%,100%
+        {
+          left: 100%;
+        }
+      }
+      /* fin linea superior */
+      
+      /* Linea derecha */
+      .logo-btn span:nth-child(2){
+        top: -100%;
+        right: 0;
+        width: 2px;;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, white);
+        animation: animate2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
 
-        <div class="logo">
-            <img src="/img/cuadrado.jpg" alt="" width="100">
-        </div>
+      .logo-btn:hover span:nth-child(2){
+        background: linear-gradient(180deg, transparent, rgb(0, 0, 0));
+      }
 
-        {{-- FIN LOGO --}}
+      @keyframes animate2{
+        0%
+        {
+          top: -100%;
+        }
+        50%,100%
+        {
+          top: 100%;
+        }
+      }
+      /* fin linea derecha */
 
-        {{-- <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+      /* Linea inferior */
+      .logo-btn span:nth-child(3){
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg, transparent, white);
+        animation: animate3 1s linear infinite;
+        animation-delay: 0.5s;
+      }
 
-                        <a href="{{route('usuarios.register')}}">Registrar</a>
+      .logo-btn:hover span:nth-child(3){
+        background: linear-gradient(270deg, transparent, rgb(0, 0, 0));
+      }
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+      @keyframes animate3{
+        0%
+        {
+          right: -100%;
+        }
+        50%,100%
+        {
+          right: 100%;
+        }
+      }
+      /* fin linea inferior */
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+      /* Linea izquierda */
+      .logo-btn span:nth-child(4){
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg, transparent, white);
+        animation: animate4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Develop listo</a>
-                    <a href="https://laracasts.com">Marcelo listo</a>
-                    <a href="https://laravel-news.com">Gerardo listo</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+      .logo-btn:hover span:nth-child(4){
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0));
+      }
+
+      @keyframes animate4{
+        0%
+        {
+          top: 100%;
+        }
+        50%,100%
+        {
+          top: -100%;
+        }
+      }
+      /* fin linea izquierda */
+
+      
+      /* ---------- FIN ANIMACION LOGO BUTTON---------- */
+
+      /* ----------DISEÑO NAV BUTTONS---------- */
+      .nav-btns{
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: rgb(255, 255, 255);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+        font-size: 15px;
+        overflow: hidden;
+        border-radius: 10px;
+        transition: 0.2s;
+      }
+
+      .nav-btns:hover{
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 10px white, 0 0 40px white, 0 0 80px white;
+        transition-delay: 0.1s;
+      }
+
+      .nav-btns span{
+        position: absolute;
+        display: block;
+      }
+      /* ----------FIN DISEÑO NAV BUTTONS---------- */
+
+      /* ----------DISEÑO LOGIN/REGISTER BUTTONS---------- */
+      .logreg-btn{
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: rgb(255, 255, 255);
+        background-color: rgba(255, 255, 255, 0.048);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+        font-size: 15px;
+        overflow: hidden;
+        border-radius: 10px;
+        transition: 0.2s;
+        box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.527);
+      }
+
+      .logreg-btn:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.137);
+      }
+
+      .logreg-btn:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.315));
+        transition: 0.4s;
+        transition-delay: 0.5s;
+      }
+
+      .logreg-btn:hover:after{
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.315));
+        transition: 0.5s;
+        transition-delay: 0.5s;
+      }
+
+      .logreg-btn:hover{
+        color: white;
+      }
+
+      .logreg-btn span{
+        position: absolute;
+        display: block;
+        transition: 0.5s ease;
+      }
+
+      /* ANIMACIONES LOGREG BUTON */
+      .logreg-btn span:nth-child(1){
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #fff;
+      }
+
+      .logreg-btn:hover span:nth-child(1){
+        width: 100%;
+        transform: translateX(100%);
+      }
+
+      .logreg-btn span:nth-child(3){
+        bottom: 0;
+        right: 0;
+        width: 0;
+        height: 1px;
+        background: #fff;
+      }
+
+      .logreg-btn:hover span:nth-child(3){
+        width: 100%;
+        transform: translateX(-100%);
+      }
+
+      .logreg-btn span:nth-child(2){
+        top: 0;
+        left: 0;
+        width: 1px;
+        height: 0;
+        background: #fff;
+      }
+
+      .logreg-btn:hover span:nth-child(2){
+        height: 100%;
+        transform: translateY(100%);
+      }
+
+      .logreg-btn span:nth-child(4){
+        bottom: 0;
+        right: 0;
+        width: 1px;
+        height: 0;
+        background: #fff;
+      }
+
+      .logreg-btn:hover span:nth-child(4){
+        height: 100%;
+        transform: translateY(-100%);
+      }
+
+      /* FIN ANIMACIONES LOGREG BUTON */
+
+      /* ----------FIN DISEÑO NAV BUTTONS---------- */
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+              <a href="" class="logo-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                SecoSanchez
+              </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mx-auto">
+                      <li class="nav-item">
+                        <a href="" class="nav-btns">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          Dossier
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a href="" class="nav-btns">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          Tienda
+                        </a>
+                      </li>
+
+                      <li class="nav-item">
+                        <a href="" class="nav-btns">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          Contacto
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="d-flex justify-content-between">
+                      <li class="nav-item">
+                        <a href="" class="logreg-btn">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          Login
+                        </a>
+                      </li>
+                      
+
+                      <li class="nav-item">
+                        <a href="" class="logreg-btn">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                          Registro
+                        </a>
+                      </li>
+                    </div>
                 </div>
             </div>
-        </div> --}}
-    </body>
+        </nav>
+    </header>
+
+    <!-- Bootstrap JS -->
+    <script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
