@@ -104,8 +104,33 @@
     <div class="container">
         <div class="row justify-content-center pt-5 mt-5 mr-1">
             <div class="row-md-4 formulario p-5 mb-5 rounded w-75">
-                <form class=" row g-3 needs-validation" action="{{ route('contacto.email') }}" method="POST" novalidate>
+                <form class=" row g-3 needs-validation" action="{{ route('contacto.email') }}" method="POST"
+                    novalidate>
                     @csrf
+
+                    {{-- @if (session('success'))
+                        <script>
+                            alert("{{ session('success') }}");
+                        </script>
+
+                    @endif --}}
+
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            <strong>Mensaje enviado!</strong> El mensaje se ha enviado correctamente.
+
+                        </div>
+                    @endif
+
+                    <script>
+                        window.setTimeout(function(){
+                            $(".alert").fadeTo(1500,0).slideDown(1000,function(){
+                                $(this).remove();
+                            });
+                        }, 2000);
+
+                    </script>
+
                     <div class="form-group text-center">
                         <h1 class="text-ligh titulo-login" style="color: white">Contacto</h1>
                     </div>
@@ -150,7 +175,8 @@
                         <label for="telefono" style="color: white">Teléfono:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></i></span>
-                            <input type="text" class="form-control" id="telefono" name="telefono"placeholder="Ingrese su teléfono... " required>
+                            <input type="text" class="form-control" id="telefono" name="telefono"
+                                placeholder="Ingrese su teléfono... " required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
                         </div>
@@ -160,8 +186,8 @@
                     <div class="col-md-12">
                         <label for="mensaje" style="color: white">Mensaje:</label>
                         <div class="input-group mb-3">
-                            <textarea type="text"  style="height: 200px" class="form-control" id="mensaje" name="mensaje"
-                                placeholder="Ingrese su mensaje... " required></textarea>
+                            <textarea type="text" style="height: 200px" class="form-control" id="mensaje"
+                                name="mensaje" placeholder="Ingrese su mensaje... " required></textarea>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Por favor, ingrese su mensaje.</div>
                         </div>
@@ -171,7 +197,7 @@
                     <div class="text-center">
                         <button type="submit" class="btn btn-success" name="enviar">Enviar</button>
                     </div>
-                    {{--  BOTÓN VOLVER --}}
+                    {{-- BOTÓN VOLVER --}}
                     {{-- <a class="btn btn-secondary" href="{{ route('inicio') }}" role="button">Volver</a> --}}
                 </form>
                 <!-------------- MENSAJE DE ALERTA --------------->
@@ -211,10 +237,6 @@
                 })
         })()
     </script>
-
-    {{-- ENVÍO DE CORREO --}}
-    
-
 </body>
 
 </html>
