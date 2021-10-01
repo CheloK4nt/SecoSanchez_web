@@ -6,7 +6,7 @@
       }
 
 	.navbar{
-        background-color: black;
+        background-color: rgb(0, 0, 0);
       }
 
       /* ----------DISEÑO LOGO BUTTON---------- */
@@ -18,7 +18,7 @@
         text-transform: uppercase;
         letter-spacing: 3px;
         text-decoration: none;
-        font-family: consolas;
+        font-family: Impact;
         font-size: 20px;
         overflow: hidden;
         transition: 0.2s;
@@ -164,6 +164,7 @@
         overflow: hidden;
         border-radius: 10px;
         transition: 0.2s;
+        font-family: 'Raleway', sans-serif;
       }
 
       .nav-btns:hover{
@@ -194,6 +195,7 @@
         border-radius: 10px;
         transition: 0.2s;
         box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.527);
+        font-family: 'Raleway', sans-serif;
       }
 
       .logreg-btn:before{
@@ -464,7 +466,7 @@
 				  </li>
 
 				  <li class="nav-item">
-					<a href="contacto" class="nav-btns">
+					<a href="{{ route('contacto.index') }}" class="nav-btns">
 					  <span></span>
 					  <span></span>
 					  <span></span>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>Login</title>
@@ -37,8 +37,21 @@
     {{-- STYLES --}}
     <style>
 
-        body{
-            background-image: url(/img/seco_fondo_login.png);
+        .form-control:focus{
+            box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
+            border-color: black !important;
+        }
+
+        h1 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        body {
+            padding-inline: 20px;
+            background-image: url(/img/login/tapiz1.png);
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -46,107 +59,311 @@
             background-color: black;
         }
 
-        .btn-success {
-            background-color: #3a9b96;
-            border-color: #ffffff;
-            btn-border-radius: 100px;
+        .logo-img {
+            margin-top: -100px;
+        }
+
+        .main-section {
+            margin: 0 auto;
+            margin-top: 30%;
+            padding: 0;
+        }
+
+        .modal-content {
+            border-style: solid;
+            padding: 10px 20px;
+            border: 20px;
+            border-color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 0px 20px white;
+            font-family: consolas;
+        }
+
+        .modal-dialog {}
+
+        .container {
+            border-style: solid;
+            border-color: black;
+            border-width: 10px;
+        }
+
+        .container .mensajes {
+            border-style: none;
+            border-color: black;
+        }
+
+        /* ----------DISEÑO INGRESAR BUTTON---------- */
+        .ingresar-btn {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+            overflow: hidden;
+            transition: 0.2s;
+            background-color: black;
             width: 100%;
-            margin-top: 20px;
-
+            text-align: center;
+            border-color: rgb(122, 122, 122);
+            border-width: 1px;
+            border-radius: 0;
         }
 
-        .btn-secondary {
-            background-color: #6d6d6d;
-            border-color: #ffffff;
-            btn-border-radius: 100px;
+        .ingresar-btn:focus {
+            background-color: rgb(139, 139, 139) !important;
+            color: white;
+        }
+
+        .ingresar-btn span {
+            position: absolute;
+            display: block;
+        }
+
+        .ingresar-btn:hover {
+            color: black;
+            background-color: rgb(255, 255, 255);
+            border-color: black !important;
+        }
+
+        .ingresar-btn span:hover {
+            color: black;
+        }
+
+        /* ----------FIN DISEÑO INGRESAR BUTTON---------- */
+
+        /* ----------ANIMACION INGRESAR BUTTON---------- */
+
+        /* Linea superior */
+        .ingresar-btn span:nth-child(1) {
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, white);
+            animation: animate1 1s linear infinite;
+        }
+
+        .ingresar-btn:hover span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate1 {
+            0% {
+                left: -100%;
+            }
+
+            50%,
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* fin linea superior */
+
+        /* Linea derecha */
+        .ingresar-btn span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            ;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, white);
+            animation: animate2 1s linear infinite;
+            animation-delay: 0.25s;
+        }
+
+        .ingresar-btn:hover span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate2 {
+            0% {
+                top: -100%;
+            }
+
+            50%,
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* fin linea derecha */
+
+        /* Linea inferior */
+        .ingresar-btn span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, white);
+            animation: animate3 1s linear infinite;
+            animation-delay: 0.5s;
+        }
+
+        .ingresar-btn:hover span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate3 {
+            0% {
+                right: -100%;
+            }
+
+            50%,
+            100% {
+                right: 100%;
+            }
+        }
+
+        /* fin linea inferior */
+
+        /* Linea derecha */
+        .ingresar-btn span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, white);
+            animation: animate4 1s linear infinite;
+            animation-delay: 0.75s;
+        }
+
+        .ingresar-btn:hover span:nth-child(4) {
+            background: linear-gradient(90deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate4 {
+            0% {
+                top: 100%;
+            }
+
+            50%,
+            100% {
+                top: -100%;
+            }
+        }
+
+        /* fin linea derecha */
+
+
+        /* ---------- FIN ANIMACION INGRESAR BUTTON---------- */
+
+        /* ----------DISEÑO VOLVER BUTTONS---------- */
+        .volver-btn {
+            position: relative;
+            display: inline-block;
+            padding: 10px 0px;
+            color: rgb(0, 0, 0);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-size: 15px;
+            overflow: hidden;
+            border-radius: 5px;
+            transition: 0.2s;
+            width: 100%;
+            text-align: center;
             margin-top: 20px;
+            font-weight: bold;
+            font-family: 'Raleway', sans-serif;
         }
 
-        .btn-success:hover {
-            background: #1e504d;
+        .volver-btn:hover {
+            color: rgb(255, 255, 255);
+            background-color: rgb(177, 177, 177);
+            box-shadow: 0 0 10px rgb(120, 120, 120), 0 0 10px rgb(120, 120, 120), 0 0 10px rgb(120, 120, 120);
+            transition-delay: 0.1s;
         }
 
-        .btn-success:focus {
-            background: #3a9b96;
+        .volver-btn span {
+            position: absolute;
+            display: block;
         }
 
-        .form-control:focus {
-            border-color: rgb(255, 255, 255);
-            box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 8px rgba(31, 160, 160, 0.6);
+        /* ----------FIN DISEÑO VOLVER BUTTONS---------- */
+
+        .alert-secondary {
+            background-color: rgb(83, 83, 83) !important;
+            color: rgb(196, 196, 196);
         }
 
-        .formulario {
-            padding-left: 10%;
-            background: rgba(0, 0, 0, 0.842);
-            padding: 20px;
-            transition: 1s ease all;
-            box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.623);
+        label{
+            font-family: 'Raleway', sans-serif;
         }
 
-        .input-group-text {
-            background: rgba(255, 255, 255, 0.473);
-        }
-
-        .form-control {
-            background: rgba(255, 255, 255, 0.788);
-            
-        }
-
-        .titulo-login{
-            background-color: rgba(255, 255, 255, 0.068);
-            border-radius: 7px;
-            padding-bottom: 5px;
-        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center pt-5 mt-5 ">
-            <div class="col-md-4 formulario p-5 rounded">
-                <form class="needs-validation" action="{{ route('usuarios.login') }}" method="POST" novalidate>
+    {{----------------------------- FORMULARIO ----------------------}}
+    <div class="modal-dialog">
+        <div class="col-sm-9 main-section" style="background-color: black">
+            <div class="container modal-content">
+                <div class="col-12 text-center logo-img">
+                    <img src="/img/login/blessedhands.png" alt="" width="150px">
+                </div>
+                <form class="col-12 needs-validation" action="{{ route('usuarios.login') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: white">Iniciar Sesión</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Iniciar Sesión</h1>
                     </div>
                     {{-- INPUT EMAIL --}}
-                    <label for="email" class="form-label" style="color: white">Correo electrónico:</label>
+                    <label for="email" class="form-label text-start" style="color: rgb(0, 0, 0)">Correo
+                        electrónico:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
-                        <input type="text" class="form-control" id="email" name="email" value="{{  old('email') }}"
+                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
                             placeholder="Ingrese su correo..." required>
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                        <div class="invalid-feedback text-start">Por favor, ingrese su correo.</div>
                     </div>
 
                     {{-- INPUT PASSWORD --}}
-                    <label for="password" class="form-label" style="color: white">Contraseña:</label>
+                    <label for="password" class="form-label text-start" style="color: rgb(0, 0, 0)">Contraseña:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                         <input type="password" class="form-control" id="password" name="password"
                             placeholder="Ingrese su contraseña..." required>
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+                        <div class="invalid-feedback text-start">Por favor, ingrese su contraseña.</div>
                     </div>
-                    <button type="submit" class="btn btn-success">Ingresar</button>
-                    <a class="btn btn-secondary" href="{{route('inicio')}}" role="button">Volver</a>
+
+                    {{-- BOTON INGRESAR --}}
+                    <button type="submit" class="btn btn-light ingresar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Ingresar
+                    </button>
+
+                    {{-- BOTON VOLVER --}}
+                    <a href="{{ route('inicio') }}" class="volver-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Volver
+                    </a>
 
                     {{-- MENSAJES DE ERROR --}}
-                    <div class="container mt-4">
+                    <div class="container mensajes mt-4">
                         @if ($errors->any())
-                        <div class="alert alert-info padding-top 5">
-                            <ul>
-                                <li class="mt-2">{{ $errors->first() }}</li>
-                            </ul>
-                        </div>
-                    @endif
+                            <div class="alert alert-secondary padding-top 5">
+                                <ul>
+                                    <li class="mt-1 text-start">{{ $errors->first() }}</li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
     {{-- SCRIPT VALIDATION --}}
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
