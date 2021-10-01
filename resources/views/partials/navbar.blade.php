@@ -464,7 +464,7 @@
 				  </li>
 
 				  <li class="nav-item">
-					<a href="contacto" class="nav-btns">
+					<a href="{{route('contacto.index')}}" class="nav-btns">
 					  <span></span>
 					  <span></span>
 					  <span></span>
