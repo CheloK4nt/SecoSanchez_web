@@ -127,6 +127,11 @@
         left: -20px;
     }
 
+    .img-firma{
+                background-color: rgb(216, 17, 17); 
+                transform: translate(100%);
+            }
+
 </style>
 
 <footer>
@@ -160,6 +165,8 @@
                 </a>
             </li>
         </ul>
+        {{-- <img src="/img/homepage/firma_seco.png" class="img-firma" alt="" width="200px;"> --}}
     </div>
+    
 </footer>
 

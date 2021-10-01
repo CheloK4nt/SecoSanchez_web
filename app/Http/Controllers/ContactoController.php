@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactoController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->except(['index','email']);
+    }
+
     public function index(){
         return view('home.contacto');
     }
