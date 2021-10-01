@@ -27,24 +27,51 @@
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;900&family=Source+Sans+Pro:ital,wght@0,300;0,700;1,400&display=swap" rel="stylesheet">
+        
+        {{-- raleway font --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+        {{-- merienda font --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+
         <style>
-            body{
+
+            header{
                 padding-top: 10px;
-                background-image: url(/img/fondo2pac.png);
+            }
+            body{
+                background-image: url(/img/homepage/2pac_bg.png);
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
                 background-color: rgba(255, 255, 255, 0);
-                animation: change 5s infinite ease-out;
+                animation: change 12s infinite ease-out;
             }
 
             @keyframes change{
-                20%
+                33%
                 {
-                    background-image: url(/img/notoriousfondo.png)
+                    background-image: url(/img/homepage/notorious_bg.png)
+                }
+                66%
+                {
+                    background-image: url(/img/homepage/mechon_bg.png)
                 }
             }
+
+            .container-firma{
+                padding: 5px;
+                position: absolute;
+                bottom: 50px;
+                text-align: end;
+            }
+
+
 
         </style>
     </head>
@@ -55,14 +82,17 @@
 
 <body>
 
-    
+    <div class="container-firma container-fluid" style="background-color: rgba(253, 253, 253, 0)">
+        <img class="firma" src="/img/homepage/firma_seco.png" alt="" width="200px">
+    </div>
 
+    
     {{-- BUNDLE --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
 </body>
-<footer>
+<footer>   
     @include('partials.footer')
 </footer>
 
