@@ -306,7 +306,7 @@
                 <div class="col-12 text-center logo-img">
                     <img src="/img/login/blessedhands.png" alt="" width="150px">
                 </div>
-                <form class="col-12 needs-validation" action="{{ route('usuarios.login') }}" method="POST" novalidate>
+                <form class="col-12 needs-validation" action="{{ route('usuarios.store') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group text-center">
                         <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Regístrate</h1>
@@ -316,7 +316,7 @@
                     <label for="nombre" style="color: black">Nombre:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="nombre" name="nombre"
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}"
                             placeholder="Ingrese su nombre..." required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
@@ -326,7 +326,7 @@
                     <label for="apellido" style="color: black">Apellido:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
-                        <input type="text" class="form-control" id="apellido" name="apellido"
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}"
                             placeholder="Ingrese su apellido..." required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
@@ -336,7 +336,7 @@
                     <label for="direccion" style="color: black">Dirección:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marked-alt"></i></span>
-                        <input type="text" class="form-control" id="direccion" name="direccion"
+                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{ old('direccion') }}"
                             placeholder="Ingrese su dirección..." required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Por favor, ingrese su dirección.</div>
@@ -346,17 +346,17 @@
                     <label for="email" style="color: black">Correo electrónico:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
-                        <input type="text" class="form-control" id="email" name="email"
+                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
                             placeholder="Ingrese su correo... " required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Por favor, ingrese su correo.</div>
                     </div>
 
-                    {{-- INPUT CORREO --}}
+                    {{-- INPUT TELEFONO --}}
                     <label for="text" style="color: black">Teléfono:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span>
-                        <input type="text" class="form-control" id="email" name="email"
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}"
                             placeholder="Ingrese su número... " required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback">Por favor, ingrese su número.</div>
@@ -405,11 +405,14 @@
                         @if ($errors->any())
                             <div class="alert alert-secondary padding-top 5">
                                 <ul>
-                                    <li class="mt-1 text-start">{{ $errors->first() }}</li>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="mt-1 text-start">{{ $error }}</li>
+                                    @endforeach   
                                 </ul>
                             </div>
                         @endif
                     </div>
+
                 </form>
             </div>
         </div>

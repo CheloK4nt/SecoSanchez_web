@@ -35,30 +35,8 @@ class ContactoController extends Controller
             return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
         else :
             $correo = new ContactoMailable($request->all());
-            Mail::to('mailpruebasecosanchez@gmail.com')->send($correo);
-
-                /* $nombre = $_POST['nombre'];
-                $asunto = "asunto";
-                $mensaje = $_POST['mensaje'];
-                $email = $_POST['email']; */
-                /* $nombre = $request->nombre;
-                $asunto = "prueba mail";
-                $mensaje = $request->mensaje;
-                $email = $request->email;
-
-                $headers  = "MIME-Version: 1.0\r\n"; 
-                $headers .= "From: Registro Royal Canin <programadorphp2017@gmail.com>\r\n"; 
-                $headers .= "Reply-To: "; 
-                $headers .= "Return-path:"; 
-                $headers .= "Cc:"; 
-                $headers .= "Bcc:"; 
-                $mail = mail($email,$asunto,$mensaje,$header);
-
-                if($mail){
-                    echo "¡Mail enviado exitosamente!";
-                }
-             */
-            return redirect(route('inicio'));
+            Mail::to('gerardo.pincheira.98@gmail.com')->send($correo);
+            return redirect(route('contacto.index'))->with('success','mensaje');//,'Mensaje enviado');
         endif;
     }
 }

@@ -45,13 +45,13 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'email' => 'email|unique:usuarios,email',
+            'email' => 'unique:usuarios,email',
             'password' => 'min:8',
             'cpassword' => 'min:8|same:password',
         ];
 
         $messages = [
-            'email.email' => 'El formato de su correo electrónico es inválido.',
+            // 'email.email' => 'El formato de su correo electrónico es inválido.',
             'email.unique' => 'Ya existe un usuario registrado con este correo electrónico.',
             'password.min' => 'La contraseña debe tener al menos 8 carácteres.',
             'cpassword.min' => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
@@ -125,7 +125,12 @@ class UsuarioController extends Controller
         $credenciales = $request->only('email', 'password');
         if (Auth::attempt($credenciales)) {
             //credenciales correctas
-            return redirect()->route('inicio');
+            if (Auth::user()->tipo=="A") {
+                return redirect()->route('admin.dashboard');
+            }else{
+                return redirect()->route('inicio');
+            }
+            
         } else {
             //credenciales incorrectas
             return redirect()->route('login');
