@@ -20,9 +20,9 @@
         <tr>
             <td style="background-color: #e7e7e7;">
                 <div style="color: #34495e; margin: 4% 10% 2%; text-align: center;font-family: Sans-serif">
-                    <h2 style="color: #333; margin: 0 0 7px">Hola SecoSanchez, te informo que el cliente: <strong>
-                            {{ $contacto['nombre'] }} {{ $contacto['apellido'] }} </h2>
-                    <p style="margin: 2px; font-size: 18px"> Quiere comunicarse contigo..</p>
+                    <h2 style="color: #333; margin: 0 0 7px">Hola SecoSanchez, te informo que el cliente: <strong></h2>
+                    <h2>{{ $contacto['nombre'] }} {{ $contacto['apellido'] }}</h2>
+                    <p style="margin: 2px; font-size: 18px"> Quiere comunicarse contigo...</p>
                     <p>&nbsp;</p>
                 </div>
                 <div class="container" style="color: #333;font-family: Sans-serif">

@@ -37,7 +37,7 @@
     {{-- STYLES --}}
     <style>
         body {
-            background-image: url(/img/seco_fondo_login.png);
+            background-image: url(/img/login/tapiz1.png);
             background-position: center center;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -62,19 +62,6 @@
 
         }
 
-        .btn-success:hover {
-            background: #1e504d;
-        }
-
-        .btn-success:focus {
-            background: #3a9b96;
-        }
-
-        .form-control:focus {
-            border-color: rgba(58, 155, 150, 0.438);
-            box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.075), 0 0 8px rgba(31, 160, 160, 0.6);
-        }
-
         .formulario {
             background: rgba(0, 0, 0, 0.842);
             padding: 20px;
@@ -97,24 +84,269 @@
             padding-bottom: 5px;
         }
 
+        .form-control:focus{
+            box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
+            border-color: black !important;
+        }
+
+        h1 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .logo-img {
+            margin-top: -100px;
+        }
+
+        .main-section {
+            margin: 0 auto;
+            margin-top: 7%;
+            margin-bottom: 7%;
+            padding: 0;
+        }
+
+        .modal-content {
+            border-style: solid;
+            padding: 10px 20px;
+            border: 20px;
+            border-color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0px 0px 20px white;
+            font-family: consolas;
+        }
+
+        .modal-dialog {}
+
+        .container {
+            border-style: solid;
+            border-color: black;
+            border-width: 10px;
+        }
+
+        .container .mensajes {
+            border-style: none;
+            border-color: black;
+        }
+
+        /* ----------DISEÑO ENVIAR BUTTON---------- */
+        .enviar-btn {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(255, 255, 255);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
+            overflow: hidden;
+            transition: 0.2s;
+            background-color: black;
+            width: 100%;
+            text-align: center;
+            border-color: rgb(122, 122, 122);
+            border-width: 1px;
+            border-radius: 0;
+        }
+
+        .enviar-btn:focus {
+            background-color: rgb(139, 139, 139) !important;
+            color: white;
+        }
+
+        .enviar-btn span {
+            position: absolute;
+            display: block;
+        }
+
+        .enviar-btn:hover {
+            color: black;
+            background-color: rgb(255, 255, 255);
+            border-color: black !important;
+        }
+
+        .enviar-btn span:hover {
+            color: black;
+        }
+
+        /* ----------FIN DISEÑO INGRESAR BUTTON---------- */
+
+        /* ----------ANIMACION INGRESAR BUTTON---------- */
+
+        /* Linea superior */
+        .enviar-btn span:nth-child(1) {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, white);
+            animation: animate1 1s linear infinite;
+        }
+
+        .enviar-btn:hover span:nth-child(1) {
+            background: linear-gradient(90deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate1 {
+            0% {
+                left: -100%;
+            }
+
+            50%,
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* fin linea superior */
+
+        /* Linea derecha */
+        .enviar-btn span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            ;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, white);
+            animation: animate2 1s linear infinite;
+            animation-delay: 0.25s;
+        }
+
+        .enviar-btn:hover span:nth-child(2) {
+            background: linear-gradient(180deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate2 {
+            0% {
+                top: -100%;
+            }
+
+            50%,
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* fin linea derecha */
+
+        /* Linea inferior */
+        .enviar-btn span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, white);
+            animation: animate3 1s linear infinite;
+            animation-delay: 0.5s;
+        }
+
+        .enviar-btn:hover span:nth-child(3) {
+            background: linear-gradient(270deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate3 {
+            0% {
+                right: -100%;
+            }
+
+            50%,
+            100% {
+                right: 100%;
+            }
+        }
+
+        /* fin linea inferior */
+
+        /* Linea derecha */
+        .enviar-btn span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, white);
+            animation: animate4 1s linear infinite;
+            animation-delay: 0.75s;
+        }
+
+        .enviar-btn:hover span:nth-child(4) {
+            background: linear-gradient(90deg, transparent, rgb(0, 0, 0));
+        }
+
+        @keyframes animate4 {
+            0% {
+                top: 100%;
+            }
+
+            50%,
+            100% {
+                top: -100%;
+            }
+        }
+
+        /* fin linea derecha */
+
+
+        /* ---------- FIN ANIMACION INGRESAR BUTTON---------- */
+
+        /* ----------DISEÑO VOLVER BUTTONS---------- */
+        .volver-btn {
+            position: relative;
+            display: inline-block;
+            padding: 10px 0px;
+            color: rgb(0, 0, 0);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-size: 15px;
+            overflow: hidden;
+            border-radius: 5px;
+            transition: 0.2s;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .volver-btn:hover {
+            color: rgb(255, 255, 255);
+            background-color: rgb(177, 177, 177);
+            box-shadow: 0 0 10px rgb(120, 120, 120), 0 0 10px rgb(120, 120, 120), 0 0 10px rgb(120, 120, 120);
+            transition-delay: 0.1s;
+        }
+
+        .volver-btn span {
+            position: absolute;
+            display: block;
+        }
+
+        /* ----------FIN DISEÑO VOLVER BUTTONS---------- */
+
+        .alert-secondary {
+            background-color: rgb(83, 83, 83) !important;
+            color: rgb(196, 196, 196);
+        }
+
+        label{
+            font-family: 'Raleway', sans-serif;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center pt-5 mt-5 mr-1">
-            <div class="row-md-4 formulario p-5 mb-5 rounded w-75">
-                <form class=" row g-3 needs-validation" action="{{ route('contacto.email') }}" method="POST"
-                    novalidate>
+    {{----------------------------- FORMULARIO ----------------------}}
+    <div class="row-1">
+        <div class="col-md-7 col-10 main-section" style="background-color: black">
+            <div class="container modal-content">
+                <div class="col-12 text-center logo-img">
+                    <img src="/img/login/blessedhands.png" alt="" width="150px">
+                </div>
+                <form class="col-12 needs-validation" action="{{ route('contacto.email') }}" method="POST" novalidate>
+                    
                     @csrf
-
-                    {{-- @if (session('success'))
-                        <script>
-                            alert("{{ session('success') }}");
-                        </script>
-
-                    @endif --}}
-
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             <strong>Mensaje enviado!</strong> El mensaje se ha enviado correctamente.
@@ -124,93 +356,114 @@
 
                     <script>
                         window.setTimeout(function(){
-                            $(".alert").fadeTo(1500,0).slideDown(1000,function(){
+                            $(".alert-success").fadeTo(1500,0).slideDown(1000,function(){
                                 $(this).remove();
                             });
-                        }, 2000);
+                        }, 10000);
 
                     </script>
 
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: white">Contacto</h1>
+                        <h1 class="text-ligh titulo-login" style="color: black">Contacta con nosotros</h1>
                     </div>
-                    {{-- INPUT NOMBRE --}}
-                    <div class="col-md-6">
-                        <label for="nombre" style="color: white">Nombre:</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" id="nombre" name="nombre"
-                                placeholder="Ingrese su nombre..." required>
-                            <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+
+                    
+                    <div class="row">
+                        {{-- INPUT NOMBRE --}}
+                        <div class="col-md-6">
+                            <label for="nombre" style="color: black">Nombre:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    placeholder="Ingrese su nombre..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                            </div>
+                        </div>
+
+                        {{-- INPUT APELLIDO --}}
+                        <div class="col-md-6">
+                            <label for="apellido" style="color: black">Apellido:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                                <input type="text" class="form-control" id="apellido" name="apellido"
+                                    placeholder="Ingrese su apellido..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                            </div>
                         </div>
                     </div>
 
-                    {{-- INPUT APELLIDO --}}
-                    <div class="col-md-6">
-                        <label for="apellido" style="color: white">Apellido:</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
-                            <input type="text" class="form-control" id="apellido" name="apellido"
-                                placeholder="Ingrese su apellido..." required>
-                            <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                    <div class="row">
+                        {{-- INPUT CORREO --}}
+                        <div class="col-md-6">
+                            <label for="email" style="color: black">Correo electrónico:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                                <input type="text" class="form-control" id="email" name="email"
+                                    placeholder="Ingrese su correo... " required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                            </div>
                         </div>
-                    </div>
 
-                    {{-- INPUT CORREO --}}
-                    <div class="col-md-6">
-                        <label for="email" style="color: white">Correo electrónico:</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Ingrese su correo... " required>
-                            <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Por favor, ingrese su correo.</div>
-                        </div>
-                    </div>
-
-                    {{-- INPUT TELÉFONO --}}
-                    <div class="col-md-6">
-                        <label for="telefono" style="color: white">Teléfono:</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></i></span>
-                            <input type="text" class="form-control" id="telefono" name="telefono"
-                                placeholder="Ingrese su teléfono... " required>
-                            <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
+                        {{-- INPUT TELÉFONO --}}
+                        <div class="col-md-6">
+                            <label for="telefono" style="color: black">Teléfono:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></i></span>
+                                <input type="text" class="form-control" id="telefono" name="telefono"
+                                    placeholder="Ingrese su teléfono... " required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
+                            </div>
                         </div>
                     </div>
 
                     {{-- INPUT MENSAJE --}}
                     <div class="col-md-12">
-                        <label for="mensaje" style="color: white">Mensaje:</label>
+                        <label for="mensaje" style="color: black">Mensaje:</label>
                         <div class="input-group mb-3">
-                            <textarea type="text" style="height: 200px" class="form-control" id="mensaje"
+                            <textarea type="text" style="height: 100px" class="form-control" id="mensaje"
                                 name="mensaje" placeholder="Ingrese su mensaje... " required></textarea>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Por favor, ingrese su mensaje.</div>
                         </div>
+                        <small class="form-text text-muted">Carácteres restantes:<span class="text-danger" id="CaracteresRestantes"></span></small>
                     </div>
 
-                    {{-- BOTÓN ENVIAR --}}
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-success" name="enviar">Enviar</button>
+                    {{-- BOTON ENVIAR --}}
+                    <button type="submit" class="btn btn-light enviar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Enviar
+                    </button>
+
+                    {{-- BOTON VOLVER --}}
+                    <a href="{{ route('inicio') }}" class="volver-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Volver
+                    </a>
+
+                    {{-- MENSAJES DE ERROR --}}
+                    <div class="container mensajes mt-4">
+                        @if ($errors->any())
+                            <div class="alert alert-secondary padding-top 5">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="mt-1 text-start">{{ $error }}</li>
+                                    @endforeach   
+                                </ul>
+                            </div>
+                        @endif
                     </div>
-                    {{-- BOTÓN VOLVER --}}
-                    {{-- <a class="btn btn-secondary" href="{{ route('inicio') }}" role="button">Volver</a> --}}
+
                 </form>
-                <!-------------- MENSAJE DE ALERTA --------------->
-                @if ($errors->any())
-                    <div class="alert alert-danger mt-4">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                <!------------ FIN MENSAJE DE ALERTA ------------->
             </div>
         </div>
     </div>
@@ -237,6 +490,30 @@
                 })
         })()
     </script>
+
+    {{--
+		Función para contar carácteres restantes del mensaje a enviar
+	--}}
+	<script type="text/javascript">
+
+		var max_caracteres = 200;
+		var mensaje_input = document.getElementById("mensaje");
+		var caracteres_restantes = document.getElementById("CaracteresRestantes");
+
+		caracteres_restantes.innerHTML = max_caracteres;
+
+		mensaje_input.addEventListener("keydown",contar);
+
+		function contar(e){
+			var cant_caracteres = mensaje_input.value.length;
+			if (cant_caracteres >= max_caracteres){
+				e.preventDefault();
+			} else{
+				caracteres_restantes.innerHTML = max_caracteres - (cant_caracteres);
+			}
+		}
+
+	</script>
 </body>
 
 </html>
