@@ -13,7 +13,7 @@
     <table style="max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;">
         <tr>
             <td>
-                <img style="padding: 0; display: block" src="https://i.imgur.com/2JZiZEp.png" alt="logo" width="100%">
+                <img style="padding: 0; display: block" src="https://i.imgur.com/RNI3Api.png" alt="logo" width="100%">
             </td>
         </tr>
 
@@ -39,7 +39,7 @@
         <tr>
             <td style="padding: 0;">
                 <img style="padding: 0; display: block"
-                    src="https://i.imgur.com/hXBpzRi.png"
+                    src="https://i.imgur.com/Xs4uYhT.png"
                     width="100%">
             </td>
         </tr>
