@@ -15,6 +15,13 @@
     {{-- JQUERY --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    {{-- CK Editor 4 --}}
+    <script src="{{ url('/static/libs/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url('/static/js/admin.js') }}"></script>
+
+    {{-- BUNDLE --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
     {{-- BOOTSTRAP --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -61,21 +68,27 @@
             overflow: hidden;
         }
 
-        .col1{
-            float: left;
-            position: relative;
+        .wrapper .col1{
+            /* float: left; */
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
             z-index: 999;
             width: 17%;
         }
 
-        .col2{
-            float: left;
+        .wrapper .col2{
+            float: right;
             width: 83%;
         }
 
         .navbar{
+            position: fixed;
+            width: 100%;
             background-color: rgb(46, 46, 46);
             padding-inline: 20px;
+            z-index: 100;
         }
 
         .navbar .titulo-page{
@@ -85,24 +98,53 @@
             letter-spacing: 5px;
         }
 
+        .navbar .titulo-page:hover{
+            font-weight: bold;
+        }
+
         .navbar i{
             color: rgb(121, 121, 121);
         }
 
         .breadcrumb{
-            padding: 10px;
-            padding-inline: 5px;
+            padding: 12px;
+            padding-inline: 15px;
             background-color: rgb(170, 170, 170);
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.253);
+            border-radius: 3px;
         }
 
         .page{
-            padding-top: 10px;
+            padding-top: 80px;
             padding-bottom: 10px;
         }
 
         .page a{
             text-decoration: none;
+        }
+
+        .breadcrumb-item{
+        color: rgb(255, 255, 255);
+        }
+
+        .breadcrumb-item:hover{
+        color: rgb(131, 131, 131);
+        font-weight: bold;
+        }
+
+        .form-control:focus{
+            box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
+            border-color: black !important;
+        }
+
+        .form-select:focus{
+            box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
+            border-color: black !important;
+        }
+
+        .invalid-feedback{
+        color: rgb(51, 51, 51) !important;
+        font-weight: bold;
         }
 
     </style>
@@ -118,8 +160,8 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="{{ url('/admin') }}" class="nav-link titulo-page">
-                                <i class="fas fa-box-open"></i>
-                                Productos
+                                <i class="fas fa-laptop-house"></i>
+                                Dashboard
                             </a>
                         </li>
                     </ul>
@@ -130,8 +172,7 @@
                 <div class="container-fluid">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <a class="breadcrumb-item active" href="{{ url('/admin') }}">Productos</a>
-                            <li class="breadcrumb-item" aria-current="page">Library</li>
+                            <a class="breadcrumb-item" href="{{ url('/admin') }}">Dashboard</a>
                             @section('breadcrumb')
                             @show
                         </ol>
