@@ -21,6 +21,9 @@ Route::view('','home.index')->name('inicio');
 
 
 // -------------------- U S U A R I O S -------------------- //
+
+//PANEL USUARIOS REGISTRADOS
+/* Route:get('/panel',) */
 // CONTACTO
 Route::get('/contacto','ContactoController@index')->name('contacto.index');
 Route::post('/home/contacto', 'ContactoController@email')->name('contacto.email');
@@ -28,6 +31,12 @@ Route::post('/home/contacto', 'ContactoController@email')->name('contacto.email'
 // LOGIN
 Route::view('/login','usuarios.login')->name('login');
 Route::post('/usuarios/login', 'UsuarioController@login')->name('usuarios.login');
+
+//RECUPERACION CONTRASEÑA
+Route::get('/recuperar','UsuarioController@recuperar')->name('usuarios.recuperar');
+Route::post('/usuarios/recuperar','UsuarioController@postRecuperar')->name('usuarios.postrecuperar');
+Route::get('/reset','UsuarioController@reset')->name('usuarios.reset');
+Route::put('/postReset','UsuarioController@postReset')->name('post.reset');
 
 //LOGOUT
 Route::get('/usuarios/logout', 'UsuarioController@logout')->name('usuarios.logout');

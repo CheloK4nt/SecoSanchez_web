@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Login</title>
+    <title>Recuperar Contraseña</title>
 
     {{-- CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -36,9 +36,8 @@
 
     {{-- STYLES --}}
     <style>
-
-        .form-control:focus{
-            box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
+        .form-control:focus {
+            box-shadow: inset 0 0px 0px, 0 0 8px rgb(0, 0, 0);
             border-color: black !important;
         }
 
@@ -65,7 +64,8 @@
 
         .main-section {
             margin: 0 auto;
-            margin-top: 30%;
+            margin-top: 7%;
+            margin-bottom: 7%;
             padding: 0;
         }
 
@@ -291,7 +291,7 @@
             color: rgb(196, 196, 196);
         }
 
-        label{
+        label {
             font-family: 'Raleway', sans-serif;
         }
 
@@ -299,37 +299,54 @@
 </head>
 
 <body>
-    {{----------------------------- FORMULARIO ----------------------}}
-    <div class="modal-dialog">
-        <div class="col-sm-9 main-section" style="background-color: black">
+    {{-- --------------------------- FORMULARIO -------------------- --}}
+    <div class="row-1">
+        <div class="col-md-7 col-10 main-section" style="background-color: black">
             <div class="container modal-content">
                 <div class="col-12 text-center logo-img">
                     <img src="/img/login/blessedhands.png" alt="" width="150px">
                 </div>
-                <form class="col-12 needs-validation" action="{{ route('usuarios.login') }}" method="POST" novalidate>
+                <form class="col-12 needs-validation" action="{{ route('post.reset') }}" method="POST"
+                    novalidate>
                     @csrf
+                    @method('PUT')
+                    {{--------------- MENSAJE SUCCESS ---------------}}
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                             <strong>Correo enviado!</strong> Ingrese el código que le hemos enviado a su correo electrónico.
+                        </div>
+                    @endif
+                    <script>
+                        window.setTimeout(function() {
+                            $(".alert-success").fadeTo(1500, 0).slideDown(1000, function() {
+                                $(this).remove();
+                            });
+                        }, 5000);
+                    </script>
+                    {{------------- FIN MENSAJE SUCCESS -------------}}
+
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Iniciar Sesión</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Recuperar Contraseña</h1>
                     </div>
                     {{-- INPUT EMAIL --}}
                     <label for="email" class="form-label text-start" style="color: rgb(0, 0, 0)">Correo
                         electrónico:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
-                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                        <input type="text" class="form-control" id="email" name="email" value="{{ $email }}" readonly="readonly"
                             placeholder="Ingrese su correo..." required>
                         <div class="valid-feedback"></div>
                         <div class="invalid-feedback text-start">Por favor, ingrese su correo.</div>
                     </div>
 
-                    {{-- INPUT PASSWORD --}}
-                    <label for="password" class="form-label text-start" style="color: rgb(0, 0, 0)">Contraseña:</label>
+                    {{-- INPUT CÓDIGO DE RECUPERACIÓN --}}
+                    <label for="code" class="form-label text-start" style="color: rgb(0, 0, 0)">Código de recuperación:</label>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Ingrese su contraseña..." required>
+                        <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                        <input type="number" class="form-control" id="code" name="code" value=""
+                            placeholder="Ingrese el código de recuperación..." required>
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback text-start">Por favor, ingrese su contraseña.</div>
+                        <div class="invalid-feedback text-start">Por favor, ingrese el código de recuperación.</div>
                     </div>
 
                     {{-- BOTON INGRESAR --}}
@@ -338,7 +355,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Ingresar
+                        Recuperar Contraseña
                     </button>
 
                     {{-- BOTON VOLVER --}}
@@ -353,35 +370,26 @@
                     <div style="text-align: center" class="footer mt-16">
                         <a href="{{ route('usuarios.register') }}">No tienes una cuenta? Registrate!</a>
                         <h2></h2>
-                        <a href="{{ route('usuarios.recuperar') }}">Olvidó su contraseña?</a>
+                        <a href="{{ route('login') }}">Ingresar a mi cuenta</a>
                     </div>
 
-                    @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            La contraseña fue restablecida con éxito, ahora puede iniciar sesión.
-
-                        </div>
-                    @endif
-
-                    <script>
-                        window.setTimeout(function(){
-                            $(".alert-success").fadeTo(1500,0).slideDown(1000,function(){
-                                $(this).remove();
-                            });
-                        }, 5000);
-
-                    </script>
-
                     {{-- MENSAJES DE ERROR --}}
+
                     <div class="container mensajes mt-4">
-                        @if ($errors->any())
+                        @if (Session::has('message'))
                             <div class="alert alert-secondary padding-top 5">
+                                <li class="mt-1 text-start">{{ Session::get('message') }}</li>
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-secondary ">
                                 <ul>
                                     <li class="mt-1 text-start">{{ $errors->first() }}</li>
                                 </ul>
                             </div>
                         @endif
                     </div>
+
                 </form>
             </div>
         </div>
