@@ -31,6 +31,6 @@ class ContactoMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('home.mail');
+        return $this->view('emails.email_comunicarse');
     }
 }

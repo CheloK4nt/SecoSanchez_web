@@ -36,13 +36,12 @@
 
     {{-- STYLES --}}
     <style>
-
-        label{
+        label {
             font-family: 'Raleway', sans-serif;
         }
 
-        .form-control:focus{
-            box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
+        .form-control:focus {
+            box-shadow: inset 0 0px 0px, 0 0 8px rgb(0, 0, 0);
             border-color: black !important;
         }
 
@@ -69,7 +68,8 @@
 
         .main-section {
             margin: 0 auto;
-            margin-top: 20%;
+            margin-top: 7%;
+            margin-bottom: 7%;
             padding: 0;
         }
 
@@ -299,9 +299,9 @@
 </head>
 
 <body>
-    {{----------------------------- FORMULARIO ----------------------}}
-    <div class="modal-dialog">
-        <div class="col-sm-10 main-section" style="background-color: black">
+    {{-- --------------------------- FORMULARIO -------------------- --}}
+    <div class="row-1">
+        <div class="col-md-7 col-10 main-section" style="background-color: black">
             <div class="container modal-content">
                 <div class="col-12 text-center logo-img">
                     <img src="/img/login/blessedhands.png" alt="" width="150px">
@@ -312,76 +312,100 @@
                         <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Regístrate</h1>
                     </div>
 
-                    {{-- INPUT NOMBRE --}}
-                    <label for="nombre" style="color: black">Nombre:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}"
-                            placeholder="Ingrese su nombre..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                    <div class="row">
+                        {{-- INPUT NOMBRE --}}
+                        <div class="col-md-6">
+                            <label for="nombre" style="color: black">Nombre:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                    value="{{ old('nombre') }}" placeholder="Ingrese su nombre..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                            </div>
+                        </div>
+
+                        {{-- INPUT APELLIDO --}}
+                        <div class="col-md-6">
+                            <label for="apellido" style="color: black">Apellido:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                                <input type="text" class="form-control" id="apellido" name="apellido"
+                                    value="{{ old('apellido') }}" placeholder="Ingrese su apellido..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                            </div>
+                        </div>
                     </div>
 
-                    {{-- INPUT APELLIDO --}}
-                    <label for="apellido" style="color: black">Apellido:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
-                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}"
-                            placeholder="Ingrese su apellido..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                    <div class="row">
+                        {{-- INPUT DIRECCION --}}
+                        <div class="col-md-6">
+                            <label for="direccion" style="color: black">Dirección:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marked-alt"></i></span>
+                                <input type="text" class="form-control" id="direccion" name="direccion"
+                                    value="{{ old('direccion') }}" placeholder="Ingrese su dirección..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su dirección.</div>
+                            </div>
+                        </div>
+                        
+                        {{-- INPUT CORREO --}}
+                        <div class="col-md-6">
+                            <label for="email" style="color: black">Correo electrónico:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
+                                <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
+                                    placeholder="Ingrese su correo... " required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                            </div>
+                        </div>
                     </div>
 
-                    {{-- INPUT DIRECCION --}}
-                    <label for="direccion" style="color: black">Dirección:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marked-alt"></i></span>
-                        <input type="text" class="form-control" id="direccion" name="direccion" value="{{ old('direccion') }}"
-                            placeholder="Ingrese su dirección..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su dirección.</div>
+                    <div class="row">
+                        {{-- INPUT TELEFONO --}}
+                        <div class="col-md-6">
+                            <label for="text" style="color: black">Teléfono:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span>
+                                <input type="text" class="form-control" id="telefono" name="telefono"
+                                    value="{{ old('telefono') }}" placeholder="Ingrese su número... " required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su número.</div>
+                            </div>
+                        </div>
+                        
+                        {{-- INPUT CONTRASEÑA --}}
+                        <div class="col-md-6">
+                            <label for="password" style="color: black">Contraseña:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Ingrese su contraseña..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+                            </div>
+                        </div>
                     </div>
 
-                    {{-- INPUT CORREO --}}
-                    <label for="email" style="color: black">Correo electrónico:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
-                        <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                            placeholder="Ingrese su correo... " required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+
+                    <div class="row">
+                        <div class="col"><h2></h2></div>
+                        {{-- INPUT C-CONTRASEÑA --}}
+                        <div class="col-md-6">
+                            <label for="cpassword" style="color: black">Confirme contraseña:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock"></i></span>
+                                <input type="password" class="form-control" id="cpassword" name="cpassword"
+                                    placeholder="Confirme su contraseña..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback">Por favor, confirme su contraseña.</div>
+                            </div>
+                        </div>
                     </div>
 
-                    {{-- INPUT TELEFONO --}}
-                    <label for="text" style="color: black">Teléfono:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span>
-                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}"
-                            placeholder="Ingrese su número... " required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su número.</div>
-                    </div>
-
-                    {{-- INPUT CONTRASEÑA --}}
-                    <label for="password" style="color: black">Contraseña:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Ingrese su contraseña..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
-                    </div>
-
-                    {{-- INPUT C-CONTRASEÑA --}}
-                    <label for="cpassword" style="color: black">Confirme contraseña:</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock"></i></span>
-                        <input type="password" class="form-control" id="cpassword" name="cpassword"
-                            placeholder="Confirme su contraseña..." required>
-                        <div class="valid-feedback"></div>
-                        <div class="invalid-feedback">Por favor, confirme su contraseña.</div>
-                    </div>
-                    
                     {{-- BOTON REGISTRAR --}}
                     <button type="submit" class="btn btn-light registrar-btn">
                         <span></span>
@@ -407,7 +431,7 @@
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li class="mt-1 text-start">{{ $error }}</li>
-                                    @endforeach   
+                                    @endforeach
                                 </ul>
                             </div>
                         @endif
@@ -441,4 +465,5 @@
         })()
     </script>
 </body>
+
 </html>

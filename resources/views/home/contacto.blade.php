@@ -359,7 +359,7 @@
                             $(".alert-success").fadeTo(1500,0).slideDown(1000,function(){
                                 $(this).remove();
                             });
-                        }, 10000);
+                        }, 5000);
 
                     </script>
 
