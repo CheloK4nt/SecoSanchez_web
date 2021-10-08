@@ -8,12 +8,16 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginUsuarioRequest;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use Str;
+use App\Mail\RecuperarMailable;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth')->except(['login','register', 'store']);
+        $this->middleware('auth')->except(['login','register', 'store','recuperar','postRecuperar','reset','postReset']);
     }
 
     /**
@@ -140,5 +144,81 @@ class UsuarioController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('inicio');
+    }
+
+    public function recuperar()
+    {
+        return view('usuarios.recuperar');
+    }
+
+    public function postRecuperar(Request $request)
+    {
+        $rules = [
+            'email' => 'email',
+        ];
+
+        $messages = [
+            'email.email' => 'El formato de su correo electrónico es inválido.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) :
+            return back()->withErrors($validator);
+        else :
+            $usuarios = Usuario::where('email',$request->input('email'))->count();
+            if($usuarios == "1"):
+                $usuarios = Usuario::where('email',$request->input('email'))->first();
+                $code = rand(100000, 999999);
+                $data = ['nombre' => $usuarios->nombre,'email'=>$usuarios->email,'code'=>$code];
+
+                $u = Usuario::find($usuarios->email);
+                $u->password_code = $code;
+                if($u->save()):
+                    /* $correo = new RecuperarMailable($request->all()); */
+                    Mail::to($usuarios->email)->send(new RecuperarMailable($data));
+                    return redirect('/reset?email='.$usuarios->email)->with('success','mensaje');
+                endif;
+            else:
+                return back()->with('message','Este correo electrónico NO existe.')->with('typealert','danger');
+            endif;
+        endif;
+    }
+
+    public function reset(Request $request){
+        $data = ['email'=>$request->get('email')];
+        return view('usuarios.reset',$data);
+    }
+
+    public function postReset(Request $request){
+        $rules = [
+            'email' => 'email',
+        ];
+
+        $messages = [
+            'email.email' => 'El formato de su correo electrónico es inválido.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) :
+            return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
+        else :
+            $usuarios = Usuario::where('email',$request->input('email'))->where('password_code',$request->input('code'))->count();
+            if($usuarios == "1"):
+                $usuarios = Usuario::where('email',$request->input('email'))->first();
+                $new_password = DB::table('usuarios')->select('password_code')->where('password_code',$request->input('code'))->get();
+                /* DB::table('usuarios')->select('email')->where('email',$request->input('email'))->get(); */ 
+                foreach ($new_password as $np) {
+                    $usuarios->password = Hash::make($np->password_code);
+                }
+                $usuarios->password_code = null;
+                $usuarios->save();
+                return redirect('/login')->with('success','mensaje');/* ->with('message','La contraseña fue restablecida con éxito, ahora puede iniciar sesión,')->with('typealert','success'); */
+                /* if($usuarios->save()):
+                    return redirect('/login')->with('message','La contraseña fue restablecida con éxito, ahora puede iniciar sesión,')->with('typealert','success');
+                endif; */
+            else:
+                return back()->with('message','El código de recuperación es incorrecto')->with('typealert','danger');
+            endif;
+        endif;
     }
 }
