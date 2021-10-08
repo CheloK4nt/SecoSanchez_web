@@ -7,6 +7,7 @@
     .sidebar{
         background-color: rgb(0, 0, 0);
         min-height: 100vh;
+        position: relative;
     }
 
     .section-top{
@@ -56,7 +57,7 @@
     }
 
     .section-bot{
-        margin-top: 150px;
+        margin-top: 90px;
     }
 
     .section-bot li{
@@ -104,7 +105,13 @@
     <div class="main">
         <ul>
             <li>
-                <a href="{{ url('/admin') }}"><i class="fas fa-box-open"></i></i>Productos</a>
+                <a href="{{ url('/admin') }}"><i class="fas fa-laptop-house"></i>Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ url('/admin/productos') }}"><i class="fas fa-box-open"></i></i>Productos</a>
+            </li>
+            <li>
+                <a href="{{ url('/admin/categorias') }}"><i class="far fa-folder-open"></i>Categorías</a>
             </li>
             <li>
                 <a href="{{ url('/admin') }}"><i class="fas fa-images"></i>Dossier</a>
@@ -123,7 +130,6 @@
             <li>
                 <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Salir</a>
             </li>
-        </ul>
-        
+        </ul>    
     </div>
 </div>
