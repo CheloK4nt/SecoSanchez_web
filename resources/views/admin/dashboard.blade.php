@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Productos')
+@section('title', 'Dashboard')
 
 
 <style>
@@ -22,9 +22,14 @@
         padding: 12px;
     }
 
+    .logo-db{
+        padding: 5px;
+    }
+
     .inside{
         padding: 16px;
     }
+
 </style>
 
 
@@ -32,7 +37,7 @@
 <div class="container-fluid">
     <div class="panel shadow">
         <div class="header">
-            <h2 class="title"><i class="fas fa-box-open"></i>Productos</i></h2>
+            <h2 class="title"><i class="fas fa-laptop-house logo-db"></i>Dashboard</h2>
         </div>
 
         <div class="inside">
