@@ -1,5 +1,14 @@
 var base = location.protocol+'//'+location.host;
 
+document.addEventListener('DOMContentLoaded', function(){
+    var img_prod_gal = document.getElementById('img_prod_gal');
+    var btn_img_prod_gal = document.getElementById('btn_img_prod_gal');
+    btn_img_prod_gal.addEventListener('click', function(){
+        img_prod_gal.click();
+    })
+});
+
+
 $(document).ready(function(){
     editor_init('editor');
 })

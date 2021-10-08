@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
+
 {
 
     public function __Construct(){
@@ -117,7 +118,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto, $id)
     {
-        $producto = Producto::find($id);
+        $producto = Producto::findOrFail($id);
         $producto->id_prod = $request->id_prod;
         $producto->nom_prod = $request->nom_prod;
         $producto->cat_prod = $request->cat_prod;
@@ -158,7 +159,10 @@ class ProductoController extends Controller
             $img->save($upload_path.'/'.$path.'/t_'.$filename); 
         }
 
-        return redirect()->route('admin.productos')->with('success',"Producto {$request->id_prod} MODIFICADO exitosamente");
+        $textColor = "red";
+
+
+        return redirect()->route('admin.productos')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
     }
 
     /**
@@ -167,9 +171,12 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(Producto $producto, $id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        $producto->delete();
+        $id_prod = $producto->id_prod;
+        return redirect()->route('admin.productos')->with('success',"Producto {$id_prod} ELIMINADO exitosamente");
     }
 
     public function getProductos(){
@@ -212,7 +219,7 @@ class ProductoController extends Controller
     }
 
     public function getProductoEdit($id){
-        $prod = Producto::find($id);
+        $prod = Producto::findOrFail($id);
         $data = ['prod' => $prod];
 
         $categorias = DB::table('categorias')->select('*')

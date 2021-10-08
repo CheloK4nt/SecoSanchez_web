@@ -21,7 +21,7 @@
 
     {{-- CK Editor 4 --}}
     <script src="{{ url('/static/libs/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ url('/static/js/admin.js') }}"></script>
+    <script src="{{ url('/static/js/admin.js?v='.time()) }}"></script>
 
     {{-- BUNDLE --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>

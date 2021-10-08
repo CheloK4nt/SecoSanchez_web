@@ -52,6 +52,33 @@
     .id-prod-bc{
         font-family: 'Open Sans', sans-serif;
     }
+
+    .product_gallery{
+        overflow: hidden;
+    }
+
+    .tumb{
+        float: left;
+        display: block;
+        margin-right: 1%;
+        width: 49%;
+    }
+
+    .tumb a{
+        border: 1px dashed rgb(54, 54, 54);
+        color: white;
+        border-radius: 4px;
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 40px 0;
+        font-size: 2em;
+    }
+
+    .tumb a:hover{
+        color: rgb(128, 128, 128);
+        background-color: rgb(209, 209, 209);
+    }
     
 
 </style>
@@ -201,9 +228,28 @@
         <div class="col-md-3">
             <div class="panel shadow">
                 <div class="header">
-                    <h2 class="title"><i class="fas fa-images logo-addprod"></i>Imagen Destacada</h2>
-                    <div class="inside">
-                        <img src="{{url('/uploads/'.$prod->file_path.'/'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
+                    <h2 class="title"><i class="fas fa-image logo-addprod"></i>Imagen Destacada</h2>
+                </div>
+                <div class="inside">
+                    <img src="{{url('/uploads/'.$prod->file_path.'/'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
+                </div>
+            </div>
+
+            <div class="panel shadow mt-2">
+                <div class="header">
+                    <h2 class="title"><i class="fas fa-images logo-addprod"></i>Galería</h2>
+                </div>
+                <div class="inside product_gallery">
+                    <form class="col-12 needs-validation" action="#" method="POST" enctype="multipart/form-data" novalidate>
+                    @csrf
+                        <div class="input-group">
+                            <input style="display: none" type="file" class="form-control" id="img_prod_gal" name="img_prod_gal" accept="image/*">
+                            <div class="valid-feedback"></div>
+                        </div>
+                    </form>
+
+                    <div class="tumb">
+                        <a href="#" id="btn_img_prod_gal"><i class="fas fa-plus"></i></a>
                     </div>
                 </div>
             </div>

@@ -83,7 +83,7 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria, $id)
     {
-        $categoria = Categoria::find($id);
+        $categoria = Categoria::findOrFail($id);
         $categoria->nom_cat = $request->nom_cat;
         $id_cat = $categoria->id_cat;
         $nom_cat = $categoria->nom_cat;
@@ -99,7 +99,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria, $id)
     {
-        $categoria = Categoria::find($id);
+        $categoria = Categoria::findOrFail($id);
         $categoria->delete();
         $id_cat = $categoria->id_cat;
         return redirect()->route('admin.categorias')->with('success',"Categoría {$id_cat} ELIMINADA exitosamente");
@@ -142,7 +142,7 @@ class CategoriaController extends Controller
     }
 
     public function getCategoriaEdit($id){
-        $cat = Categoria::find($id);
+        $cat = Categoria::findOrFail($id);
         $data = ['cat' => $cat];
         $id_categoria = $cat -> id_cat;
         $nom_categoria = $cat -> nom_cat;

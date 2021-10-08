@@ -114,7 +114,7 @@
                             <td class="body-td">{{$prod->crit_prod}}</td>
                             <td class="body-td">
                                 <a class="btn btn-secondary" href="{{ route('producto.edit',$prod->id_prod) }}"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-secondary" href=""><i class="fas fa-trash"></i></a>
+                                <a class="btn btn-secondary" href="{{ route('producto.destroy',$prod->id_prod) }}"><i class="fas fa-trash"></i></a>
                                 {{-- <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}
                             </td>
