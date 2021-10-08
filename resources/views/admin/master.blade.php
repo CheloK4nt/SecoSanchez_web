@@ -15,6 +15,10 @@
     {{-- JQUERY --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    {{-- FANCYBOX --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
     {{-- CK Editor 4 --}}
     <script src="{{ url('/static/libs/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ url('/static/js/admin.js') }}"></script>
@@ -183,6 +187,8 @@
             </div>
         </div>
     </div>
+
+
 
 </body>
 </html>

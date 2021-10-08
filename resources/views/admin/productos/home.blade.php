@@ -103,8 +103,8 @@
                             <td class="body-td">{{$prod->id_prod}}</td>
                             <td class="body-td">{{$prod->nom_prod}}</td>
                             <td class="body-td" style="width: 64px">
-                                <a target="_blank" href="{{url('/uploads/'.$prod->file_path.'/'.$prod->img_prod)}}">
-                                    <img src="{{url('/uploads/'.$prod->file_path.'/t_'.$prod->img_prod)}}" width="64px">
+                                <a href="{{url('/uploads/'.$prod->file_path.'/'.$prod->img_prod)}}">
+                                    <img src="{{url('/uploads/'.$prod->file_path.'/t_'.$prod->img_prod)}}" width="64px" data-fancybox="gallery">
                                 </a>                         
                             </td>
                             <td class="body-td">{{$prod->categoria->nom_cat}}</td>
@@ -113,7 +113,7 @@
                             <td class="body-td">{{$prod->stock_prod}}</td>
                             <td class="body-td">{{$prod->crit_prod}}</td>
                             <td class="body-td">
-                                <a class="btn btn-secondary" href=""><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-secondary" href="{{ route('producto.edit',$prod->id_prod) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" href=""><i class="fas fa-trash"></i></a>
                                 {{-- <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}

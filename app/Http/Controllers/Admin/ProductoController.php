@@ -115,9 +115,50 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, Producto $producto, $id)
     {
-        //
+        $producto = Producto::find($id);
+        $producto->id_prod = $request->id_prod;
+        $producto->nom_prod = $request->nom_prod;
+        $producto->cat_prod = $request->cat_prod;
+
+        if ($request->hasFile('img_prod')) {
+
+            // SE CREA PATH PARA IMAGENES
+            $path = '/'.date('Y-m-d');
+            $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
+            $upload_path = Config::get('filesystems.disks.uploads.root');
+            $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
+            $filename = rand(1,999).'-'.$name.'.'.$fileExt;
+        
+            $file_file = $upload_path.'/'.$path.'/'.$filename;
+            // dd($file_file);
+
+            $producto->file_path = date('Y-m-d');
+            $producto->img_prod = $filename;
+        } 
+
+        $producto->precio_prod = $request->precio_prod;
+        $producto->en_dcto_prod = $request->en_dcto_prod;
+        $producto->dcto_prod = $request->dcto_prod;
+        $producto->stock_prod = $request->stock_prod;
+        $producto->crit_prod = $request->crit_prod;
+        $producto->descr_prod = $request->descr_prod;
+
+        // dd($request->img_prod);
+
+        $producto->save();
+
+        if ($request->hasfile('img_prod')) {
+            $fl = $request->img_prod->storeAs($path, $filename, 'uploads');
+            $img = Image::make($file_file);
+            $img->fit(256, 256, function($constraint){
+                $constraint->upsize();
+            });
+            $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+        }
+
+        return redirect()->route('admin.productos')->with('success',"Producto {$request->id_prod} MODIFICADO exitosamente");
     }
 
     /**
@@ -168,6 +209,17 @@ class ProductoController extends Controller
         ->get();
 
         return view('admin.productos.agregar', compact('categorias','id_producto'));
+    }
+
+    public function getProductoEdit($id){
+        $prod = Producto::find($id);
+        $data = ['prod' => $prod];
+
+        $categorias = DB::table('categorias')->select('*')
+        ->whereNull('deleted_at')
+        ->get();
+
+        return view('admin.productos.edit', compact('prod', 'categorias'));
     }
 
 

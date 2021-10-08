@@ -78,7 +78,7 @@
         </div>
 
         <div class="inside">
-            <form class="col-12 needs-validation" action="{{ url('admin/productos/store') }}" method="POST" enctype="multipart/form-data" novalidate>
+            <form class="col-12 needs-validation" action="{{ url('admin/producto/store') }}" method="POST" enctype="multipart/form-data" novalidate>
             @csrf
                 <div class="row">
                     <div class="col-md-5">
