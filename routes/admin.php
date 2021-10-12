@@ -11,6 +11,9 @@ Route::prefix('/admin')->group(function(){
     Route::put('/producto/{id}/update', 'Admin\ProductoController@update')->name('producto.update');
     Route::get('/producto/{id}/delete', 'Admin\ProductoController@destroy')->name('producto.destroy');
 
+    Route::post('/producto/{id}/galeria/agregar', 'Admin\ProductoController@postProductoGaleriaAgregar')->name('producto.galeria.agregar');
+    Route::get('/producto/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getProductoGaleriaEliminar')->name('producto.galeria.eliminar');
+
     // modulo categorias
     Route::get('/categorias', 'Admin\CategoriaController@getCategorias')->name('admin.categorias');
     Route::post('/categoria/store', 'Admin\CategoriaController@store')->name('categoria.store');

@@ -51,10 +51,27 @@
     }
 
     .body-td{
-        background-color: rgb(201, 201, 201) !important;
+        background-color: rgb(220, 220, 220);
         color: rgb(49, 49, 49);
         font-weight: bold;
         border-width: 2px;
+        border-color: rgb(99, 99, 99);
+    }
+
+    .pagination > li > a
+    {
+        background-color: rgb(56, 56, 56);
+        color: #ffffff;
+    }
+
+    .pagination > li > a:focus,
+    .pagination > li > a:hover,
+    .pagination > li > span:focus,
+    .pagination > li > span:hover
+    {
+        color: #5a5a5a;
+        background-color: rgb(0, 0, 0);
+        border-color: rgb(255, 255, 255);
     }
 
 </style>
@@ -83,7 +100,7 @@
                 </a>
             </div>
 
-            <table class="table table-striped mt-2">
+            <table class="table mt-2">
                 <thead>
                     <tr>
                         <th class="head-td">ID</th>
@@ -99,7 +116,7 @@
                 </thead>
                 <tbody>
                     @foreach ($productos as $prod)
-                        <tr>
+                        <tr @if($prod->estado_prod == "B") class="table-danger" @else class="table-secondary" @endif>
                             <td class="body-td">{{$prod->id_prod}}</td>
                             <td class="body-td">{{$prod->nom_prod}}</td>
                             <td class="body-td" style="width: 64px">
@@ -122,6 +139,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <tr>
+                <td colspan="10">{!! $productos->render() !!}</td>
+            </tr>
 
         </div>
     </div>

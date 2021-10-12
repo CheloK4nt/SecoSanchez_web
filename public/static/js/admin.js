@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', function(){
     var btn_img_prod_gal = document.getElementById('btn_img_prod_gal');
     btn_img_prod_gal.addEventListener('click', function(){
         img_prod_gal.click();
-    })
+    }, false);
+
+    img_prod_gal.addEventListener('change', function(){
+        document.getElementById('form_galeria').submit();
+    });
 });
 
 
