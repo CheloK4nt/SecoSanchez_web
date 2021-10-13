@@ -72,6 +72,7 @@
         border-width: 2px;
     }
 
+    /* ojo */
     .pagination > li > a
     {
         background-color: rgb(56, 56, 56);
@@ -87,6 +88,7 @@
         background-color: rgb(0, 0, 0);
         border-color: rgb(255, 255, 255);
     }
+}
 
 </style>
 

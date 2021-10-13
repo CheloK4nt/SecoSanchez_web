@@ -52,7 +52,7 @@
 </style>
 
 @section('breadcrumb')
-<a class="breadcrumb-item" href="{{ url('/admin/productos') }}">Productos</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/p') }}">Productos</a>
 <a class="breadcrumb-item" href="{{ url('/admin/producto/agregar') }}">Agregar Producto</a>
 @endsection
 

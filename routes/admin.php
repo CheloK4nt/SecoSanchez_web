@@ -4,8 +4,9 @@ Route::prefix('/admin')->group(function(){
     Route::get('/', 'Admin\DashboardController@getDashboard')->name('admin.dashboard');
     
     // modulo productos
-    Route::get('/productos', 'Admin\ProductoController@getProductos')->name('admin.productos');
+    Route::get('/productos/{status}', 'Admin\ProductoController@getProductos')->name('admin.productos');
     Route::get('/producto/agregar', 'Admin\ProductoController@getProductoAgregar')->name('producto.agregar');
+    Route::post('/producto/search', 'Admin\ProductoController@postProductoSearch')->name('producto.search');
     Route::post('/producto/store', 'Admin\ProductoController@store')->name('producto.store');
     Route::get('/producto/{id}/edit', 'Admin\ProductoController@getProductoEdit')->name('producto.edit');
     Route::put('/producto/{id}/update', 'Admin\ProductoController@update')->name('producto.update');

@@ -42,15 +42,6 @@
         border: 2px;
     }
 
-    /* img{
-        width: 50px;
-        transform: scale(1.2);
-        position: relative;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        border: 2px;
-    } */
-
     .blurred{
         position: absolute;
         bottom: -3px;
@@ -128,9 +119,9 @@
     }
 
     .img-firma{
-                background-color: rgb(216, 17, 17); 
-                transform: translate(100%);
-            }
+        background-color: rgb(216, 17, 17); 
+        transform: translate(100%);
+    }
 
 </style>
 

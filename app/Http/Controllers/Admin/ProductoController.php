@@ -25,8 +25,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -35,8 +34,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -85,7 +83,7 @@ class ProductoController extends Controller
             $img->save($upload_path.'/'.$path.'/t_'.$filename); 
         }
 
-        return redirect()->route('admin.productos')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
     }
 
     /**
@@ -94,8 +92,7 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
-    {
+    public function show(Producto $producto){
         //
     }
 
@@ -105,8 +102,7 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
-    {
+    public function edit(Producto $producto){
         //
     }
 
@@ -171,7 +167,7 @@ class ProductoController extends Controller
         $textColor = "red";
 
 
-        return redirect()->route('admin.productos')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
     }
 
     /**
@@ -185,11 +181,34 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
         $producto->delete();
         $id_prod = $producto->id_prod;
-        return redirect()->route('admin.productos')->with('success',"Producto {$id_prod} ELIMINADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto {$id_prod} ELIMINADO exitosamente");
     }
 
-    public function getProductos(){
-        $productos = Producto::with('categoria')->whereNull('deleted_at')->paginate(10);
+    public function getProductos($status){
+
+        switch ($status) {
+            case 'p':
+                $productos = Producto::with('categoria')->where('estado_prod','P')->paginate(10);
+                break;
+            
+            case 'b':
+                $productos = Producto::with('categoria')->where('estado_prod','B')->paginate(10);
+                break;
+
+            case 'all':
+                $productos = Producto::with('categoria')->paginate(10);
+                break;
+
+            case 'trash':
+                $productos = Producto::with('categoria')->onlyTrashed()->paginate(10);
+                break;
+
+            default:
+                $productos = Producto::with('categoria')->where('estado_prod','P')->paginate(10);
+                break;
+        }
+        // dd($status);
+
         return view('admin.productos.home', compact('productos'));
     }
 
@@ -294,7 +313,7 @@ class ProductoController extends Controller
                     });
                     $img->save($upload_path.'/'.$path.'/t_'.$filename); 
                 }
-                return redirect()->route('admin.productos')->with('success',"Galería de $id MODIFICADA exitosamente");
+                return redirect()->route('admin.productos','p')->with('success',"Galería de $id MODIFICADA exitosamente");
         } 
     }
 
@@ -309,8 +328,14 @@ class ProductoController extends Controller
             if ($g->delete()) {
                 unlink($upload_path.'/'.$path.'/'.$file);
                 unlink($upload_path.'/'.$path.'/t_'.$file);
-                return redirect()->route('admin.productos')->with('success',"IMAGEN BORRADA exitosamente");
+                return redirect()->route('admin.productos','p')->with('success',"IMAGEN BORRADA exitosamente");
             }
         }
+    }
+
+    public function postProductoSearch(Request $request){
+        $productos = Producto::with('categoria')->where('nom_prod', 'LIKE', '%'.$request->input('search').'%')->paginate(10);
+
+        return view('admin.productos.home', compact('productos'));
     }
 }

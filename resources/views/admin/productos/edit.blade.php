@@ -54,6 +54,7 @@
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
         width: 70px !important;
+        margin-right: 5px;
     }
 
     .btn-secondary{
@@ -123,7 +124,7 @@
 </style>
 
 @section('breadcrumb')
-<a class="breadcrumb-item" href="{{ url('/admin/productos') }}">Productos</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/p') }}">Productos</a>
 <a class="breadcrumb-item id-prod-bc" href="{{ route('producto.edit',$prod -> id_prod) }}">{{$prod -> id_prod}}</a>
 @endsection
 
@@ -139,12 +140,14 @@
         <div class="col-md-9">
             <div class="panel shadow">
                 <div class="header">
-                    <div style="padding-inline-end: 10px;" class="row">
-                        <div class="col-10">
+                    <div class="row row-head">
+                        <div class="col">
                             <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Producto</h2>
                         </div>
-                        <div class="col-2">
-                            <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
+                        <div class="col">
+                            <ul class="float-end">
+                                <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
+                            </ul>
                         </div>
                     </div>    
                 </div>
@@ -308,7 +311,7 @@
                         @foreach ($prod->getGaleria as $img)
                         <div class="tumb">
                             <a class="btn btn-info" href="{{ url('/admin/producto/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
-                            <img src="{{ url('/uploads/'.$img->file_path.'/t_'.$img->file_name) }}" alt="">
+                            <img src="{{ url('/uploads/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
                             {{-- @php
                                 dd(url('/uploads/'.$img->file_path.'/t_'.$img->file_name));
                             @endphp --}}
