@@ -302,7 +302,7 @@
 @if (Auth::user()->tipo=='U')
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
-    <a href="{{ route('welcome') }}" class="logo-btn">
+    <a href="{{ route('inicio') }}" class="logo-btn">
     <span></span>
     <span></span>
     <span></span>
@@ -348,7 +348,7 @@
       </ul>
       <div class="d-flex justify-content-between">
         <li class="nav-item">
-        <a href="usuario" class="logreg-btn">
+        <a href="{{route('usuarios.panel')}}" class="logreg-btn">
           <span></span>
           <span></span>
           <span></span>
