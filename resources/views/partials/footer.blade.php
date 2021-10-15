@@ -1,23 +1,31 @@
 <style>
-
-    footer{
-        position: absolute;
+    footer {
+        /* position: absolute; */
         bottom: 0;
         left: 0;
         right: 0;
         background-color: rgb(0, 0, 0);
         height: auto;
         width: 100%;
+
+        background-image: none;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-position: 0% 0%;
+        position: fixed;
     }
 
-    .footer-content{
+    .footer-content {
         display: flex;
         align-items: center;
         flex-direction: column;
         text-align: center;
+
+        /* width: 1000px; */
+        margin: auto;
     }
 
-    .redes-sociales{
+    .redes-sociales {
         list-style: none;
         display: flex;
         width: 100%;
@@ -26,14 +34,14 @@
     }
 
 
-    .footer-btn{
+    .footer-btn {
         position: relative;
         width: 50px;
         height: 50px;
         margin: 0 auto;
     }
 
-    i{
+    i {
         position: relative;
         transform: translate(-50%, -50%);
         font-size: 20px;
@@ -51,7 +59,7 @@
         border: 2px;
     } */
 
-    .blurred{
+    .blurred {
         position: absolute;
         bottom: -3px;
         left: -25px;
@@ -63,7 +71,7 @@
         border-color: black;
     }
 
-    .blurred::before{
+    .blurred::before {
         content: "";
         position: absolute;
         top: 50%;
@@ -74,7 +82,7 @@
         transition: 1.6s;
     }
 
-    .blurred::after{
+    .blurred::after {
         content: "";
         position: absolute;
         top: 50%;
@@ -85,8 +93,8 @@
         transition: 0.6s;
     }
 
-    .blurred > span:nth-of-type(1),
-    .blurred > span:nth-of-type(2){
+    .blurred>span:nth-of-type(1),
+    .blurred>span:nth-of-type(2) {
         position: absolute;
         width: 50px;
         height: 50px;
@@ -98,14 +106,14 @@
         border-color: black;
     }
 
-    .footer-btn:hover .blurred::before{
+    .footer-btn:hover .blurred::before {
         width: 40px;
         height: 40px;
         top: 50%;
         left: 50%;
     }
 
-    .footer-btn:hover .blurred::after{
+    .footer-btn:hover .blurred::after {
         width: 15px;
         height: 15px;
         top: 30px;
@@ -113,24 +121,24 @@
         background-color: rgb(184, 184, 184);
     }
 
-    .footer-btn:hover .blurred > span:nth-of-type(1){
+    .footer-btn:hover .blurred>span:nth-of-type(1) {
         width: 30px;
         height: 30px;
         top: -10px;
         left: -20px;
     }
 
-    .footer-btn:hover .blurred > span:nth-of-type(2){
+    .footer-btn:hover .blurred>span:nth-of-type(2) {
         width: 25px;
         height: 25px;
         top: 40px;
         left: -20px;
     }
 
-    .img-firma{
-                background-color: rgb(216, 17, 17); 
-                transform: translate(100%);
-            }
+    .img-firma {
+        background-color: rgb(216, 17, 17);
+        transform: translate(100%);
+    }
 
 </style>
 
@@ -167,6 +175,5 @@
         </ul>
         {{-- <img src="/img/homepage/firma_seco.png" class="img-firma" alt="" width="200px;"> --}}
     </div>
-    
-</footer>
 
+</footer>

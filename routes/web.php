@@ -23,7 +23,11 @@ Route::view('','home.index')->name('inicio');
 // -------------------- U S U A R I O S -------------------- //
 
 //PANEL USUARIOS REGISTRADOS
-/* Route:get('/panel',) */
+Route::get('/panel','UsuarioController@panel')->name('usuarios.panel');
+Route::get('/panel/edit','UsuarioController@panelEdit')->name('usuarios.panelEdit');
+Route::post('/panel/edit','UsuarioController@panelEditPost')->name('usuarios.panelEditPost');
+
+
 // CONTACTO
 Route::get('/contacto','ContactoController@index')->name('contacto.index');
 Route::post('/home/contacto', 'ContactoController@email')->name('contacto.email');
