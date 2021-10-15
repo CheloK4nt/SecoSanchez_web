@@ -47,6 +47,13 @@
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     }
 
+    .main li a.active{
+        background-color: rgb(110, 110, 110);
+        color: white;
+        font-weight: bold;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
     .main li a i{
         margin-right: 15px;
     }
@@ -105,13 +112,13 @@
     <div class="main">
         <ul>
             <li>
-                <a href="{{ url('/admin') }}"><i class="fas fa-laptop-house"></i>Dashboard</a>
+                <a href="{{ url('/admin') }}" class="lk-admin.dashboard"><i class="fas fa-laptop-house"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ url('/admin/productos') }}"><i class="fas fa-box-open"></i></i>Productos</a>
+                <a href="{{ url('/admin/productos/p') }}" class="lk-admin.productos lk-producto.edit"><i class="fas fa-box-open"></i></i>Productos</a>
             </li>
             <li>
-                <a href="{{ url('/admin/categorias') }}"><i class="far fa-folder-open"></i>Categorías</a>
+                <a href="{{ url('/admin/categorias') }}" class="lk-admin.categorias lk-categoria.edit"><i class="far fa-folder-open"></i>Categorías</a>
             </li>
             <li>
                 <a href="{{ url('/admin') }}"><i class="fas fa-images"></i>Dossier</a>

@@ -133,7 +133,7 @@ class CategoriaController extends Controller
 
         $categorias = DB::table('categorias')->select('*')
         ->whereNull('deleted_at')
-        ->get();
+        ->paginate(5);
         // dd($categorias);
 
 

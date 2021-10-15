@@ -52,7 +52,7 @@
 </style>
 
 @section('breadcrumb')
-<a class="breadcrumb-item" href="{{ url('/admin/productos') }}">Productos</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/p') }}">Productos</a>
 <a class="breadcrumb-item" href="{{ url('/admin/producto/agregar') }}">Agregar Producto</a>
 @endsection
 
@@ -168,6 +168,17 @@
                                 placeholder="Stock crítico" required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">STOCK CRÍTICO.</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="estado_prod">Estado:</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-toggle-on"></i></span>
+                            <select class="form-select" id="estado_prod" name="estado_prod" value="P" required>
+                              <option value="P">Público</option>
+                              <option value="B">Borrador</option>
+                            </select>
                         </div>
                     </div>
                     

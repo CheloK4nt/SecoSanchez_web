@@ -30,13 +30,20 @@
         padding: 16px;
     }
 
-    .btn-secondary{
-        background-color: black !important;
+    .btn-info{
+        background-color: rgba(0, 0, 0, 0.815) !important;
+        border-color: rgb(70, 70, 70) !important;
+        border-width: 3px !important;
     }
 
-    .btn-secondary:hover{
-        background-color: rgb(59, 59, 59) !important;
-        border-color: white !important;
+    .btn-info i{
+        color: white;
+    }
+
+    .btn-info:hover{
+        background-color: rgba(255, 0, 0, 0.658) !important;
+        border-width: 3px;
+        border-color: rgb(99, 0, 0) !important;
     }
 
     .form-id-prod{
@@ -47,6 +54,16 @@
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
         width: 70px !important;
+        margin-right: 5px;
+    }
+
+    .btn-secondary{
+        background-color: black !important;
+    }
+
+    .btn-secondary:hover{
+        background-color: rgb(59, 59, 59) !important;
+        border-color: white !important;
     }
 
     .id-prod-bc{
@@ -57,34 +74,57 @@
         overflow: hidden;
     }
 
-    .tumb{
-        float: left;
+    .btn-submit{
         display: block;
         margin-right: 1%;
-        width: 49%;
+        width: 100%;
     }
 
-    .tumb a{
+    .btn-submit a{
         border: 1px dashed rgb(54, 54, 54);
+        border-color: white !important;
         color: white;
         border-radius: 4px;
         display: block;
         width: 100%;
         text-align: center;
-        padding: 40px 0;
-        font-size: 2em;
+        padding: 12px 0;
+        font-size: 1.5em;
     }
 
-    .tumb a:hover{
+    .btn-submit a:hover{
         color: rgb(128, 128, 128);
+        border-color: black !important;
         background-color: rgb(209, 209, 209);
     }
+
+    .tumbs{
+        overflow: hidden;
+    }
+
+    .tumbs .tumb{
+        position: relative;
+        float: left;
+        margin: 1%;
+        width: 48%;
+    }
+
+    .tumbs .tumb a{
+        display: inline-block;
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+    }
     
+    .tumbs .tumb img{
+        width: 100%;
+        border-radius: 4px;
+    }
 
 </style>
 
 @section('breadcrumb')
-<a class="breadcrumb-item" href="{{ url('/admin/productos') }}">Productos</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/p') }}">Productos</a>
 <a class="breadcrumb-item id-prod-bc" href="{{ route('producto.edit',$prod -> id_prod) }}">{{$prod -> id_prod}}</a>
 @endsection
 
@@ -96,15 +136,18 @@
 
 <div class="container-fluid">
     <div class="row">
+        {{-- FORMULARIO IZQUIERDA --}}
         <div class="col-md-9">
             <div class="panel shadow">
                 <div class="header">
-                    <div style="padding-inline-end: 10px;" class="row">
-                        <div class="col-10">
+                    <div class="row row-head">
+                        <div class="col">
                             <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Producto</h2>
                         </div>
-                        <div class="col-2">
-                            <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
+                        <div class="col">
+                            <ul class="float-end">
+                                <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
+                            </ul>
                         </div>
                     </div>    
                 </div>
@@ -206,6 +249,17 @@
                                     <div class="invalid-feedback">STOCK CRÍTICO.</div>
                                 </div>
                             </div>
+
+                            <div class="col-md-2">
+                                <label for="estado_prod">Estado:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-toggle-on"></i></span>
+                                    <select class="form-select" id="estado_prod" name="estado_prod" value="{{$prod->estado_prod}}" required>
+                                      <option value="P">Público</option>
+                                      <option value="B">Borrador</option>
+                                    </select>
+                                </div>
+                            </div>
                             
         
                         </div>
@@ -225,13 +279,14 @@
             </div>
         </div>
 
+        {{-- FORMULARIO DERECHA --}}
         <div class="col-md-3">
             <div class="panel shadow">
                 <div class="header">
                     <h2 class="title"><i class="fas fa-image logo-addprod"></i>Imagen Destacada</h2>
                 </div>
                 <div class="inside">
-                    <img src="{{url('/uploads/'.$prod->file_path.'/'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
+                    <img src="{{url('/uploads/'.$prod->file_path.'/t_'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
                 </div>
             </div>
 
@@ -240,7 +295,7 @@
                     <h2 class="title"><i class="fas fa-images logo-addprod"></i>Galería</h2>
                 </div>
                 <div class="inside product_gallery">
-                    <form class="col-12 needs-validation" action="#" method="POST" enctype="multipart/form-data" novalidate>
+                    <form class="col-12 needs-validation" action="{{ route('producto.galeria.agregar', $prod->id_prod) }}" method="POST" enctype="multipart/form-data" id="form_galeria" novalidate>
                     @csrf
                         <div class="input-group">
                             <input style="display: none" type="file" class="form-control" id="img_prod_gal" name="img_prod_gal" accept="image/*">
@@ -248,8 +303,20 @@
                         </div>
                     </form>
 
-                    <div class="tumb">
+                    <div class="btn-submit">
                         <a href="#" id="btn_img_prod_gal"><i class="fas fa-plus"></i></a>
+                    </div>
+
+                    <div class="tumbs">
+                        @foreach ($prod->getGaleria as $img)
+                        <div class="tumb">
+                            <a class="btn btn-info" href="{{ url('/admin/producto/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
+                            <img src="{{ url('/uploads/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
+                            {{-- @php
+                                dd(url('/uploads/'.$img->file_path.'/t_'.$img->file_name));
+                            @endphp --}}
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
