@@ -165,7 +165,7 @@
                                     <td class="body-td" width="180" height="60">{{ $categoria->nom_cat }}</td>
                                     <td class="body-td" width="150" height="60">
                                         <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}" data-action="cat_delete" data-path="admin/categoria" data-object="{{ $categoria->id_cat }}"><i class="fas fa-trash"></i></a>
                                         {{-- <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmacionModal" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}
                                     </td>
                                 </tr>

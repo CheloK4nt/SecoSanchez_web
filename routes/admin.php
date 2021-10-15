@@ -9,6 +9,7 @@ Route::prefix('/admin')->group(function(){
     Route::post('/producto/search', 'Admin\ProductoController@postProductoSearch')->name('producto.search');
     Route::post('/producto/store', 'Admin\ProductoController@store')->name('producto.store');
     Route::get('/producto/{id}/edit', 'Admin\ProductoController@getProductoEdit')->name('producto.edit');
+    Route::get('/producto/{id}/restore', 'Admin\ProductoController@getProductoRestore')->name('producto.restore');
     Route::put('/producto/{id}/update', 'Admin\ProductoController@update')->name('producto.update');
     Route::get('/producto/{id}/delete', 'Admin\ProductoController@destroy')->name('producto.destroy');
 

@@ -186,8 +186,8 @@
                         <ul class="shadow">
                             <li><a href="{{ url('/admin/productos/p') }}" class="filtro-btn"><i class="fas fa-globe-americas"></i>Público</a></li>
                             <li><a href="{{ url('/admin/productos/b') }}" class="filtro-btn"><i class="fas fa-eraser"></i>Borrador</a></li>
-                            <li><a href="{{ url('/admin/productos/trash') }}" class="filtro-btn"><i class="far fa-trash-alt"></i>Papelera</a></li>
                             <li><a href="{{ url('/admin/productos/all') }}" class="filtro-btn"><i class="fas fa-list"></i>Todos</a></li>
+                            <li><a href="{{ url('/admin/productos/trash') }}" class="filtro-btn"><i class="far fa-trash-alt"></i>Papelera</a></li>
                         </ul>
                     </li>
                 </ul>              
@@ -235,14 +235,27 @@
                                     <img src="{{url('/uploads/'.$prod->file_path.'/t_'.$prod->img_prod)}}" width="64px" data-fancybox="gallery">
                                 </a>                         
                             </td>
-                            <td class="body-td">{{$prod->categoria->nom_cat}}</td>
+                            <td class="body-td">
+                                @php
+                                @endphp
+                                @if ($prod->categoria != null)
+                                    {{$prod->categoria->nom_cat}}
+                                @else
+                                    Sin categoría
+                                @endif           
+                            </td>
                             <td class="body-td">{{$prod->precio_prod}}</td>
                             <td class="body-td">{{$prod->en_dcto_prod}}</td>
                             <td class="body-td">{{$prod->stock_prod}}</td>
                             <td class="body-td">{{$prod->crit_prod}}</td>
                             <td class="body-td">
-                                <a class="btn btn-secondary" href="{{ route('producto.edit',$prod->id_prod) }}"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-secondary" href="{{ route('producto.destroy',$prod->id_prod) }}"><i class="fas fa-trash"></i></a>
+                                @if ($prod->deleted_at == Null)
+                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="delete" data-path="admin/producto"  data-object="{{ $prod->id_prod }}" ><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-secondary" href="{{ route('producto.edit',$prod->id_prod) }}"><i class="fas fa-edit"></i></a>
+                                @endif
+                                @if ($prod->deleted_at != Null)
+                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="restore" data-path="admin/producto" data-object="{{ $prod->id_prod }}"><i class="fas fa-trash-restore"></i></a>
+                                @endif
                                 {{-- <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}
                             </td>

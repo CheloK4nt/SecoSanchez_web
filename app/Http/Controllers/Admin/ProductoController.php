@@ -179,9 +179,18 @@ class ProductoController extends Controller
 
     public function destroy(Producto $producto, $id)    {
         $producto = Producto::findOrFail($id);
+        $producto->estado_prod = 'P';
+        $producto->save();
         $producto->delete();
         $id_prod = $producto->id_prod;
-        return redirect()->route('admin.productos','p')->with('success',"Producto {$id_prod} ELIMINADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto {$id_prod} se ha enviado a la papelera");
+    }
+
+    public function getProductoRestore(Producto $producto, $id)    {
+        $producto = Producto::onlyTrashed()->where('id_prod', $id)->first();
+        $producto->restore();
+        $id_prod = $producto->id_prod;
+        return redirect()->route('producto.edit',$id_prod)->with('success',"Producto {$id_prod} restaurado con éxito");
     }
 
     public function getProductos($status){
@@ -334,7 +343,7 @@ class ProductoController extends Controller
     }
 
     public function postProductoSearch(Request $request){
-        $productos = Producto::with('categoria')->where('nom_prod', 'LIKE', '%'.$request->input('search').'%')->paginate(10);
+        $productos = Producto::withTrashed('categoria')->where('nom_prod', 'LIKE', '%'.$request->input('search').'%')->paginate(10);
 
         return view('admin.productos.home', compact('productos'));
     }
