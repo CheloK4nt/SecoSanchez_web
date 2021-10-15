@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
-    {{-- CK Editor 4 --}}
-    <script src="{{ url('/static/libs/ckeditor/ckeditor.js') }}"></script>
+    {{-- ADMIN JS --}}
     <script src="{{ url('/static/js/admin.js?v='.time()) }}"></script>
 
     {{-- BUNDLE --}}
@@ -30,8 +29,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    {{-- SEET ALERT --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     {{-- HOJAS ESTILO --}}
-    <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
+    {{-- <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}"> --}}
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -150,6 +152,8 @@
         color: rgb(51, 51, 51) !important;
         font-weight: bold;
         }
+
+        
 
     </style>
 

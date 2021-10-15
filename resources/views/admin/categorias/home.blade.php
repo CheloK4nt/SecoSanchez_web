@@ -72,25 +72,23 @@
         border-width: 2px;
     }
 
-    .table-fixed tbody{
-        min-height: 30px !important;
-        max-height: 400px !important;
-        overflow-y: auto;
-        /* width: 100%; */
+    /* ojo */
+    .pagination > li > a
+    {
+        background-color: rgb(56, 56, 56);
+        color: #ffffff;
     }
 
-    .table-fixed thead,
-    .table-fixed tbody,
-    .table-fixed td,
-    .table-fixed th{
-        display: block;
+    .pagination > li > a:focus,
+    .pagination > li > a:hover,
+    .pagination > li > span:focus,
+    .pagination > li > span:hover
+    {
+        color: #5a5a5a;
+        background-color: rgb(0, 0, 0);
+        border-color: rgb(255, 255, 255);
     }
-
-    .table-fixed tbody td,
-    .table-fixed thead > tr > th{
-        float: left;
-        border-bottom-width: 0;
-    }
+}
 
 </style>
 
@@ -152,7 +150,7 @@
                     <h2 class="title" style="font-weight: bold"><i class="far fa-folder-open logo-cats"></i>Categorías</h2>
                 </div>
                 <div class="inside">
-                    <table class="table table-striped table-fixed">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th class="head-td" width="120">ID</th>
@@ -167,7 +165,7 @@
                                     <td class="body-td" width="180" height="60">{{ $categoria->nom_cat }}</td>
                                     <td class="body-td" width="150" height="60">
                                         <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}" data-action="cat_delete" data-path="admin/categoria" data-object="{{ $categoria->id_cat }}"><i class="fas fa-trash"></i></a>
                                         {{-- <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmacionModal" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}
                                     </td>
                                 </tr>
@@ -175,6 +173,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <tr>
+                        <td colspan="10">{!! $categorias->render() !!}</td>
+                    </tr>
                 </div>
             </div>
         </div>
@@ -222,6 +223,5 @@
       </div>
     </div>
   </div> --}}
-
 
 @endsection

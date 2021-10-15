@@ -15,7 +15,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
         {{-- HOJAS ESTILO --}}
-        <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
     
         {{-- FONT AWESOME --}}
         <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>

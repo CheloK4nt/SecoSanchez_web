@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Producto;
 use App\Categoria;
+use App\Galeria;
 Use Str, Config, Image;
 
 use App\Http\Controllers\Controller;
@@ -24,8 +25,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -34,8 +34,7 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -45,8 +44,7 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request)    {
 
         // SE CREA PATH PARA IMAGENES
         $path = '/'.date('Y-m-d');
@@ -70,6 +68,7 @@ class ProductoController extends Controller
         $producto->stock_prod = $request->stock_prod;
         $producto->crit_prod = $request->crit_prod;
         $producto->descr_prod = $request->descr_prod;
+        $producto->estado_prod = $request->estado_prod;
 
         // dd($producto);
 
@@ -84,7 +83,7 @@ class ProductoController extends Controller
             $img->save($upload_path.'/'.$path.'/t_'.$filename); 
         }
 
-        return redirect()->route('admin.productos')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
     }
 
     /**
@@ -93,8 +92,7 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
-    {
+    public function show(Producto $producto){
         //
     }
 
@@ -104,8 +102,7 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
-    {
+    public function edit(Producto $producto){
         //
     }
 
@@ -116,14 +113,21 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto, $id)
-    {
+    public function update(Request $request, Producto $producto, $id)    {
         $producto = Producto::findOrFail($id);
         $producto->id_prod = $request->id_prod;
         $producto->nom_prod = $request->nom_prod;
         $producto->cat_prod = $request->cat_prod;
 
+        $fp_borrar = $producto->file_path;
+        $img_borrar = $producto->img_prod;
+        $up_borrar = Config::get('filesystems.disks.uploads.root');
+
+
         if ($request->hasFile('img_prod')) {
+
+            unlink($up_borrar.'/'.$fp_borrar.'/'.$img_borrar);
+            unlink($up_borrar.'/'.$fp_borrar.'/t_'.$img_borrar);
 
             // SE CREA PATH PARA IMAGENES
             $path = '/'.date('Y-m-d');
@@ -145,6 +149,7 @@ class ProductoController extends Controller
         $producto->stock_prod = $request->stock_prod;
         $producto->crit_prod = $request->crit_prod;
         $producto->descr_prod = $request->descr_prod;
+        $producto->estado_prod = $request->estado_prod;
 
         // dd($request->img_prod);
 
@@ -156,13 +161,13 @@ class ProductoController extends Controller
             $img->fit(256, 256, function($constraint){
                 $constraint->upsize();
             });
-            $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+            $img->save($upload_path.'/'.$path.'/t_'.$filename);
         }
 
         $textColor = "red";
 
 
-        return redirect()->route('admin.productos')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
     }
 
     /**
@@ -171,16 +176,48 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto, $id)
-    {
+
+    public function destroy(Producto $producto, $id)    {
         $producto = Producto::findOrFail($id);
+        $producto->estado_prod = 'P';
+        $producto->save();
         $producto->delete();
         $id_prod = $producto->id_prod;
-        return redirect()->route('admin.productos')->with('success',"Producto {$id_prod} ELIMINADO exitosamente");
+        return redirect()->route('admin.productos','p')->with('success',"Producto {$id_prod} se ha enviado a la papelera");
     }
 
-    public function getProductos(){
-        $productos = Producto::with('categoria')->whereNull('deleted_at')->get();
+    public function getProductoRestore(Producto $producto, $id)    {
+        $producto = Producto::onlyTrashed()->where('id_prod', $id)->first();
+        $producto->restore();
+        $id_prod = $producto->id_prod;
+        return redirect()->route('producto.edit',$id_prod)->with('success',"Producto {$id_prod} restaurado con éxito");
+    }
+
+    public function getProductos($status){
+
+        switch ($status) {
+            case 'p':
+                $productos = Producto::with('categoria')->where('estado_prod','P')->paginate(10);
+                break;
+            
+            case 'b':
+                $productos = Producto::with('categoria')->where('estado_prod','B')->paginate(10);
+                break;
+
+            case 'all':
+                $productos = Producto::with('categoria')->paginate(10);
+                break;
+
+            case 'trash':
+                $productos = Producto::with('categoria')->onlyTrashed()->paginate(10);
+                break;
+
+            default:
+                $productos = Producto::with('categoria')->where('estado_prod','P')->paginate(10);
+                break;
+        }
+        // dd($status);
+
         return view('admin.productos.home', compact('productos'));
     }
 
@@ -229,5 +266,85 @@ class ProductoController extends Controller
         return view('admin.productos.edit', compact('prod', 'categorias'));
     }
 
+    public function postProductoGaleriaAgregar($id, Request $request){
 
+        $galerias = DB::select('SELECT * FROM galerias');
+        $cantidad_galerias = 0;
+
+        foreach ($galerias as $galeria) {
+            $cantidad_galerias = $cantidad_galerias + 1;
+        }
+
+        // Se genera el código de Galeria //
+        $valor_numerico = $cantidad_galerias + 1;
+        $id_galeria = 'GAL';
+        $parte_numerica = '';
+
+        if ($valor_numerico < 10){
+            $parte_numerica = '00';
+        }
+        if ($valor_numerico > 9 && $valor_numerico < 100){
+            $parte_numerica = '0';
+        }
+        if ($valor_numerico > 99) {
+            $parte_numerica = '';
+        }
+
+        $id_galeria = $id_galeria . $parte_numerica . $valor_numerico;
+
+        if ($request->hasFile('img_prod_gal')) {
+
+            // SE CREA PATH PARA IMAGENES
+            $path = '/'.date('Y-m-d');
+            $fileExt = trim($request->file('img_prod_gal')->getClientOriginalExtension());
+            // dd($fileExt);
+            $upload_path = Config::get('filesystems.disks.uploads.root');
+            $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod_gal')->getClientOriginalName()));
+            $filename = rand(1,999).'-'.$name.'.'.$fileExt;
+            // dd($filename);
+        
+            $file_file = $upload_path.'/'.$path.'/'.$filename;
+            // dd($file_file);
+
+            $g = new Galeria;
+            $g->id_gal = $id_galeria;
+            $g->prod_id = $id;
+            $g->file_path = date('Y-m-d');
+            $g->file_name = $filename;
+            // dd($filename);
+
+            $g->save();
+                if ($request->hasfile('img_prod_gal')) {
+                    $fl = $request->img_prod_gal->storeAs($path, $filename, 'uploads');
+                    $img = Image::make($file_file);
+                    $img->fit(256, 256, function($constraint){
+                        $constraint->upsize();
+                    });
+                    $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+                }
+                return redirect()->route('admin.productos','p')->with('success',"Galería de $id MODIFICADA exitosamente");
+        } 
+    }
+
+    public function getProductoGaleriaEliminar($id, $gid){
+        $g = Galeria::findOrFail($gid);
+        $path = $g->file_path;
+        $file = $g->file_name;
+        $upload_path = Config::get('filesystems.disks.uploads.root');
+        if($g->prod_id != $id){
+            return redirect()->route('admin.productos')->with('danger',"La imagen no se puede eliminar");
+        }else{
+            if ($g->delete()) {
+                unlink($upload_path.'/'.$path.'/'.$file);
+                unlink($upload_path.'/'.$path.'/t_'.$file);
+                return redirect()->route('admin.productos','p')->with('success',"IMAGEN BORRADA exitosamente");
+            }
+        }
+    }
+
+    public function postProductoSearch(Request $request){
+        $productos = Producto::withTrashed('categoria')->where('nom_prod', 'LIKE', '%'.$request->input('search').'%')->paginate(10);
+
+        return view('admin.productos.home', compact('productos'));
+    }
 }

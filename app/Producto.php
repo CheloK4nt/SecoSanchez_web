@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Categoria;
+use App\Galeria;
 
 class Producto extends Model
 {
@@ -21,5 +22,9 @@ class Producto extends Model
     //Aqui intento hacer la relacion para tener acceso al atributo NOMBRE de la categoria correspondiente//
     public function categoria(){
         return $this->hasOne(Categoria::class, 'id_cat', 'cat_prod');
+    }
+
+    public function getGaleria(){
+        return $this->hasMany(Galeria::class, 'prod_id', 'id_prod');
     }
 }

@@ -50,16 +50,7 @@
         border: 2px;
     }
 
-    /* img{
-        width: 50px;
-        transform: scale(1.2);
-        position: relative;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        border: 2px;
-    } */
-
-    .blurred {
+    .blurred{
         position: absolute;
         bottom: -3px;
         left: -25px;
@@ -135,8 +126,8 @@
         left: -20px;
     }
 
-    .img-firma {
-        background-color: rgb(216, 17, 17);
+    .img-firma{
+        background-color: rgb(216, 17, 17); 
         transform: translate(100%);
     }
 
