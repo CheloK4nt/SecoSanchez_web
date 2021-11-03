@@ -27,6 +27,10 @@ Route::get('/panel','UsuarioController@panel')->name('usuarios.panel');
 Route::get('/panel/edit','UsuarioController@panelEdit')->name('usuarios.panelEdit');
 Route::post('/panel/edit','UsuarioController@panelEditPost')->name('usuarios.panelEditPost');
 
+// DOSSIER
+Route::get('/dossier','DossierController@index')->name('dossier.index');
+/* Route::get('/dossier', 'DossierController@getDossier')->name('dossier.getDossier'); */
+
 
 // CONTACTO
 Route::get('/contacto','ContactoController@index')->name('contacto.index');
