@@ -517,7 +517,7 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav mx-auto">
 				  <li class="nav-item">
-					<a href="{{ route('dossier') }}" class="nav-btns">
+					<a href="{{ route('dossier.index') }}" class="nav-btns">
 					  <span></span>
 					  <span></span>
 					  <span></span>

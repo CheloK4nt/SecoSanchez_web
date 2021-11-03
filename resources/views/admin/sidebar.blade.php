@@ -122,7 +122,7 @@
                 <a href="{{ url('/admin/categorias') }}" class="lk-admin.categorias lk-categoria.edit"><i class="far fa-folder-open"></i>Categorías</a>
             </li>
             <li>
-                <a href="{{ url('/admin') }}"><i class="fas fa-images"></i>Dossier</a>
+                <a href="{{ url('/admin/dossier') }}" class="lk-admin.dossier lk-dossier.edit"><i class="fas fa-images"></i>Dossier</a>
             </li>
             <li>
                 <a href="{{ url('/admin') }}"><i class="far fa-id-card"></i>Usuarios</a>

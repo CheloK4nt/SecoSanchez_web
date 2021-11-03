@@ -23,6 +23,21 @@ Route::prefix('/admin')->group(function(){
     Route::put('/categoria/{id}/update', 'Admin\CategoriaController@update')->name('categoria.update');
     Route::get('/categoria/{id}/delete', 'Admin\CategoriaController@destroy')->name('categoria.destroy');
 
+    // modulo dossier
+    Route::get('/dossier', 'Admin\DossierController@getDossier')->name('admin.dossier');
+    /* Route::get('/dossier/agregar', 'Admin\DossierController@getDossierAgregar')->name('dossier.agregar'); */
+    Route::post('/dossier/store', 'Admin\DossierController@store')->name('dossier.store');
+    Route::get('/dossier/{id}/delete', 'Admin\DossierController@destroy')->name('dossier.destroy');
+    Route::get('/dossier/{id}/edit', 'Admin\DossierController@getDossierEdit')->name('dossier.edit');
+    Route::put('/dossier/{id}/update', 'Admin\DossierController@update')->name('dossier.update');
+    Route::post('/dossier/{id}/galeria/agregar', 'Admin\DossierController@postDossierGaleriaAgregar')->name('dossier.galeria.agregar');
+
+    /* Route::post('/producto/search', 'Admin\ProductoController@postProductoSearch')->name('producto.search');
+    Route::get('/producto/{id}/restore', 'Admin\ProductoController@getProductoRestore')->name('producto.restore');
+    
+    Route::post('/producto/{id}/galeria/agregar', 'Admin\ProductoController@postProductoGaleriaAgregar')->name('producto.galeria.agregar');
+    Route::get('/producto/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getProductoGaleriaEliminar')->name('producto.galeria.eliminar'); */
+
     // modulo slider
     Route::get('/slider', 'Admin\SliderController@getSlider')->name('admin.slider');
     Route::post('/slide/store', 'Admin\SliderController@store')->name('slide.store');

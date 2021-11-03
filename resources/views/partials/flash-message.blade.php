@@ -10,21 +10,20 @@
 
 @if ($message = Session::get('success'))
 
-<div class="alert alert-success alert-block">
+    <div class="alert alert-success alert-block">
 
-    <strong>{{ $message }}</strong>
+        <strong>{{ $message }}</strong>
 
-</div>
+    </div>
 
 @endif
 
 <script>
-    window.setTimeout(function(){
-        $(".alert-success").fadeTo(1500,0).slideDown(1000,function(){
+    window.setTimeout(function() {
+        $(".alert-success").fadeTo(1500, 0).slideDown(1000, function() {
             $(this).remove();
         });
     }, 5000);
-
 </script>
 
 
