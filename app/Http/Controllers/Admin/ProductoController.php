@@ -62,7 +62,7 @@ class ProductoController extends Controller
         $producto->cat_prod = $request->cat_prod;
         $producto->file_path = date('Y-m-d');
         $producto->img_prod = $filename;
-        $producto->precio_prod = $request->precio_prod;
+        $producto->precio_prod = str_replace(".", "", $request->precio_prod);
         $producto->en_dcto_prod = $request->en_dcto_prod;
         $producto->dcto_prod = $request->dcto_prod;
         $producto->stock_prod = $request->stock_prod;
@@ -143,7 +143,7 @@ class ProductoController extends Controller
             $producto->img_prod = $filename;
         } 
 
-        $producto->precio_prod = $request->precio_prod;
+        $producto->precio_prod = str_replace(".", "", $request->precio_prod);
         $producto->en_dcto_prod = $request->en_dcto_prod;
         $producto->dcto_prod = $request->dcto_prod;
         $producto->stock_prod = $request->stock_prod;

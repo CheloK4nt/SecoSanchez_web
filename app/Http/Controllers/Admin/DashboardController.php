@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Usuario;
+use App\Producto;
 
 class DashboardController extends Controller
 {
@@ -13,7 +15,10 @@ class DashboardController extends Controller
     }
 
     public function getDashboard(){
-        return view('admin.dashboard');
+        $usuarios = Usuario::count();
+        $productos = Producto::where('estado_prod', 'P')->count();
+        $data = ['usuarios' => $usuarios, 'productos' => $productos];
+        return view('admin.dashboard', $data);
     }
 
     public function getCategoriaAgregar(){

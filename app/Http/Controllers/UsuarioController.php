@@ -124,7 +124,7 @@ class UsuarioController extends Controller
         //
     }
 
-    public function login(LoginUsuarioRequest $request)
+    public function login(Request $request)
     {
         $credenciales = $request->only('email', 'password');
         if (Auth::attempt($credenciales)) {
@@ -137,7 +137,7 @@ class UsuarioController extends Controller
             
         } else {
             //credenciales incorrectas
-            return redirect()->route('login');
+            return redirect()->route('login')->with('message','Correo o contraseña errónea.')->with('typealert','danger');
         }
     }
 
@@ -168,7 +168,7 @@ class UsuarioController extends Controller
             $usuarios = Usuario::where('email',$request->input('email'))->count();
             if($usuarios == "1"):
                 $usuarios = Usuario::where('email',$request->input('email'))->first();
-                $code = rand(100000, 999999);
+                $code = rand(10000000, 99999999);
                 $data = ['nombre' => $usuarios->nombre,'email'=>$usuarios->email,'code'=>$code];
 
                 $u = Usuario::find($usuarios->email);
@@ -179,7 +179,7 @@ class UsuarioController extends Controller
                     return redirect('/reset?email='.$usuarios->email)->with('success','mensaje');
                 endif;
             else:
-                return back()->with('message','Este correo electrónico NO existe.')->with('typealert','danger');
+                return back()->with('message','Este correo electrónico no se encuentra registrado.')->with('typealert','danger');
             endif;
         endif;
     }
@@ -191,13 +191,11 @@ class UsuarioController extends Controller
 
     public function postReset(Request $request){
         $rules = [
-            'email' => 'unique:usuarios,email',
             'password' => 'min:8',
             'cpassword' => 'min:8|same:password',
         ];
 
         $messages = [
-            'email.unique' => 'Ya existe un usuario registrado con este correo electrónico.',
             'password.min' => 'La contraseña debe tener al menos 8 carácteres.',
             'cpassword.min' => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
             'cpassword.same' => 'Las contraseñas no coinciden.'

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <meta name="routeName" content="{{ Route::currentRouteName() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <head>
     <title>Registro</title>
 
@@ -13,20 +14,14 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
 
-    {{-- SEPARATE --}}
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
-    </script>
-
     {{-- BOOTSTRAP --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- HOJAS ESTILO --}}
-    <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
+
+    {{-- SITE JS --}}
+    <script src="{{ url('/static/js/site.js?v='.time()) }}"></script>
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -293,12 +288,35 @@
         .alert-secondary {
             background-color: rgb(83, 83, 83) !important;
             color: rgb(196, 196, 196);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .form-label{
+            font-weight: bold;
+            color: rgb(49, 49, 49);
+        }
+
+        .extra-link{
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+            color: rgb(150, 150, 150);
+        }
+
+        .extra-link:hover{
+            color: rgb(0, 0, 0);
+        }
+
+        p{
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+            color: rgb(150, 150, 150);
         }
 
     </style>
 </head>
 
 <body>
+    @include('partials.preloader')
     {{-- --------------------------- FORMULARIO -------------------- --}}
     <div class="row-1">
         <div class="col-md-7 col-10 main-section" style="background-color: black">
@@ -315,7 +333,7 @@
                     <div class="row">
                         {{-- INPUT NOMBRE --}}
                         <div class="col-md-6">
-                            <label for="nombre" style="color: black">Nombre:</label>
+                            <label for="nombre" class="form-label">Nombre:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" id="nombre" name="nombre"
@@ -327,7 +345,7 @@
 
                         {{-- INPUT APELLIDO --}}
                         <div class="col-md-6">
-                            <label for="apellido" style="color: black">Apellido:</label>
+                            <label for="apellido" class="form-label">Apellido:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                 <input type="text" class="form-control" id="apellido" name="apellido"
@@ -341,7 +359,7 @@
                     <div class="row">
                         {{-- INPUT DIRECCION --}}
                         <div class="col-md-6">
-                            <label for="direccion" style="color: black">Dirección:</label>
+                            <label for="direccion" class="form-label">Dirección:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marked-alt"></i></span>
                                 <input type="text" class="form-control" id="direccion" name="direccion"
@@ -353,7 +371,7 @@
                         
                         {{-- INPUT CORREO --}}
                         <div class="col-md-6">
-                            <label for="email" style="color: black">Correo electrónico:</label>
+                            <label for="email" class="form-label">Correo electrónico:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                                 <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
@@ -367,7 +385,7 @@
                     <div class="row">
                         {{-- INPUT TELEFONO --}}
                         <div class="col-md-6">
-                            <label for="text" style="color: black">Teléfono:</label>
+                            <label for="text" class="form-label">Teléfono:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span>
                                 <input type="text" class="form-control" id="telefono" name="telefono"
@@ -379,7 +397,7 @@
                         
                         {{-- INPUT CONTRASEÑA --}}
                         <div class="col-md-6">
-                            <label for="password" style="color: black">Contraseña:</label>
+                            <label for="password" class="form-label">Contraseña:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                                 <input type="password" class="form-control" id="password" name="password"
@@ -392,10 +410,19 @@
 
 
                     <div class="row">
-                        <div class="col"><h2></h2></div>
+                        <div class="col">
+                            <div style="text-align: center" class="footer mt-3">
+                                <a class="extra-link" href="{{ route('login') }}">
+                                    ¿Ya tienes una cuenta?
+                                    <br>
+                                    ¡Inicia Sesión!
+                                </a>
+                            </div>
+                        </div>
+
                         {{-- INPUT C-CONTRASEÑA --}}
                         <div class="col-md-6">
-                            <label for="cpassword" style="color: black">Confirme contraseña:</label>
+                            <label for="cpassword" class="form-label">Confirme contraseña:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock"></i></span>
                                 <input type="password" class="form-control" id="cpassword" name="cpassword"

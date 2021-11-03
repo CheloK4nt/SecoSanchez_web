@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <meta name="routeName" content="{{ Route::currentRouteName() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <head>
     <title class="text-color white">SecoSanchezWeb</title>
 
@@ -11,12 +12,19 @@
     {{-- JQUERY --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    {{-- BUNDLE --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+
     {{-- BOOTSTRAP --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- HOJAS ESTILO --}}
-    <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
+
+    {{-- SITE JS --}}
+    <script src="{{ url('/static/js/site.js?v='.time()) }}"></script>
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -105,14 +113,15 @@
 </header>
 
 <body>
+    @include('partials.preloader')
     {{-- -------------------------------------CAMBIO DATOS CLIENTE------------------------------------------------------ --}}
     <div class="container container-form col-md-7 col-10">
         <div class="col-md-9 col-10 main-section" style="background-color: black">
             <div class="container container-form">
-                <form class="col-12" action="{{ route('usuarios.panelEditPost') }}" method="POST" novalidate>
+                <form class="col-12 needs-validation" action="{{ route('usuarios.panelEditPost') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">MIS DATOS DE CLIENTE:</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">DATOS DE USUARIO:</h1>
                         <hr>
                     </div>
 
@@ -279,8 +288,9 @@
                             <label for="passwordantigua" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control" id="passwordantigua" name="passwordantigua"
-                                    style="background-color: white" placeholder="Ingrese su contraseña antigua...">
-
+                                    style="background-color: white" placeholder="Ingrese su contraseña antigua..." required>
+                                <div class="valid-feedback"></div>
+                                <div class="invalid-feedback text-start">Debe ingresar su contraseña para realizar cambios.</div>
                             </div>
                         </div>
                     </div>

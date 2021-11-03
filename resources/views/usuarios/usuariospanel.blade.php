@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <meta name="routeName" content="{{ Route::currentRouteName() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <head>
     <title class="text-color white">SecoSanchezWeb</title>
 
@@ -16,7 +17,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- HOJAS ESTILO --}}
-    <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
+
+    {{-- SITE JS --}}
+    <script src="{{ url('/static/js/site.js?v='.time()) }}"></script>
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -41,6 +44,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+
+    {{-- BUNDLE --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
 
     <style>
         header {
@@ -153,6 +161,7 @@
 </header>
 
 <body>
+    @include('partials.preloader')
     {{-- <div class="container container-form col-md-7 col-10">
         <table class="table mt-4 table-responsive">
             <div class="form-group">
@@ -193,10 +202,10 @@
                         <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">MIS DATOS:</h1>
                         <hr>
                     </div>
-                    {{--------------- MENSAJE SUCCESS ---------------}}
+                    {{-- ------------- MENSAJE SUCCESS ------------- --}}
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                             <strong>Datos Modificados!</strong> Sus datos se han modificado correctamente.
+                            <strong>Datos Modificados!</strong> Sus datos se han modificado correctamente.
                         </div>
                     @endif
                     <script>
@@ -206,7 +215,7 @@
                             });
                         }, 5000);
                     </script>
-                    {{------------- FIN MENSAJE SUCCESS -------------}}
+                    {{-- ----------- FIN MENSAJE SUCCESS ----------- --}}
                     <div class="row">
                         {{-- INPUT NOMBRE --}}
                         <div class="col-md-4">
@@ -261,8 +270,8 @@
                             <label for="email" style="color: black"></label>
                             <div class="input-group mb-3">
                                 {{-- <span class="input-group-text" id="basic-addon1"></span> --}}
-                                <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="email" name="email" value="Email" disabled="disabled">
+                                <input style="font-weight: bold" type="text" class="form-control text-center" id="email"
+                                    name="email" value="Email" disabled="disabled">
                             </div>
                         </div>
 
@@ -303,8 +312,8 @@
                     </div>
                     <br>
                     <div class="col text-center">
-                        <a class="btn btn-success" href="{{ route('usuarios.panelEdit') }}">Modificar datos Cliente</a>
-                    </div>                
+                        <a class="btn btn-success" href="{{ route('usuarios.panelEdit') }}">Modificar datos</a>
+                    </div>
                 </form>
             </div>
         </div>

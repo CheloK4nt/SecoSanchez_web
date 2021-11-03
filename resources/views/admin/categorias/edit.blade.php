@@ -133,7 +133,7 @@
                                 <label for="nom_cat">Categoría:</label>
                             </div>
                             <div class="col-3">
-                                <input class="form-control form-id-cat" type="text" id="id_cat" name="id_cat" placeholder="{{$cat -> id_cat}}" value="{{$cat -> id_cat}}" readonly>
+                                <input class="form-control form-id-cat text-center" type="text" id="id_cat" name="id_cat" placeholder="{{$cat -> id_cat}}" value="{{$cat -> id_cat}}" readonly>
                             </div>
                             
                         </div>
