@@ -37,4 +37,11 @@ Route::prefix('/admin')->group(function(){
     
     Route::post('/producto/{id}/galeria/agregar', 'Admin\ProductoController@postProductoGaleriaAgregar')->name('producto.galeria.agregar');
     Route::get('/producto/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getProductoGaleriaEliminar')->name('producto.galeria.eliminar'); */
+
+    // modulo slider
+    Route::get('/slider', 'Admin\SliderController@getSlider')->name('admin.slider');
+    Route::post('/slide/store', 'Admin\SliderController@store')->name('slide.store');
+    Route::get('/slide/{id}/edit', 'Admin\SliderController@getSlideEdit')->name('slide.edit');
+    Route::get('/slide/{id}/delete', 'Admin\SliderController@destroy')->name('slide.destroy');
+    Route::put('/slide/{id}/update', 'Admin\SliderController@update')->name('slide.update');
 });

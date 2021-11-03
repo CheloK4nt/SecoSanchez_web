@@ -1,12 +1,11 @@
 <style>
     .alert-success {
-        font-family: 'Open Sans', sans-serif;
         background-color: rgb(225, 225, 225) !important;
-        color: rgb(85, 85, 85);
+        color: #555555;
         border-color: white !important;
         text-align: center;
+        font-family: 'Roboto', sans-serif;
     }
-
 </style>
 
 @if ($message = Session::get('success'))

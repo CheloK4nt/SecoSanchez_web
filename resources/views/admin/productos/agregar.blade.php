@@ -70,7 +70,7 @@
                     <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Agregar Producto</h2>
                 </div>
                 <div class="col-1">
-                    <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$id_producto}}" value="{{$id_producto}}" readonly>
+                    <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$id_producto}}" value="{{$id_producto}}" readonly>
                 </div>
             </div>
             
@@ -121,7 +121,7 @@
                         <label for="precio">Precio:</label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
-                            <input type="number" class="form-control" id="precio_prod" name="precio_prod" min="0"
+                            <input class="form-control" id="precio_prod" name="precio_prod" min="0"
                                 placeholder="Precio del producto" required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Por favor, ingrese precio del producto.</div>
@@ -193,7 +193,7 @@
                 </div>
                 <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$id_producto}}" value="{{$id_producto}}" readonly hidden>
                 <div class="d-flex flex-row-reverse mt-2">
-                    <button type="submit" class="btn btn-secondary">Guardar Producto</button>
+                    <button type="submit" class="btn btn-secondary" data-path="admin/producto" data-action="agregar_producto">Guardar Producto</button>
                 </div>
             </form>
         </div>
@@ -221,6 +221,21 @@
                 }, false)
             })
     })()
+</script>
+
+<script>
+    $("#precio_prod").on({
+    "focus": function (event) {
+        $(event.target).select();
+    },
+    "keyup": function (event) {
+        $(event.target).val(function (index, value ) {
+            return value.replace(/\D/g, "")
+                        .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                        .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+        });
+    }
+});
 </script>
 @endsection
 

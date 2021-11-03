@@ -13,6 +13,7 @@
         background-attachment: scroll;
         background-position: 0% 0%;
         position: fixed;
+        z-index: 10;
     }
 
     .footer-content {
@@ -41,7 +42,7 @@
         margin: 0 auto;
     }
 
-    i {
+    .footer-btn i {
         position: relative;
         transform: translate(-50%, -50%);
         font-size: 20px;
@@ -126,11 +127,6 @@
         left: -20px;
     }
 
-    .img-firma{
-        background-color: rgb(216, 17, 17); 
-        transform: translate(100%);
-    }
-
 </style>
 
 <footer>
@@ -164,7 +160,6 @@
                 </a>
             </li>
         </ul>
-        {{-- <img src="/img/homepage/firma_seco.png" class="img-firma" alt="" width="200px;"> --}}
     </div>
 
 </footer>

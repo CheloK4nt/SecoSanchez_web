@@ -137,7 +137,7 @@ class UsuarioController extends Controller
             
         } else {
             //credenciales incorrectas
-            return redirect()->route('login')->with('message','Correo o contraseña erronea.')->with('typealert','danger');
+            return redirect()->route('login')->with('message','Correo o contraseña errónea.')->with('typealert','danger');
         }
     }
 
@@ -178,7 +178,7 @@ class UsuarioController extends Controller
                     return redirect('/reset?email='.$usuarios->email)->with('success','mensaje');
                 endif;
             else:
-                return back()->with('message','Este correo electrónico NO existe.')->with('typealert','danger');
+                return back()->with('message','Este correo electrónico no se encuentra registrado.')->with('typealert','danger');
             endif;
         endif;
     }

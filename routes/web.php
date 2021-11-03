@@ -53,3 +53,12 @@ Route::get('/usuarios/logout', 'UsuarioController@logout')->name('usuarios.logou
 Route::get('/register','UsuarioController@register')->name('usuarios.register');
 Route::post('/usuarios/register','UsuarioController@store')->name('usuarios.store');
 // --------------- F I N    U S U A R I O S ------------------ //
+
+// TIENDA
+Route::get('/tienda','ContentController@getTienda')->name('tienda');
+
+// DOSSIER
+Route::get('/dossier','ContentController@getDossier')->name('dossier');
+
+// Ajax Api Routers
+Route::get('/md/api/load/products/{section}','ApiJsController@getProductsSection');

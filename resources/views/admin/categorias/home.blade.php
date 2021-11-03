@@ -21,7 +21,7 @@
         padding: 12px;
     }
 
-    .logo-addprod{
+    .logo-add{
         padding: 5px;
     }
 
@@ -110,7 +110,7 @@
         <div class="col-md-3">
             <div class="panel shadow">
                 <div class="header">
-                    <h2 class="title" style="font-weight: bold"><i class="fas fa-plus-square logo-addprod"></i>Agregar Categoría</h2>
+                    <h2 class="title" style="font-weight: bold"><i class="fas fa-plus-square logo-add"></i>Agregar Categoría</h2>
                 </div>
                 <div class="inside">
                     <form class="needs-validation" action="{{ url('admin/categoria/store') }}" method="POST" novalidate>
@@ -122,7 +122,7 @@
                                 <label for="nom_cat">Categoría:</label>
                             </div>
                             <div class="col-3">
-                                <input class="form-control form-id-cat" type="text" id="id_cat" name="id_cat" placeholder="{{$id_categoria}}" value="{{$id_categoria}}" readonly>
+                                <input class="form-control form-id-cat text-center" type="text" id="id_cat" name="id_cat" placeholder="{{$id_categoria}}" value="{{$id_categoria}}" readonly>
                             </div>
                             
                         </div>
@@ -165,8 +165,7 @@
                                     <td class="body-td" width="180" height="60">{{ $categoria->nom_cat }}</td>
                                     <td class="body-td" width="150" height="60">
                                         <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}" data-action="cat_delete" data-path="admin/categoria" data-object="{{ $categoria->id_cat }}"><i class="fas fa-trash"></i></a>
-                                        {{-- <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#confirmacionModal" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}
+                                        <a class="btn btn-secondary btn-confirmar-modal" href="{{ route('categoria.destroy',$categoria->id_cat) }}" data-action="cat_delete" data-path="admin/categoria" data-object="{{ $categoria->id_cat }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 
@@ -204,24 +203,5 @@
             })
     })()
 </script>
-
-{{-- <!-- Modal -->
-<div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="confirmacionModalLabel" style="color: black;">{{id_cat}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div> --}}
 
 @endsection

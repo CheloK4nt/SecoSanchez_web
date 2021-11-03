@@ -1,5 +1,6 @@
 <!-- Navbar Responsiva con opción de menú 'sandwich' para moviles -->
 <style>
+
 	li{
         list-style-type: none;
         margin: 5px;
@@ -186,7 +187,7 @@
         display: inline-block;
         padding: 10px 20px;
         color: rgb(255, 255, 255);
-        background-color: rgba(255, 255, 255, 0.048);
+        background-color: rgba(112, 112, 112, 0.089);
         text-transform: uppercase;
         letter-spacing: 2px;
         text-decoration: none;
@@ -194,7 +195,7 @@
         overflow: hidden;
         border-radius: 10px;
         transition: 0.2s;
-        box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.527);
+        box-shadow: -1px -1px 1px 1px rgba(255, 255, 255, 0.404);
         font-family: 'Raleway', sans-serif;
       }
 
@@ -292,15 +293,60 @@
         transform: translateY(-100%);
       }
 
+      .vertical-center {
+        padding: 10px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+
       /* FIN ANIMACIONES LOGREG BUTON */
 
+      .nav-btns i{
+        font-size: 20px;
+      }
+
       /* ----------FIN DISEÑO NAV BUTTONS---------- */
+
+      .dropdown{
+          font-family: 'Raleway', sans-serif;
+        }
+
+        .dropdown:focus{
+          color: white;
+        }
+
+        .dropdown:focus ::after{
+          color: rgb(255, 255, 255);
+        }
+
+        .dropdown i{
+          font-size: 20px;
+          color: white;
+        }
+
+        .nav-btns:hover i{
+          transition: 1s;
+          color: rgb(0, 0, 0);
+        }
+
+        .dropdown a:focus{
+          color: rgb(255, 255, 255);
+        }
+
+        .dropdown-item:hover{
+          background-color: rgb(88, 88, 88);
+          color: white;
+        }
+
 </style>
 
-
+{{-- USER NAV --}}
 @auth
 @if (Auth::user()->tipo=='U')
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark shadow">
   <div class="container">
     <a href="{{ route('inicio') }}" class="logo-btn">
     <span></span>
@@ -317,7 +363,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-        <a href="Dossier" class="nav-btns">
+        <a href="{{ route('dossier') }}" class="nav-btns">
           <span></span>
           <span></span>
           <span></span>
@@ -327,7 +373,7 @@
         </li>
 
         <li class="nav-item">
-        <a href="Tienda" class="nav-btns">
+        <a href="{{ route('tienda') }}" class="nav-btns">
           <span></span>
           <span></span>
           <span></span>
@@ -337,45 +383,50 @@
         </li>
 
         <li class="nav-item">
-        <a href="contacto" class="nav-btns">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Contacto
-        </a>
+          <a href="{{ route('contacto.index') }}" class="nav-btns">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Contacto
+          </a>
         </li>
       </ul>
+
       <div class="d-flex justify-content-between">
-        <li class="nav-item">
-        <a href="{{route('usuarios.panel')}}" class="logreg-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          {{Auth::user()->email}}
-        </a>
-        </li>
-        
 
         <li class="nav-item">
-        <a href="{{ route('usuarios.logout') }}" class="logreg-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Cerrar Sesión
-        </a>
+          <a href="{{ route('tienda') }}" class="nav-btns">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <i class="fas fa-shopping-cart ">0</i>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-btns" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i>
+            {{Auth::user()->nombre}}
+          </a>
+          <ul class="dropdown-menu panel shadow" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{route('usuarios.panel')}}">Mi cuenta</a></li>
+            <li><a class="dropdown-item" href="{{ route('usuarios.logout') }}">Cerrar Sesión</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
         </li>
       </div>
     </div>
   </div>
 </nav>
 
+{{-- ADMIN NAV --}}
 @else
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark shadow">
   <div class="container">
-    <a href="{{ route('welcome') }}" class="logo-btn">
+    <a href="{{ route('inicio') }}" class="logo-btn">
     <span></span>
     <span></span>
     <span></span>
@@ -390,7 +441,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-        <a href="Dossier" class="nav-btns">
+        <a href="{{ route('dossier') }}" class="nav-btns">
           <span></span>
           <span></span>
           <span></span>
@@ -400,7 +451,7 @@
         </li>
 
         <li class="nav-item">
-        <a href="Tienda" class="nav-btns">
+        <a href="{{ route('tienda') }}" class="nav-btns">
           <span></span>
           <span></span>
           <span></span>
@@ -410,7 +461,7 @@
         </li>
 
         <li class="nav-item">
-        <a href="contacto" class="nav-btns">
+        <a href="{{ route('contacto.index') }}" class="nav-btns">
           <span></span>
           <span></span>
           <span></span>
@@ -421,24 +472,22 @@
       </ul>
       <div class="d-flex justify-content-between">
         <li class="nav-item">
-        <a href="usuario" class="logreg-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          {{Auth::user()->email}}
-        </a>
+          <a href="{{ route('admin.dashboard') }}" class="nav-btns">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <i class="fas fa-cogs">Panel</i>
+          </a>
         </li>
-        
-
         <li class="nav-item">
-        <a href="{{ route('usuarios.logout') }}" class="logreg-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Cerrar Sesión
-        </a>
+          <a href="panel" class="logreg-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            {{Auth::user()->nombre}}
+          </a>
         </li>
       </div>
     </div>
@@ -451,7 +500,7 @@
 {{----------- NAVBAR SIN AUTH ----------}}
 @guest
 
-	<nav class="navbar navbar-expand-lg navbar-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark shadow">
 		<div class="container">
 		  <a href="{{ route('inicio') }}" class="logo-btn">
 			<span></span>
@@ -478,7 +527,7 @@
 				  </li>
 
 				  <li class="nav-item">
-					<a href="Tienda" class="nav-btns">
+					<a href="{{ route('tienda') }}" class="nav-btns">
 					  <span></span>
 					  <span></span>
 					  <span></span>

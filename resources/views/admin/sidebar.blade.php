@@ -69,6 +69,7 @@
 
     .section-bot li{
         background-color: rgb(44, 44, 44);
+        margin-bottom: 4px;
     }
 
     .section-bot li a{
@@ -115,7 +116,7 @@
                 <a href="{{ url('/admin') }}" class="lk-admin.dashboard"><i class="fas fa-laptop-house"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ url('/admin/productos/p') }}" class="lk-admin.productos lk-producto.edit"><i class="fas fa-box-open"></i></i>Productos</a>
+                <a href="{{ url('/admin/productos/p') }}" class="lk-admin.productos lk-producto.edit lk-producto.agregar"><i class="fas fa-box-open"></i></i>Productos</a>
             </li>
             <li>
                 <a href="{{ url('/admin/categorias') }}" class="lk-admin.categorias lk-categoria.edit"><i class="far fa-folder-open"></i>Categorías</a>
@@ -129,13 +130,19 @@
             <li>
                 <a href="{{ url('/admin') }}"><i class="fas fa-hand-holding-usd"></i>Ofertas</a>
             </li>
+            <li>
+                <a href="{{ url('/admin/slider') }}" class="lk-admin.slider"><i class="fas fa-chalkboard"></i>Slider</a>
+            </li>
         </ul>
     </div>
 
     <div class="section-bot">
         <ul>
             <li>
-                <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Salir</a>
+                <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Cerrar sesión y salir</a>
+            </li>
+            <li>
+                <a href="{{ route('inicio') }}"><i class="fas fa-pager"></i>Ir a página principal</a>
             </li>
         </ul>    
     </div>

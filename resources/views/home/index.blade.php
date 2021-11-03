@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="routeName" content="{{ Route::currentRouteName() }}">
         <title class="text-color white">SecoSanchezWeb</title>
-    
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- CSS --}}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
         {{-- JQUERY --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        {{-- SITE JS --}}
+        <script src="{{ url('/static/js/site.js?v='.time()) }}"></script>
     
         {{-- BOOTSTRAP --}}
         <meta charset="utf-8">
@@ -36,6 +40,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+
+        {{-- BUNDLE --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+        </script>
 
         <style>
 
@@ -80,43 +89,40 @@
 </header>
 
 <body>
-
+    @include('partials.preloader')
     <div class="container-firma container-fluid" style="background-color: rgba(253, 253, 253, 0)">
         <img class="firma" src="/img/homepage/firma_seco.png" alt="" width="200px">
     </div>
 
     
-    {{-- BUNDLE --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
+    
 
 
     @if (session('success'))
     <script>
         alert("{{session('success')}}");
-    </script>
-        
+    </script>        
     @endif
 
+    
 </body>
 <footer>   
     @include('partials.footer')
 </footer>
 
+</html>
+
 <svg>
     <defs>
-     <filter id='goo'>
-      <feGaussianBlur in='SourceGraphic' 
-      stdDeviation='10' result='name'/>
-       <feColorMatrix in='name' mode='matrix'
-           values='1 0 0 0 0
-                   0 1 0 0 0 
-                   0 0 1 0 0
-                   0 0 0 30 -15 ' result='aab'/>
-       <feBlend in='SourceGraphic' in2='aab'/>
+      <filter id='goo'>
+        <feGaussianBlur in='SourceGraphic' 
+        stdDeviation='10' result='name'/>
+         <feColorMatrix in='name' mode='matrix'
+             values='1 0 0 0 0
+                     0 1 0 0 0 
+                     0 0 1 0 0
+                     0 0 0 30 -15 ' result='aab'/>
+         <feBlend in='SourceGraphic' in2='aab'/>
       </filter>
     </defs>
 </svg>
-
-</html>

@@ -22,7 +22,7 @@
         {{-- <p><a href="{{ url('/reset?email='.$email) }}"
                     style="display: inline-block; background-color:#396591; color: #fff; padding: 12px; border-radius: 4px; text-decoration:none;">Reestablecer
                     contraseña</a></p> --}}
-        <p style="margin: 20px; font-size: 18px"><strong>* RECUERDE, el código será su nueva contraseña.</strong> </p>
+        <p style="margin: 20px; font-size: 18px"><strong> ¡RECUERDE!, el código será su nueva contraseña momentánea.</strong> </p>
         <p></p>
     </div>
 

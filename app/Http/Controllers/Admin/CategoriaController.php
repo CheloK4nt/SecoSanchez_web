@@ -144,9 +144,9 @@ class CategoriaController extends Controller
     public function getCategoriaEdit($id){
         $cat = Categoria::findOrFail($id);
         $data = ['cat' => $cat];
-        $id_categoria = $cat -> id_cat;
-        $nom_categoria = $cat -> nom_cat;
-        // dd($nom_categoria);
+        // $id_categoria = $cat -> id_cat;
+        // $nom_categoria = $cat -> nom_cat;
+        // dd($id_categoria);
 
         return view('admin.categorias.edit', $data);
     }
