@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
+    <meta name="routeName" content="{{ Route::currentRouteName() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <head>
     <title>Recuperar Contraseña</title>
@@ -13,13 +15,8 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
 
-    {{-- SEPARATE --}}
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
-        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous">
-    </script>
+    {{-- SITE JS --}}
+    <script src="{{ url('/static/js/site.js?v='.time()) }}"></script>
 
     {{-- BOOTSTRAP --}}
     <meta charset="utf-8">
@@ -286,19 +283,33 @@
 
         /* ----------FIN DISEÑO VOLVER BUTTONS---------- */
 
-        .alert-secondary {
+        .alert-success {
             background-color: rgb(83, 83, 83) !important;
             color: rgb(196, 196, 196);
+            border-color: white !important;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
         }
 
         label {
             font-family: 'Raleway', sans-serif;
         }
 
+        .extra-link{
+            font-family: 'Open Sans', sans-serif;
+            text-decoration: none;
+            color: rgb(150, 150, 150);
+        }
+
+        .extra-link:hover{
+            color: rgb(0, 0, 0);
+        }
+
     </style>
 </head>
 
 <body>
+    @include('partials.preloader')
     {{-- --------------------------- FORMULARIO -------------------- --}}
     <div class="row-1">
         <div class="col-md-7 col-10 main-section" style="background-color: black">
@@ -344,9 +355,9 @@
                     </a>
 
                     <div style="text-align: center" class="footer mt-16">
-                        <a href="{{ route('usuarios.register') }}">No tienes una cuenta? Registrate!</a>
+                        <a class="extra-link" href="{{ route('usuarios.register') }}">¿No tienes una cuenta? ¡Registrate!</a>
                         <h2></h2>
-                        <a href="{{ route('login') }}">Ingresar a mi cuenta</a>
+                        <a class="extra-link" href="{{ route('login') }}">Iniciar Sesión</a>
                     </div>
 
                     {{--------------- MENSAJE SUCCESS ---------------}}
@@ -368,15 +379,8 @@
 
                     <div class="container mensajes mt-4">
                         @if (Session::has('message'))
-                            <div class="alert alert-secondary padding-top 5">
+                            <div class="alert alert-success padding-top 5">
                                 <li class="mt-1 text-start">{{ Session::get('message') }}</li>
-                            </div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-secondary ">
-                                <ul>
-                                    <li class="mt-1 text-start">{{ $errors->first() }}</li>
-                                </ul>
                             </div>
                         @endif
                     </div>

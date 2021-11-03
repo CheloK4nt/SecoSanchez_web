@@ -215,14 +215,14 @@
                 <thead>
                     <tr>
                         <th class="head-td">ID</th>
-                        <th class="head-td">Nombre</th>
-                        <th class="head-td"></th>
-                        <th class="head-td">Categoría</th>
-                        <th class="head-td">Precio</th>
-                        <th class="head-td">Dscto.</th>
-                        <th class="head-td">Stock</th>
-                        <th class="head-td">Critico</th>
-                        <th class="head-td">Acciones</th>
+                        <th class="head-td">NOMBRE</th>
+                        <th class="head-td">IMAGEN</th>
+                        <th class="head-td">CATEGORÍA</th>
+                        <th class="head-td">PRECIO</th>
+                        <th class="head-td">DSCTO.</th>
+                        <th class="head-td">STOCK</th>
+                        <th class="head-td">CRITICO</th>
+                        <th class="head-td">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -244,17 +244,21 @@
                                     Sin categoría
                                 @endif           
                             </td>
-                            <td class="body-td">{{$prod->precio_prod}}</td>
+                            <td class="body-td text-end">
+                                @php
+                                    echo "$".number_format($prod->precio_prod, 0, ',', '.');
+                                @endphp
+                            </td>
                             <td class="body-td">{{$prod->en_dcto_prod}}</td>
                             <td class="body-td">{{$prod->stock_prod}}</td>
                             <td class="body-td">{{$prod->crit_prod}}</td>
                             <td class="body-td">
                                 @if ($prod->deleted_at == Null)
-                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="delete" data-path="admin/producto"  data-object="{{ $prod->id_prod }}" ><i class="fas fa-trash"></i></a>
-                                    <a class="btn btn-secondary" href="{{ route('producto.edit',$prod->id_prod) }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-secondary" href="{{ route('producto.edit',$prod->id_prod) }}"><i class="fas fa-edit"></i></a>                            
+                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="delete_prod" data-path="admin/producto"  data-object="{{ $prod->id_prod }}" ><i class="fas fa-trash"></i></a>
                                 @endif
                                 @if ($prod->deleted_at != Null)
-                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="restore" data-path="admin/producto" data-object="{{ $prod->id_prod }}"><i class="fas fa-trash-restore"></i></a>
+                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="restore_prod" data-path="admin/producto" data-object="{{ $prod->id_prod }}"><i class="fas fa-trash-restore"></i></a>
                                 @endif
                                 {{-- <a class="btn btn-secondary" href="{{ route('categoria.edit',$categoria->id_cat) }}"><i class="fas fa-edit"></i></a>
                                 <a class="btn btn-secondary" href="{{ route('categoria.destroy',$categoria->id_cat) }}"><i class="fas fa-trash"></i></a> --}}

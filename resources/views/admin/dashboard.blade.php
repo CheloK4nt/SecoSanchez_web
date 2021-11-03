@@ -18,7 +18,7 @@
     h2.title{
         display: inline-block;
         color: white;
-        font-size: 1.1em;
+        font-size: 1.2em;
         padding: 12px;
     }
 
@@ -30,6 +30,18 @@
         padding: 16px;
     }
 
+    h2.users{
+        font-size: 1.1em;
+        padding: 12px;
+        display: inline-block;
+    }
+
+    .big_count{
+        font-family: 'Open Sans', sans-serif;
+        text-align: center;
+        font-size: 2em;
+    }
+
 </style>
 
 
@@ -37,12 +49,45 @@
 <div class="container-fluid">
     <div class="panel shadow">
         <div class="header">
-            <h2 class="title"><i class="fas fa-laptop-house logo-db"></i>Dashboard</h2>
+            <h2 class="title"><i class="far fa-chart-bar logo-db"></i>Estadísticas rápidas</h2>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-3">
+            <div class="panel shadow">
+                <div class="header">
+                    <h2 class="users"><i class="fas fa-users logo-db"></i>Usuarios registrados</h2>
+                </div>
+                <div class="inside">
+                    <div class="big_count">{{$usuarios}}</div>
+                </div>
+            </div>
         </div>
 
-        <div class="inside">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ad inventore, aliquid possimus assumenda nam dolore voluptatum odit reprehenderit quidem optio praesentium facilis ab voluptate molestias quo quos cupiditate laboriosam!
+        <div class="col-md-3">
+            <div class="panel shadow">
+                <div class="header">
+                    <h2 class="users"><i class="fas fa-clipboard-list logo-db"></i>Productos listados</h2>
+                </div>
+                <div class="inside">
+                    <div class="big_count">{{$productos}}</div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="panel shadow">
+                <div class="header">
+                    <h2 class="users"><i class="fas fa-cash-register logo-db"></i>Ganancias hoy</h2>
+                </div>
+                <div class="inside">
+                    <div class="big_count">0</div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 @endsection

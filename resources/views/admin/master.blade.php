@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
-    {{-- ADMIN JS --}}
+    {{-- SITE JS --}}
     <script src="{{ url('/static/js/admin.js?v='.time()) }}"></script>
 
     {{-- BUNDLE --}}
@@ -30,10 +30,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- SEET ALERT --}}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- HOJAS ESTILO --}}
-    {{-- <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}"> --}}
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -41,6 +40,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- STYLES --}}
+
+    <script src="~/Scripts/autoNumeric/autoNumeric.min.js" type="text/javascript"></script>
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
@@ -131,16 +133,20 @@
 
         .breadcrumb-item{
         color: rgb(255, 255, 255);
+        font-family: 'Open Sans', sans-serif;
         }
 
         .breadcrumb-item:hover{
         color: rgb(131, 131, 131);
-        font-weight: bold;
         }
 
         .form-control:focus{
             box-shadow: inset 0 0px 0px , 0 0 8px rgb(0, 0, 0);
             border-color: black !important;
+        }
+
+        .form-control{
+            font-family: 'Open Sans', sans-serif;
         }
 
         .form-select:focus{
@@ -159,7 +165,7 @@
 
 </head>
 <body>
-    
+    @include('partials.preloader')
     <div class="wrapper">
         <div class="col1">@include('admin.sidebar')</div>
         <div class="col2">

@@ -22,4 +22,11 @@ Route::prefix('/admin')->group(function(){
     Route::get('/categoria/{id}/edit', 'Admin\CategoriaController@getCategoriaEdit')->name('categoria.edit');
     Route::put('/categoria/{id}/update', 'Admin\CategoriaController@update')->name('categoria.update');
     Route::get('/categoria/{id}/delete', 'Admin\CategoriaController@destroy')->name('categoria.destroy');
+
+    // modulo slider
+    Route::get('/slider', 'Admin\SliderController@getSlider')->name('admin.slider');
+    Route::post('/slide/store', 'Admin\SliderController@store')->name('slide.store');
+    Route::get('/slide/{id}/edit', 'Admin\SliderController@getSlideEdit')->name('slide.edit');
+    Route::get('/slide/{id}/delete', 'Admin\SliderController@destroy')->name('slide.destroy');
+    Route::put('/slide/{id}/update', 'Admin\SliderController@update')->name('slide.update');
 });

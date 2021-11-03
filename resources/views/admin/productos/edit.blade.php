@@ -53,7 +53,7 @@
         padding-inline: 5px !important;
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
-        width: 70px !important;
+        width: 80px !important;
         margin-right: 5px;
     }
 
@@ -146,7 +146,7 @@
                         </div>
                         <div class="col">
                             <ul class="float-end">
-                                <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
+                                <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
                             </ul>
                         </div>
                     </div>    
@@ -200,7 +200,7 @@
                                 <label for="precio">Precio:</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
-                                    <input type="number" class="form-control" id="precio_prod" name="precio_prod" min="0" value="{{$prod->precio_prod}}"
+                                    <input class="form-control" id="precio_prod" name="precio_prod" min="0" value="{{$prod->precio_prod}}"
                                         placeholder="Precio del producto" required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">Por favor, ingrese precio del producto.</div>
@@ -345,6 +345,21 @@
                 }, false)
             })
     })()
+</script>
+
+<script>
+    $("#precio_prod").on({
+    "focus": function (event) {
+        $(event.target).select();
+    },
+    "keyup": function (event) {
+        $(event.target).val(function (index, value ) {
+            return value.replace(/\D/g, "")
+                        .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+                        .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+        });
+    }
+});
 </script>
 @endsection
 

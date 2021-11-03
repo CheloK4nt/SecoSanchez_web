@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
+    <meta name="routeName" content="{{ Route::currentRouteName() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <head>
     <title>Login</title>
@@ -18,6 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- HOJAS ESTILO --}}
+
+    {{-- SITE JS --}}
+    <script src="{{ url('/static/js/site.js?v='.time()) }}"></script>
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -69,8 +74,6 @@
             box-shadow: 0px 0px 20px white;
             font-family: consolas;
         }
-
-        .modal-dialog {}
 
         .container {
             border-style: solid;
@@ -280,16 +283,33 @@
         .alert-secondary {
             background-color: rgb(83, 83, 83) !important;
             color: rgb(196, 196, 196);
+            font-family: 'Open Sans', sans-serif;
         }
 
         label{
             font-family: 'Raleway', sans-serif;
         }
 
+        .extra-link{
+            font-family: 'Raleway', sans-serif;
+            text-decoration: none;
+            color: rgb(150, 150, 150);
+        }
+
+        .extra-link:hover{
+            color: rgb(0, 0, 0);
+        }
+
+        .form-label{
+            font-weight: bold;
+            color: rgb(49, 49, 49);
+        }
+
     </style>
 </head>
 
 <body>
+    @include('partials.preloader')
     {{----------------------------- FORMULARIO ----------------------}}
     <div class="modal-dialog">
         <div class="col-sm-9 main-section" style="background-color: black">
@@ -303,7 +323,7 @@
                         <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Iniciar Sesión</h1>
                     </div>
                     {{-- INPUT EMAIL --}}
-                    <label for="email" class="form-label text-start" style="color: rgb(0, 0, 0)">Correo
+                    <label for="email" class="form-label text-start">Correo
                         electrónico:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
@@ -314,7 +334,7 @@
                     </div>
 
                     {{-- INPUT PASSWORD --}}
-                    <label for="password" class="form-label text-start" style="color: rgb(0, 0, 0)">Contraseña:</label>
+                    <label for="password" class="form-label text-start">Contraseña:</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                         <input type="password" class="form-control" id="password" name="password"
@@ -323,8 +343,12 @@
                         <div class="invalid-feedback text-start">Por favor, ingrese su contraseña.</div>
                     </div>
 
+                    <div style="text-align: end">
+                        <a class="extra-link" href="{{ route('usuarios.recuperar') }}">¿Olvidó su contraseña?</a>
+                    </div>
+
                     {{-- BOTON INGRESAR --}}
-                    <button type="submit" class="btn btn-light ingresar-btn">
+                    <button type="submit" class="btn btn-light ingresar-btn mt-2">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -342,15 +366,12 @@
                     </a>
 
                     <div style="text-align: center" class="footer mt-16">
-                        <a href="{{ route('usuarios.register') }}">No tienes una cuenta? Registrate!</a>
-                        <h2></h2>
-                        <a href="{{ route('usuarios.recuperar') }}">Olvidó su contraseña?</a>
+                        <a class="extra-link" href="{{ route('usuarios.register') }}">¿No tienes una cuenta? ¡Registrate!</a>
                     </div>
 
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             La contraseña fue restablecida con éxito, ahora puede iniciar sesión.
-
                         </div>
                     @endif
 
@@ -365,11 +386,9 @@
 
                     {{-- MENSAJES DE ERROR --}}
                     <div class="container mensajes mt-4">
-                        @if ($errors->any())
+                        @if (Session::has('message'))
                             <div class="alert alert-secondary padding-top 5">
-                                <ul>
-                                    <li class="mt-1 text-start">{{ $errors->first() }}</li>
-                                </ul>
+                                <li class="mt-1 text-start">{{ Session::get('message') }}</li>
                             </div>
                         @endif
                     </div>
