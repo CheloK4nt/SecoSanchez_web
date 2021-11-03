@@ -57,7 +57,7 @@ return [
 
         'uploads' => [
             'driver' => 'local',
-            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads',
+            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads',
         ],
 
         's3' => [

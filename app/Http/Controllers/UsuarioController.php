@@ -174,7 +174,6 @@ class UsuarioController extends Controller
                 $u = Usuario::find($usuarios->email);
                 $u->password_code = $code;
                 if($u->save()):
-                    /* $correo = new RecuperarMailable($request->all()); */
                     Mail::to($usuarios->email)->send(new RecuperarMailable($data));
                     return redirect('/reset?email='.$usuarios->email)->with('success','mensaje');
                 endif;
@@ -223,13 +222,11 @@ class UsuarioController extends Controller
 
     public function panel(){
         $usuarios = DB::table('usuarios')->select('nombre','apellido','direccion','email','telefono')->where('email',Auth::user()->email)->get();
-        /* dd($usuarios);  */
         return view('usuarios.usuariospanel',compact('usuarios'));
     }
 
     public function panelEdit(){
         $usuarios = DB::table('usuarios')->select('nombre','apellido','direccion','email','telefono')->where('email',Auth::user()->email)->get();
-        /* dd($usuarios);  */
         return view('usuarios.usuariospaneledit',compact('usuarios'));
     }
 

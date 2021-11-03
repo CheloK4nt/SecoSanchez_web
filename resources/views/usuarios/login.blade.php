@@ -392,6 +392,15 @@
                             </div>
                         @endif
                     </div>
+
+                    {{-- MENSAJES DE ERROR --}}
+                    {{-- <div class="container mensajes mt-4">
+                        @if ($errors->any())
+                            <div class="alert alert-secondary padding-top 5">
+                                <li class="mt-1 text-start">{{ Session::get('message') }}</li>
+                            </div>
+                        @endif
+                    </div> --}}
                 </form>
             </div>
         </div>
