@@ -8,7 +8,7 @@ use App\Galeria;
 
 class Dossier extends Model
 {
-    /* use SoftDeletes; */
+    use SoftDeletes;
     const UPDATED_AT = null;
     const CREATED_AT = null;
     protected $table = "dossier";

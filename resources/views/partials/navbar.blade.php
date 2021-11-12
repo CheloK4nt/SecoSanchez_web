@@ -172,7 +172,6 @@
         color: rgb(0, 0, 0);
         background-color: rgb(255, 255, 255);
         box-shadow: 0 0 10px white, 0 0 40px white, 0 0 80px white;
-        transition-delay: 0.1s;
       }
 
       .nav-btns span{
@@ -349,11 +348,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark shadow">
   <div class="container">
     <a href="{{ route('inicio') }}" class="logo-btn">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    SecoSanchez
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      SecoSanchez
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -414,7 +413,7 @@
             <li><a class="dropdown-item" href="{{route('usuarios.panel')}}">{{__('messages.micuenta')}}</a></li>
             <li><a class="dropdown-item" href="{{ route('usuarios.logout') }}">{{__('messages.cerrarsesion')}}</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="{{ route('usuarios.logout') }}">Cerrar Sesión</a></li>
           </ul>
         </li>
       </div>
@@ -481,7 +480,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="panel" class="logreg-btn">
+          <a href="{{route('usuarios.panel')}}" class="logreg-btn">
             <span></span>
             <span></span>
             <span></span>

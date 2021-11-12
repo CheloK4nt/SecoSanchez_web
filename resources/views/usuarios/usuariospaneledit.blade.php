@@ -2,6 +2,7 @@
 <html lang="en">
     <meta name="routeName" content="{{ Route::currentRouteName() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth" content="{{ Auth::check() }}">
 <head>
     <title class="text-color white">SecoSanchezWeb</title>
 
@@ -52,7 +53,7 @@
 
     <style>
         header {
-            padding-top: 10px;
+            /* padding-top: 10px; */
         }
 
 
@@ -293,6 +294,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <h1 class="mt-7" style="color: rgb(0, 0, 0);font-size: 15px">*Dejar en blanco si no desea cambiar su contraseña</h1>
 
                     <div class="row">
                         {{-- LABEL CONTRASEÑA NUEVA --}}

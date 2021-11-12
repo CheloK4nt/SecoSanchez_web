@@ -24,7 +24,7 @@
     <div class="carousel-inner">
         {{-- SLIDE PRINCIPAL --}}
         <div class="carousel-item active">
-            <img src="{{ url('img/slide 1.jpg') }}" class="d-block w-100" alt="..." style="width: 100%;">
+            <img src="{{ url('uploads/slides/slide_principal.jpg') }}" class="d-block w-100" alt="..." style="width: 100%;">
             <div class="carousel-caption d-none d-md-block">
                 <div class="container container-slide-text shadow">
                     <h5>Tienda SecoSánchez</h5>
@@ -36,7 +36,7 @@
         {{-- FOR EACH SLIDES --}}
         @foreach ($slider as $slide)
             <div class="carousel-item">
-                <img src="{{ url('uploads/' . $slide->file_path_sli . '/' . $slide->file_name_sli) }}" class="d-block w-100" alt="..." style="width: 100%;">
+                <img src="{{ url('uploads/slides/' . $slide->file_path_sli . '/' . $slide->file_name_sli) }}" class="d-block w-100" alt="..." style="width: 100%;">
                 <div class="carousel-caption d-none d-md-block">
                     <div class="container container-slide-text">
                         <h5> {{ $slide->nom_sli }} </h5>

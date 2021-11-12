@@ -29,7 +29,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {{-- SEET ALERT --}}
+    {{-- SWEET ALERT --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- HOJAS ESTILO --}}
@@ -40,8 +40,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {{-- STYLES --}}
-
-    <script src="~/Scripts/autoNumeric/autoNumeric.min.js" type="text/javascript"></script>
 
 
     <!-- Google Fonts -->
@@ -93,7 +91,7 @@
 
         .navbar{
             position: fixed;
-            width: 100%;
+            width: 83%;
             background-color: rgb(46, 46, 46);
             padding-inline: 20px;
             z-index: 100;
@@ -159,6 +157,36 @@
         font-weight: bold;
         }
 
+        .li-btns{
+            padding: 5px;
+        }
+
+        .li-btns a{
+            color: rgb(150, 150, 150);
+            background-color: rgb(24, 24, 24);
+            display: block;
+            font-size: 18px;
+            padding: 12px;
+            text-decoration: none;
+        }
+
+        .li-btns a i{
+            padding: 5px;
+        }
+
+        .li-btns a:hover{
+            color: rgb(255, 255, 255);
+            background-color: rgb(110, 110, 110);
+            display: block;
+            font-size: 18px;
+            padding: 12px;
+            text-decoration: none;
+        }
+
+        .li-btns a:hover i{
+            color: rgb(255, 255, 255);
+        }
+
         
 
     </style>
@@ -170,7 +198,7 @@
         <div class="col1">@include('admin.sidebar')</div>
         <div class="col2">
             <div class="navbar navbar-expand-lg shadow">
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse d-flex justify-content-between">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="{{ url('/admin') }}" class="nav-link titulo-page">
@@ -179,6 +207,15 @@
                             </a>
                         </li>
                     </ul>
+
+                    <ul class="navbar-nav text-end">
+                        <li class="li-btns">
+                            <a href="{{ route('inicio') }}"><i class="fas fa-pager"></i>Ir a página principal</a>
+                        </li>
+                        <li class="li-btns">
+                            <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Cerrar sesión y salir</a>
+                        </li>                        
+                    </ul> 
                 </div>
             </div>
 

@@ -86,7 +86,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-tag"></i></span>
                             <input type="text" class="form-control" id="nom_prod" name="nom_prod"
-                                placeholder="Nombre del producto" required>
+                                placeholder="Nombre del producto" maxlength="55" required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Por favor, ingrese nombre del producto.</div>
                         </div>

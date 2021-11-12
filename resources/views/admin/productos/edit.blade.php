@@ -162,7 +162,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-tag"></i></span>
                                     <input type="text" class="form-control" id="nom_prod" name="nom_prod" value="{{$prod->nom_prod}}"
-                                        placeholder="Nombre del producto" required>
+                                        placeholder="Nombre del producto" maxlength="55" required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">Por favor, ingrese nombre del producto.</div>
                                 </div>
@@ -286,7 +286,7 @@
                     <h2 class="title"><i class="fas fa-image logo-addprod"></i>Imagen Destacada</h2>
                 </div>
                 <div class="inside">
-                    <img src="{{url('/uploads/'.$prod->file_path.'/t_'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
+                    <img src="{{url('/uploads/productos/'.$prod->file_path.'/t_'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
                 </div>
             </div>
 
@@ -311,7 +311,7 @@
                         @foreach ($prod->getGaleria as $img)
                         <div class="tumb">
                             <a class="btn btn-info" href="{{ url('/admin/producto/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
-                            <img src="{{ url('/uploads/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
+                            <img src="{{ url('/uploads/productos/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
                             {{-- @php
                                 dd(url('/uploads/'.$img->file_path.'/t_'.$img->file_name));
                             @endphp --}}

@@ -140,13 +140,6 @@
     </div>
 
     <div class="section-bot">
-        <ul>
-            <li>
-                <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Cerrar sesión y salir</a>
-            </li>
-            <li>
-                <a href="{{ route('inicio') }}"><i class="fas fa-pager"></i>Ir a página principal</a>
-            </li>
-        </ul>    
+           
     </div>
 </div>

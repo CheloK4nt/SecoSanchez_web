@@ -48,6 +48,7 @@
         padding-inline: 5px !important;
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
+        font-size:calc(10px + 0.2vw) !important;
     }
 
     td{

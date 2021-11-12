@@ -57,6 +57,7 @@ Route::get('/usuarios/logout', 'UsuarioController@logout')->name('usuarios.logou
 // REGISTER
 Route::get('/register','UsuarioController@register')->name('usuarios.register');
 Route::post('/usuarios/register','UsuarioController@store')->name('usuarios.store');
+
 // --------------- F I N    U S U A R I O S ------------------ //
 
 // TIENDA
@@ -65,5 +66,11 @@ Route::get('/tienda','ContentController@getTienda')->name('tienda');
 // DOSSIER
 Route::get('/dossier','DossierController@index')->name('dossier.index');
 
+// PRODUCTOS
+Route::get('/product/{id_prod}', 'ProductoController@getProducto');
+
+
 // Ajax Api Routers
 Route::get('/md/api/load/products/{section}','ApiJsController@getProductsSection');
+Route::post('/md/api/load/user/favorites','ApiJsController@postUserFavorites');
+Route::post('/md/api/favorites/add/{id_prod}','ApiJsController@postFavoriteAdd');

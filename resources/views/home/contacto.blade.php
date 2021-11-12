@@ -2,6 +2,7 @@
 <html lang="en">
     <meta name="routeName" content="{{ Route::currentRouteName() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth" content="{{ Auth::check() }}">
 <head>
     <title>Contacto</title>
 
@@ -22,7 +23,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- HOJAS ESTILO --}}
-    <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -332,6 +332,11 @@
             font-family: 'Raleway', sans-serif;
         }
 
+        .form-label{
+            font-weight: bold;
+            color: rgb(49, 49, 49);
+        }
+
     </style>
 </head>
 
@@ -428,11 +433,11 @@
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">{{__('messages.porfavormensaje')}}</div>
                         </div>
-                        {{-- <small class="form-text text-muted">Carácteres restantes:<span class="text-danger" id="CaracteresRestantes"></span></small> --}}
+                        <small class="form-text text-muted">Carácteres restantes: <b><span style="color: red;" id=myCounter>255</span></b> <span class="text-danger" id="CaracteresRestantes"></span></small>
                     </div>
 
                     {{-- BOTON ENVIAR --}}
-                    <button type="submit" class="btn btn-light enviar-btn">
+                    <button type="submit" class="btn btn-light enviar-btn mt-3">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -490,29 +495,36 @@
         })()
     </script>
 
-    {{--
-		Función para contar carácteres restantes del mensaje a enviar
-	--}}
-	<script type="text/javascript">
-
-		var max_caracteres = 200;
-		var mensaje_input = document.getElementById("mensaje");
-		var caracteres_restantes = document.getElementById("CaracteresRestantes");
-
-		caracteres_restantes.innerHTML = max_caracteres;
-
-		mensaje_input.addEventListener("keydown",contar);
-
-		function contar(e){
-			var cant_caracteres = mensaje_input.value.length;
-			if (cant_caracteres >= max_caracteres){
-				e.preventDefault();
-			} else{
-				caracteres_restantes.innerHTML = max_caracteres - (cant_caracteres);
-			}
-		}
-
-	</script>
+    <script language = "Javascript">
+        /**
+         * DHTML textbox character counter script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+         */
+        
+        maxL=255;
+        var bName = navigator.appName;
+        function taLimit(taObj) {
+            if (taObj.value.length==maxL) return false;
+            return true;
+        }
+        
+        function taCount(taObj,Cnt) { 
+            objCnt=createObject(Cnt);
+            objVal=taObj.value;
+            if (objVal.length>maxL) objVal=objVal.substring(0,maxL);
+            if (objCnt) {
+                if(bName == "Netscape"){	
+                    objCnt.textContent=maxL-objVal.length;}
+                else{objCnt.innerText=maxL-objVal.length;}
+            }
+            return true;
+        }
+        function createObject(objId) {
+            if (document.getElementById) return document.getElementById(objId);
+            else if (document.layers) return eval("document." + objId);
+            else if (document.all) return eval("document.all." + objId);
+            else return eval("document." + objId);
+        }
+    </script>
 </body>
 
 </html>

@@ -57,7 +57,22 @@ return [
 
         'uploads' => [
             'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads',
+        ],
+
+        'productos' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos',
+        ],
+
+        'slides' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\slides',
+        ],
+
+        'dossier' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\dossier',
         ],
 
         'productos' => [

@@ -2,8 +2,11 @@ const route = document.getElementsByName('routeName')[0].getAttribute('content')
 const base = location.protocol+'//'+location.host;
 const http = new XMLHttpRequest();
 const csrfToken = document.getElementsByName('csrf-token')[0].getAttribute('content')
+const auth = document.getElementsByName('auth')[0].getAttribute('content')
 var page = 1;
 var page_section = "";
+var favorite_list = [];
+
 
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -22,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     if (route == 'tienda') {
         load_products('tienda');
+
     }
 
     if (load_more_products) {
@@ -54,7 +58,7 @@ function load_products(section){
     http.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
             page = page + 1;
-            console.log(page);
+            // console.log(page);
             var data = this.responseText;
             data = JSON.parse(data);
             if(data.data.length == 0){
@@ -62,32 +66,80 @@ function load_products(section){
             }
             console.log(data.data);
             data.data.forEach( function(producto, index){
+                favorite_list.push(producto.id_prod);
                 var precio_prod = addCommas(producto.precio_prod);
                 var div = "";
                 div += "<div class=\"product\">";                    
                     div += "<div class=\"image\">";
                         div += "<div class=\"overlay\">";
                             div += "<div class=\"btns\">";
-                                div += "<a href=\"\"><i class=\"far fa-heart\"></i></a>";
+                                if (auth == 1) {
+                                    div += "<a href=\"\" id=\"favorito_"+producto.id_prod+"\" onclick=\"agregar_a_favoritos('"+producto.id_prod+"'); return false\" ><i class=\"fas fa-heart\"></i></a>";
+                                }else{
+                                    div += "<a href=\"\" id=\"favorito_"+producto.id_prod+"\" onclick=\"Swal.fire({title:':(', text:'¡Debes iniciar sesión para agregar productos a tus favoritos!', icon:'warning'}); return false\"><i class=\"fas fa-heart\"></i></a>";
+                                }                                
                                 div += "<br>";
                                 div += "<a href=\"\"><i class=\"fas fa-cart-plus\"></i></a>";
                                 div += "<br>";
-                                div += "<a href=\"\"><i class=\"far fa-eye\"></i></a>";
+                                div += "<a href=\""+base+"/product/"+producto.id_prod+"\"><i class=\"far fa-eye\"></i></a>";
                                 div += "<br>";
                             div += "</div>";
                         div += "</div>";
-                        div += "<img src=\""+base+"/uploads/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
+                        div += "<img src=\""+base+"/uploads/productos/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
                     div += "</div>";
-                    div += "<a href=\""+base+"/product/"+producto.id_prod+"\">";  
-                        div += "<div class=\"title\">"+producto.id_prod+"</div>";
+                    div += "<a href=\""+base+"/product/"+producto.id_prod+"\"  title=\""+producto.nom_prod+"\">";  
+                        div += "<div class=\"title\">"+producto.nom_prod+"</div>";
                         div += "<div class=\"price\">"+"$"+precio_prod+"</div>";
                         div += "<div class=\"options\"></div>";
                     div += "</a>";
                 div += "</div>";
                 products_list.innerHTML += div;
             });
+
+            if (auth == "1") {
+                mark_user_favorites(favorite_list);
+                favorite_list = [];
+            }
+            
+
         }else{
             // mensaje de error
+        }
+    }
+}
+
+function mark_user_favorites(favoritos){
+    var url = base + '/md/api/load/user/favorites';
+    var params = 'productos='+favoritos;
+    http.open('POST', url, true);
+    http.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http.send(params);
+    http.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            var data = this.responseText;
+            data = JSON.parse(data);
+            if(data.count > 0){
+                data.productos.forEach(function(favorito, index){
+                    document.getElementById('favorito_'+favorito).classList.add('favorite_active');
+                })
+            }
+        }
+    }
+}
+
+function agregar_a_favoritos(producto){
+    url = base+'/md/api/favorites/add/'+producto;
+    http.open('POST', url, true);
+    http.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+    http.send();
+    http.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            var data = this.responseText;
+            data = JSON.parse(data);
+            if(data.status == "success"){
+                document.getElementById('favorito_'+producto).classList.add('favorite_active');
+            }
         }
     }
 }
