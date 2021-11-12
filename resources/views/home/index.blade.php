@@ -80,7 +80,11 @@
                 text-align: end;
             }
 
-
+            .dropdown{
+                padding-top: 20px;
+                text-align: end;
+                padding-right: 50px;
+            }
 
         </style>
     </head>
@@ -90,14 +94,20 @@
 </header>
 
 <body>
+    <div class="dropdown">
+        <button class="dropdown-toggle inline-flex justify center w-full rounded-md border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-offset-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          {{__('messages.idiomas')}}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{{url('locale/es')}}">Español</a></li>
+          <li><a class="dropdown-item" href="{{url('locale/en')}}">Inglés</a></li>
+        </ul>
+      </div>
+
     @include('partials.preloader')
     <div class="container-firma container-fluid" style="background-color: rgba(253, 253, 253, 0)">
         <img class="firma" src="/img/homepage/firma_seco.png" alt="" width="200px">
     </div>
-
-    
-    
-
 
     @if (session('success'))
     <script>

@@ -170,6 +170,9 @@
         font-size:calc(10px + 0.2vw) !important;
         text-align: center;
     }
+    /* .w-5{
+        display: none;
+    } */
 
 </style>
 
@@ -259,10 +262,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <tr>
-                                <td colspan="10">{!! $dossier->render() !!}</td>
-                            </tr>
+                            {{-- <tr>
+                                <td colspan="10" >{!! $dossier->render() !!}</td>
+                            </tr> --}}
+                            {{$dossier->links()}}
                         </div>
+                        
                     </div>
                 </div>
         </div>

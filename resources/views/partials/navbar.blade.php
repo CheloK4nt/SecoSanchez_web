@@ -377,7 +377,7 @@
           <span></span>
           <span></span>
           <span></span>
-          Tienda
+          {{__('messages.tienda')}}
         </a>
         </li>
 
@@ -387,7 +387,7 @@
             <span></span>
             <span></span>
             <span></span>
-            Contacto
+            {{__('messages.contacto')}}
           </a>
         </li>
       </ul>
@@ -410,8 +410,8 @@
             {{Auth::user()->nombre}}
           </a>
           <ul class="dropdown-menu panel shadow" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{route('usuarios.panel')}}">Mi cuenta</a></li>
-            <li><a class="dropdown-item" href="favoritos">Favoritos</a></li>
+            <li><a class="dropdown-item" href="{{route('usuarios.panel')}}">{{__('messages.micuenta')}}</a></li>
+            <li><a class="dropdown-item" href="{{ route('usuarios.logout') }}">{{__('messages.cerrarsesion')}}</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ route('usuarios.logout') }}">Cerrar Sesión</a></li>
           </ul>
@@ -531,7 +531,7 @@
 					  <span></span>
 					  <span></span>
 					  <span></span>
-					  Tienda
+					  @lang('messages.tienda')
 					</a>
 				  </li>
 
@@ -541,7 +541,7 @@
 					  <span></span>
 					  <span></span>
 					  <span></span>
-					  Contacto
+					  @lang('messages.contacto')
 					</a>
 				  </li>
 				</ul>
@@ -553,7 +553,7 @@
 					  <span></span>
 					  <span></span>
 					  <span></span>
-					  Ingresar
+					  @lang('messages.ingresar')
 					</a>
 				  </li>
 				  
@@ -564,7 +564,7 @@
 					  <span></span>
 					  <span></span>
 					  <span></span>
-					  Registro
+					  @lang('messages.registro')
 					</a>
 				  </li>
 				</div>

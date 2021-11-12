@@ -122,7 +122,7 @@
                 <form class="col-12 needs-validation" action="{{ route('usuarios.panelEditPost') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">DATOS DE USUARIO:</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">{{__('messages.datosdeusuario')}}</h1>
                         <hr>
                     </div>
 
@@ -146,7 +146,7 @@
                             <div class="input-group mb-3">
                                 {{-- <span class="input-group-text" id="basic-addon1"></span> --}}
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="lnombre" name="lnombre" value="Nombre" disabled="disabled">
+                                    id="lnombre" name="lnombre" value="{{__('messages.nombre')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -157,9 +157,9 @@
                                 @foreach ($usuarios as $u)
                                     <input type="text" class="form-control" id="nombre" name="nombre"
                                         value="{{ $u->nombre }}" style="background-color: white"
-                                        placeholder="Ingrese su nombre..." required>
+                                        placeholder="{{__('messages.ingresesunombre')}}" required>
                                     <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                                    <div class="invalid-feedback">{{__('messages.porfavornombre')}}</div>
                                 @endforeach
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                             <label for="lapellido" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="lapellido" name="lapellido" value="Apellido" disabled="disabled">
+                                    id="lapellido" name="lapellido" value="{{__('messages.apellido')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -182,9 +182,9 @@
                                 @foreach ($usuarios as $u)
                                     <input type="text" class="form-control" id="apellido" name="apellido"
                                         value="{{ $u->apellido }}" style="background-color: white"
-                                        placeholder="Ingrese su apellido..." required>
+                                        placeholder="{{__('messages.ingresesuapellido')}}" required>
                                     <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                                    <div class="invalid-feedback">{{__('messages.porfavorapellido')}}</div>
                                 @endforeach
                             </div>
                         </div>
@@ -196,7 +196,7 @@
                             <label for="ldireccion" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="ldireccion" name="ldireccion" value="Dirección" disabled="disabled">
+                                    id="ldireccion" name="ldireccion" value="{{__('messages.direccion')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -207,9 +207,9 @@
                                 @foreach ($usuarios as $u)
                                     <input type="text" class="form-control" id="direccion" name="direccion"
                                         value="{{ $u->direccion }}" style="background-color: white"
-                                        placeholder="Ingrese su nombre..." required>
+                                        placeholder="{{__('messages.ingresesudireccion')}}" required>
                                     <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                                    <div class="invalid-feedback">{{__('messages.porfavordireccion')}}</div>
                                 @endforeach
                             </div>
                         </div>
@@ -221,7 +221,7 @@
                             <label for="lemail" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="lemail" name="lemail" value="Email" disabled="disabled">
+                                    id="lemail" name="lemail" value="{{__('messages.correoelectronico')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -246,7 +246,7 @@
                             <label for="ltelefono" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="ltelefono" name="ltelefono" value="Teléfono" disabled="disabled">
+                                    id="ltelefono" name="ltelefono" value="{{__('messages.telefono')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -257,9 +257,9 @@
                                 @foreach ($usuarios as $u)
                                     <input type="text" class="form-control" id="telefono" name="telefono"
                                         value="{{ $u->telefono }}" style="background-color: white"
-                                        placeholder="Ingrese su nombre..." required>
+                                        placeholder="{{__('messages.ingresesutelefono')}}" required>
                                     <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                                    <div class="invalid-feedback">{{__('messages.porfavortelefono')}}</div>
                                 @endforeach
                             </div>
                         </div>
@@ -268,8 +268,9 @@
 
                     {{-- ------------------------CAMBIO CONTRASEÑA--------------------------- --}}
                     <div class="form-group">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">CAMBIAR CONTRASEÑA:</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">{{__('messages.cambiarcontraseña')}}</h1>
                         <hr>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0);font-size: 15px">{{__('messages.dejarenblanco')}}</h1>
                     </div>
                     <div class="row">
                         {{-- LABEL CONTRASEÑA ANTIGUA --}}
@@ -277,7 +278,7 @@
                             <label for="lpasswordantigua" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="lpasswordantigua" name="lpasswordantigua" value="Contraseña antigua"
+                                    id="lpasswordantigua" name="lpasswordantigua" value="{{__('messages.contraseñaantigua')}}"
                                     disabled="disabled">
                             </div>
                         </div>
@@ -287,9 +288,9 @@
                             <label for="passwordantigua" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control" id="passwordantigua" name="passwordantigua"
-                                    style="background-color: white" placeholder="Ingrese su contraseña antigua..." required>
+                                    style="background-color: white" placeholder="{{__('messages.ingresecontraseñaantigua')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback text-start">Debe ingresar su contraseña para realizar cambios.</div>
+                                <div class="invalid-feedback text-start">{{__('messages.debeingresarsucontraseña')}}</div>
                             </div>
                         </div>
                     </div>
@@ -302,7 +303,7 @@
                             <label for="lnuevapassword" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="lnuevapassword" name="lnuevapassword" value="Contraseña Nueva"
+                                    id="lnuevapassword" name="lnuevapassword" value="{{__('messages.contraseñanueva')}}"
                                     disabled="disabled">
                             </div>
                         </div>
@@ -313,7 +314,7 @@
                             <div class="input-group mb-3">
 
                                 <input type="password" class="form-control" id="nuevapassword" name="nuevapassword"
-                                    style="background-color: white" placeholder="Ingrese su contraseña nueva...">
+                                    style="background-color: white" placeholder="{{__('messages.ingresecontraseñanueva')}}">
 
 
                             </div>
@@ -326,7 +327,7 @@
                             <label for="lcpassword" style="color: black"></label>
                             <div class="input-group mb-3">
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="lcpassword" name="lcpassword" value="Confirmar contraseña" disabled="disabled">
+                                    id="lcpassword" name="lcpassword" value="{{__('messages.confirmarcontraseña')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -336,7 +337,7 @@
                             <div class="input-group mb-3">
 
                                 <input type="password" class="form-control" id="cpassword" name="cpassword"
-                                    style="background-color: white" placeholder="confirme su contraseña...">
+                                    style="background-color: white" placeholder="{{__('messages.confirmesucontraseña')}}">
 
                             </div>
                         </div>
@@ -344,7 +345,7 @@
                     <br>
                     <div class="col text-center">
                         <button type="submit" class="btn btn-success">
-                            Confirmar cambios
+                            {{__('messages.confirmarcambios')}}
                         </button>
                     </div>
                     <br>
