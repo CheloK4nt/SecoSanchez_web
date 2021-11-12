@@ -231,13 +231,11 @@
                             <td class="body-td">{{$prod->id_prod}}</td>
                             <td class="body-td">{{$prod->nom_prod}}</td>
                             <td class="body-td" style="width: 64px">
-                                <a href="{{url('/uploads/'.$prod->file_path.'/'.$prod->img_prod)}}">
-                                    <img src="{{url('/uploads/'.$prod->file_path.'/t_'.$prod->img_prod)}}" width="64px" data-fancybox="gallery">
+                                <a href="{{url('/uploads/productos/'.$prod->file_path.'/'.$prod->img_prod)}}">
+                                    <img src="{{url('/uploads/productos/'.$prod->file_path.'/t_'.$prod->img_prod)}}" width="64px" data-fancybox="gallery">
                                 </a>                         
                             </td>
                             <td class="body-td">
-                                @php
-                                @endphp
                                 @if ($prod->categoria != null)
                                     {{$prod->categoria->nom_cat}}
                                 @else

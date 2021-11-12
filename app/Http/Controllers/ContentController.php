@@ -14,8 +14,4 @@ class ContentController extends Controller
         $data = ['categorias' => $categorias, 'slider' => $slider];
         return view('tienda.tienda', $data);
     }
-
-    public function getDossier(){
-        return view('dossier.dossier');
-    }
 }

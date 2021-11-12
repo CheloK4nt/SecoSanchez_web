@@ -161,12 +161,14 @@
 
     .form-search {}
 
-    .form-id-cat{
+    .form-id-doss{
         font-family: 'consolas';
         padding: 0px !important;
         padding-inline: 5px !important;
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
+        font-size:calc(10px + 0.2vw) !important;
+        text-align: center;
     }
 
 </style>
@@ -199,7 +201,7 @@
                                             <label for="nom_cat">Publicación:</label>
                                         </div>
                                         <div class="col-3">
-                                            <input class="form-control form-id-cat" type="text" id="id_dossier"
+                                            <input class="form-control form-id-doss" type="text" id="id_dossier"
                                                 name="id_dossier" placeholder="{{$id_dossier}}" value="{{$id_dossier}}" readonly>
                                         </div>
                                     </div>
@@ -237,8 +239,8 @@
                                                 height="60">{{ $dossi->id_dossier }}</td>
                                             <td class="body-td text-center" style="width: 64px; background-color: rgb(220, 220, 220)"
                                                 width="180" height="60">
-                                                <a href="{{ url('/uploads/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
-                                                    <img src="{{ url('/uploads/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
+                                                <a href="{{ url('/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
+                                                    <img src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
                                                         width="100px" data-fancybox="gallery">
                                                 </a>
                                             </td>

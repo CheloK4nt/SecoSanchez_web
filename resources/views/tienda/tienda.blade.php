@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="routeName" content="{{ Route::currentRouteName() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth" content="{{ Auth::check() }}">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -21,6 +22,9 @@
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
+
+    {{-- SWEET ALERT --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- STYLES --}}
 
@@ -307,6 +311,7 @@
                         }
                         .products_list .product .image .overlay .btns{
                             background-color: rgba(0, 0, 0, 0.8);
+                            border-bottom-right-radius: 4px;
                             display: inline-block;
                             margin: 1px;
                             padding: 15px;
@@ -341,13 +346,17 @@
                 }
                 .products_list .product .title{
                     color: rgb(0, 0, 0);
-                    text-align: center;
-                    font-weight: bolder;
+                    display: block;
+                    /* font-weight: bolder; */
                     font-size: 100%;
                     margin-top: 8px;
-                    display: block;
-                    width: 100%;
+                    overflow: hidden;
+                    padding: 10px;
+                    text-overflow: ellipsis;
                     transition: 0.3s;
+                    text-align: center;
+                    white-space: nowrap;
+                    width: 100%;
                     }
                     .products_list .product:hover .title{
                     color: white;
@@ -403,7 +412,12 @@
                     box-shadow: -0px 3px 5px 1px rgb(90, 90, 90);
                     color: white;
                     transition: 0.2s;
-                }
+        }
+
+        .favorite_active{
+            background-color: red !important;
+            color: white !important;
+        }
     </style>
   </head>
 
