@@ -1,0 +1,82 @@
+<?php
+return[
+    'tienda'    => "Store",
+    'contacto'  => "Contact Us",
+    'ingresar'  => "Login",
+    'ingresarr' => "Sign In",
+    'registro'  => "Register",
+    'registrar'  => "Register",
+    'registrate'=> "Registration",
+    'contactaconnosotros' => "Contact With Us",
+    'enviar'  => "Send",
+    'volver'  => "Back",
+    'idiomas' => "Languages",
+    'inciarsesion' => "Login",
+    'recuperarcontraseña'  => "Password Recovery",
+    'recuperarcontraseñaa' => "Password Recover",
+    'micuenta' => "My account",
+    'cerrarsesion' => "Log out",
+    'modificardatos' => "Change Information",
+    'confirmarcambios' => "Confirm changes",
+
+    'nombre'   => "Name:",
+    'apellido' => "Lastname:",
+    'direccion'=> "Address:",
+    'correoelectronico' => "Email:",
+    'telefono' => "Phone Number:",
+    'mensaje'  => "Message:",
+    'contraseña' => "Password:",
+    'confirmecontraseña' => "Confirm password:",
+    'codigorecuperacion' => "Recovery Code:",
+    'misdatos' => "My personal information:",
+    'datosdeusuario' => "User Information:",
+    'cambiarcontraseña' => "Change password:",
+    'contraseñaantigua' => "Old password:",
+    'contraseñanueva'   => "New password:",
+    'confirmarcontraseña' => "Confirm password:",
+
+    'ingresesunombre'   => "Enter your name...",
+    'ingresesuapellido' => "Enter your lastname...",
+    'ingresesudireccion'=> "Enter your address...",
+    'ingresesucorreo'   => "Enter your email...",
+    'ingresesutelefono' => "Enter your phone number...",
+    'ingresesumensaje'  => "Enter your message...",
+    'ingresecontraseña' => "Enter your password...",
+    'ingresecontraseñaa'=> "Confirm your password...",
+    'ingresecodigorecu' => "Enter the recovery code...",
+    'ingresecontraseñaantigua' => "Enter your old password...",
+    'ingresecontraseñanueva'   => "Enter your new password...",
+
+    'olvidosucontraseña' => "¿Forgot your password?",
+    'notienescuenta'     => "¿Don't have an account? ¡Sign up!",
+    'yatienescuenta'     => "¿Do you already have an account?",
+    'iniciatusesion'     => "¡Log in!",
+    'mensajeenviado'     => "Message sent!",
+    'mensajecorrecto'    => "The message has been sent successfully.",
+    'instruccionenviada' => "We sent you an email with the instructions to recover your password",
+    'ingresecodigo'      => "Enter the code that has been sent to your email.",
+    'contraseñaexito'    => "The password was reset successfully, now you can log in.",
+    'datosmodificados'   => "Information modified!",
+    'susdatoscorrectos'  => "Your information has benn successfully modified.",
+    'dejarenblanco'      => "*Leave empty if you dont want to change your password",
+    'debeingresarsucontraseña' => "You must enter your password to make changes.",
+    'confirmesucontraseña' => "Confirm your password...",
+    
+    'porfavornombre'   => "Please, enter your name.",
+    'porfavorapellido' => "Please, enter your lastname.",
+    'porfavordireccion' => "Please, enter your address.",
+    'porfavorcorreo'   => "Please, enter your email.",
+    'porfavortelefono' => "Please, enter your phone number.",
+    'porfavormensaje'  => "Please, enter your message.",
+    'porfavorcontraseña' => "Please, enter your password.",
+    'porfavorcontraseñaa'=> "Please, confirm your password.",
+    'porfavorcodigo'   => "Please, enter the recovery code.",
+
+    
+    
+
+    
+    
+    
+    
+];

@@ -19,6 +19,11 @@ Route::view('/welcome','welcome')->name('welcome');
 
 Route::view('','home.index')->name('inicio');
 
+Route::get('locale/{locale}',function ($locale){
+    session()->put('locale',$locale);
+    return Redirect::back();
+});
+
 
 // -------------------- U S U A R I O S -------------------- //
 
@@ -58,7 +63,7 @@ Route::post('/usuarios/register','UsuarioController@store')->name('usuarios.stor
 Route::get('/tienda','ContentController@getTienda')->name('tienda');
 
 // DOSSIER
-Route::get('/dossier','ContentController@getDossier')->name('dossier');
+Route::get('/dossier','DossierController@index')->name('dossier.index');
 
 // Ajax Api Routers
 Route::get('/md/api/load/products/{section}','ApiJsController@getProductsSection');

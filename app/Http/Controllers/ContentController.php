@@ -15,7 +15,7 @@ class ContentController extends Controller
         return view('tienda.tienda', $data);
     }
 
-    public function getDossier(){
+    /* public function getDossier(){
         return view('dossier.dossier');
-    }
+    } */
 }

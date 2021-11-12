@@ -168,6 +168,9 @@
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
     }
+    /* .w-5{
+        display: none;
+    } */
 
 </style>
 
@@ -257,10 +260,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <tr>
-                                <td colspan="10">{!! $dossier->render() !!}</td>
-                            </tr>
+                            {{-- <tr>
+                                <td colspan="10" >{!! $dossier->render() !!}</td>
+                            </tr> --}}
+                            {{$dossier->links()}}
                         </div>
+                        
                     </div>
                 </div>
         </div>

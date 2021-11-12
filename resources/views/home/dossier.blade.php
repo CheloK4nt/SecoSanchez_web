@@ -61,40 +61,6 @@
         header {
             padding-top: 10px;
         }
-
-        /* body{
-                background-image: url(/img/homepage/2pac_bg.png);
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-                background-color: rgba(255, 255, 255, 0);
-                animation: change 12s infinite ease-out;
-            } */
-
-        /* .cards{
-            width: 300px;
-            height: 200px;
-            margin-bottom: 30px;
-            background-color: gray;
-            object-fit: cover;
-        } */
-        
-        /* .containers{
-            display: flex;
-            width: 100%;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: auto;
-            
-        } */
-
-        /* .cards{
-            display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
-        } */
-        
         .containers{
             display: grid;
             grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
@@ -105,7 +71,6 @@
             overflow: hidden;
             
         }
-
         .containers > a{
             display: block;
             position: relative;
@@ -120,7 +85,6 @@
             object-fit: cover;
             transition: transform 0.5s;
         }
-
         .containers a:hover img{
             filter: blur(5px);
             transform: rotate(10deg) scale(1.3);
@@ -140,12 +104,10 @@
 
 <body>
 
-
     {{-- BUNDLE --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
-
 
     @if (session('success'))
         <script>
@@ -154,35 +116,20 @@
 
     @endif
 
-    {{-- <div class="row justify-content-center text-center">
-        <div class="col-lg-4 col-xl-4 col-md-4 col-sm-6 pb-2">
-            <div class="card">
-                <img src="img/homepage/notorious_bg.png" alt="" class="card-img-top">
-            </div>
-        </div>
-    </div> --}}
+    {{--GALERIA--}}
     <br>
     <section class="containers">
         @foreach ($dossier as $dossi)
-            {{-- <div class="row justify-content-center text-center"> --}}
-            {{-- <div class="col-lg-4 col-xl-4 col-md-4 col-sm-6 pb-2"> --}}
-                {{-- <div class="cards bg-secondary object-fit: fill">
-                    <a href="{{ url('/uploads/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
-                        <img src="{{ url('/uploads/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
-                            width="64px" data-fancybox="gallery">
-                    </a>
-                </div> --}}
-           {{--  </div> --}}
-            {{-- </div> --}}
             <a href="{{ url('/uploads/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
                 <img src="{{ url('/uploads/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
-                {{-- width="430px" --}} data-fancybox="gallery">
+                data-fancybox="gallery">
             </a>
         @endforeach
     </section>
 </body>
-{{-- <footer>
+
+<footer>
     @include('partials.footer')
-</footer> --}}
+</footer>
 
 </html>

@@ -323,17 +323,16 @@
                     
 
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Recuperar Contraseña</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">{{__('messages.recuperarcontraseña')}}</h1>
                     </div>
                     {{-- INPUT EMAIL --}}
-                    <label for="email" class="form-label text-start" style="color: rgb(0, 0, 0)">Correo
-                        electrónico:</label>
+                    <label for="email" class="form-label text-start" style="color: rgb(0, 0, 0)">{{__('messages.correoelectronico')}}</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                         <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                            placeholder="Ingrese su correo..." required>
+                            placeholder="{{__('messages.ingresesucorreo')}}" required>
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback text-start">Por favor, ingrese su correo.</div>
+                        <div class="invalid-feedback text-start">{{__('messages.porfavorcorreo')}}</div>
                     </div>
 
                     {{-- BOTON INGRESAR --}}
@@ -342,7 +341,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Recuperar Contraseña
+                        {{__('messages.recuperarcontraseñaa')}}
                     </button>
 
                     {{-- BOTON VOLVER --}}
@@ -351,19 +350,19 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Volver
+                        {{__('messages.volver')}}
                     </a>
 
                     <div style="text-align: center" class="footer mt-16">
-                        <a class="extra-link" href="{{ route('usuarios.register') }}">¿No tienes una cuenta? ¡Registrate!</a>
+                        <a class="extra-link" href="{{ route('usuarios.register') }}">{{__('messages.notienescuenta')}}</a>
                         <h2></h2>
-                        <a class="extra-link" href="{{ route('login') }}">Iniciar Sesión</a>
+                        <a class="extra-link" href="{{ route('login') }}">{{__('messages.ingresar')}}</a>
                     </div>
 
                     {{--------------- MENSAJE SUCCESS ---------------}}
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                             <strong>Correo enviado!</strong> Le enviamos un correo con las instrucciones para recuperar su contraseña.
+                             <strong>{{__('messages.mensajeenviado')}}</strong> {{__('messages.instruccionenviada')}}
                         </div>
                     @endif
                     <script>

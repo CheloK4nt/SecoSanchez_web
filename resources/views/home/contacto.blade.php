@@ -349,8 +349,7 @@
                     @csrf
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            <strong>Mensaje enviado!</strong> El mensaje se ha enviado correctamente.
-
+                            <strong>{{__('messages.mensajeenviado')}}</strong> {{__('messages.mensajecorrecto')}}
                         </div>
                     @endif
 
@@ -364,32 +363,32 @@
                     </script>
 
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: black">Contacta con nosotros</h1>
+                        <h1 class="text-ligh titulo-login" style="color: black">{{__('messages.contactaconnosotros')}}</h1>
                     </div>
 
                     
                     <div class="row">
                         {{-- INPUT NOMBRE --}}
                         <div class="col-md-6">
-                            <label for="nombre" style="color: black">Nombre:</label>
+                            <label for="nombre" style="color: black">{{__('messages.nombre')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" id="nombre" name="nombre"
-                                    placeholder="Ingrese su nombre..." required>
+                                    placeholder="{{__('messages.ingresesunombre')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavornombre')}}</div>
                             </div>
                         </div>
 
                         {{-- INPUT APELLIDO --}}
                         <div class="col-md-6">
-                            <label for="apellido" style="color: black">Apellido:</label>
+                            <label for="apellido" style="color: black">{{__('messages.apellido')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                 <input type="text" class="form-control" id="apellido" name="apellido"
-                                    placeholder="Ingrese su apellido..." required>
+                                    placeholder="{{__('messages.ingresesuapellido')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavorapellido')}}</div>
                             </div>
                         </div>
                     </div>
@@ -397,39 +396,39 @@
                     <div class="row">
                         {{-- INPUT CORREO --}}
                         <div class="col-md-6">
-                            <label for="email" style="color: black">Correo electrónico:</label>
+                            <label for="email" style="color: black">{{__('messages.correoelectronico')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Ingrese su correo... " required>
+                                    placeholder="{{__('messages.ingresesucorreo')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavorcorreo')}}</div>
                             </div>
                         </div>
 
                         {{-- INPUT TELÉFONO --}}
                         <div class="col-md-6">
-                            <label for="telefono" style="color: black">Teléfono:</label>
+                            <label for="telefono" style="color: black">{{__('messages.telefono')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></i></span>
                                 <input type="text" class="form-control" id="telefono" name="telefono"
-                                    placeholder="Ingrese su teléfono... " required>
+                                    placeholder="{{__('messages.ingresesutelefono')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su teléfono.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavortelefono')}}</div>
                             </div>
                         </div>
                     </div>
 
                     {{-- INPUT MENSAJE --}}
                     <div class="col-md-12">
-                        <label for="mensaje" style="color: black">Mensaje:</label>
+                        <label for="mensaje" style="color: black">{{__('messages.mensaje')}}</label>
                         <div class="input-group mb-3">
                             <textarea type="text" style="height: 100px" class="form-control" id="mensaje"
-                                name="mensaje" placeholder="Ingrese su mensaje... " required></textarea>
+                                name="mensaje" placeholder="{{__('messages.ingresesumensaje')}}" required></textarea>
                             <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Por favor, ingrese su mensaje.</div>
+                            <div class="invalid-feedback">{{__('messages.porfavormensaje')}}</div>
                         </div>
-                        <small class="form-text text-muted">Carácteres restantes:<span class="text-danger" id="CaracteresRestantes"></span></small>
+                        {{-- <small class="form-text text-muted">Carácteres restantes:<span class="text-danger" id="CaracteresRestantes"></span></small> --}}
                     </div>
 
                     {{-- BOTON ENVIAR --}}
@@ -438,7 +437,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Enviar
+                        {{__('messages.enviar')}}
                     </button>
 
                     {{-- BOTON VOLVER --}}
@@ -447,7 +446,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Volver
+                        {{__('messages.volver')}}
                     </a>
 
                     {{-- MENSAJES DE ERROR --}}

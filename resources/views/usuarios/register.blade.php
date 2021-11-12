@@ -327,31 +327,31 @@
                 <form class="col-12 needs-validation" action="{{ route('usuarios.store') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Regístrate</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">{{__('messages.registrate')}}</h1>
                     </div>
 
                     <div class="row">
                         {{-- INPUT NOMBRE --}}
                         <div class="col-md-6">
-                            <label for="nombre" class="form-label">Nombre:</label>
+                            <label for="nombre" class="form-label">{{__('messages.nombre')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" id="nombre" name="nombre"
-                                    value="{{ old('nombre') }}" placeholder="Ingrese su nombre..." required>
+                                    value="{{ old('nombre') }}" placeholder="{{__('messages.ingresesunombre')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavornombre')}}</div>
                             </div>
                         </div>
 
                         {{-- INPUT APELLIDO --}}
                         <div class="col-md-6">
-                            <label for="apellido" class="form-label">Apellido:</label>
+                            <label for="apellido" class="form-label">{{__('messages.apellido')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                 <input type="text" class="form-control" id="apellido" name="apellido"
-                                    value="{{ old('apellido') }}" placeholder="Ingrese su apellido..." required>
+                                    value="{{ old('apellido') }}" placeholder="{{__('messages.ingresesuapellido')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su apellido.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavorapellido')}}</div>
                             </div>
                         </div>
                     </div>
@@ -359,25 +359,25 @@
                     <div class="row">
                         {{-- INPUT DIRECCION --}}
                         <div class="col-md-6">
-                            <label for="direccion" class="form-label">Dirección:</label>
+                            <label for="direccion" class="form-label">{{__('messages.direccion')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-marked-alt"></i></span>
                                 <input type="text" class="form-control" id="direccion" name="direccion"
-                                    value="{{ old('direccion') }}" placeholder="Ingrese su dirección..." required>
+                                    value="{{ old('direccion') }}" placeholder="{{__('messages.ingresesudireccion')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su dirección.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavordireccion')}}</div>
                             </div>
                         </div>
                         
                         {{-- INPUT CORREO --}}
                         <div class="col-md-6">
-                            <label for="email" class="form-label">Correo electrónico:</label>
+                            <label for="email" class="form-label">{{__('messages.correoelectronico')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                                 <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                                    placeholder="Ingrese su correo... " required>
+                                    placeholder="{{__('messages.ingresesucorreo')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su correo.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavorcorreo')}}</div>
                             </div>
                         </div>
                     </div>
@@ -385,25 +385,25 @@
                     <div class="row">
                         {{-- INPUT TELEFONO --}}
                         <div class="col-md-6">
-                            <label for="text" class="form-label">Teléfono:</label>
+                            <label for="text" class="form-label">{{__('messages.telefono')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></span>
                                 <input type="text" class="form-control" id="telefono" name="telefono"
-                                    value="{{ old('telefono') }}" placeholder="Ingrese su número... " required>
+                                    value="{{ old('telefono') }}" placeholder="{{__('messages.ingresesutelefono')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su número.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavortelefono')}}</div>
                             </div>
                         </div>
                         
                         {{-- INPUT CONTRASEÑA --}}
                         <div class="col-md-6">
-                            <label for="password" class="form-label">Contraseña:</label>
+                            <label for="password" class="form-label">{{__('messages.contraseña')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                                 <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Ingrese su contraseña..." required>
+                                    placeholder="{{__('messages.ingresecontraseña')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavorcontraseña')}}</div>
                             </div>
                         </div>
                     </div>
@@ -413,22 +413,22 @@
                         <div class="col">
                             <div style="text-align: center" class="footer mt-3">
                                 <a class="extra-link" href="{{ route('login') }}">
-                                    ¿Ya tienes una cuenta?
+                                    {{__('messages.yatienescuenta')}}
                                     <br>
-                                    ¡Inicia Sesión!
+                                    {{__('messages.iniciatusesion')}}
                                 </a>
                             </div>
                         </div>
 
                         {{-- INPUT C-CONTRASEÑA --}}
                         <div class="col-md-6">
-                            <label for="cpassword" class="form-label">Confirme contraseña:</label>
+                            <label for="cpassword" class="form-label">{{__('messages.confirmecontraseña')}}</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-lock"></i></span>
                                 <input type="password" class="form-control" id="cpassword" name="cpassword"
-                                    placeholder="Confirme su contraseña..." required>
+                                    placeholder="{{__('messages.ingresecontraseñaa')}}" required>
                                 <div class="valid-feedback"></div>
-                                <div class="invalid-feedback">Por favor, confirme su contraseña.</div>
+                                <div class="invalid-feedback">{{__('messages.porfavorcontraseñaa')}}</div>
                             </div>
                         </div>
                     </div>
@@ -439,7 +439,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Registrar
+                        {{__('messages.registrar')}}
                     </button>
 
                     {{-- BOTON VOLVER --}}
@@ -448,7 +448,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Volver
+                        {{__('messages.volver')}}
                     </a>
 
                     {{-- MENSAJES DE ERROR --}}

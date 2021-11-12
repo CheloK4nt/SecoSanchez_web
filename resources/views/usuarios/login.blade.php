@@ -320,31 +320,30 @@
                 <form class="col-12 needs-validation" action="{{ route('usuarios.login') }}" method="POST" novalidate>
                     @csrf
                     <div class="form-group text-center">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">Iniciar Sesión</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">{{__('messages.inciarsesion')}}</h1>
                     </div>
                     {{-- INPUT EMAIL --}}
-                    <label for="email" class="form-label text-start">Correo
-                        electrónico:</label>
+                    <label for="email" class="form-label text-start">{{__('messages.correoelectronico')}}</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                         <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                            placeholder="Ingrese su correo..." required>
+                            placeholder="{{__('messages.ingresesucorreo')}}" required>
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback text-start">Por favor, ingrese su correo.</div>
+                        <div class="invalid-feedback text-start">{{__('messages.porfavorcorreo')}}</div>
                     </div>
 
                     {{-- INPUT PASSWORD --}}
-                    <label for="password" class="form-label text-start">Contraseña:</label>
+                    <label for="password" class="form-label text-start">{{__('messages.contraseña')}}</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
                         <input type="password" class="form-control" id="password" name="password"
-                            placeholder="Ingrese su contraseña..." required>
+                            placeholder="{{__('messages.ingresecontraseña')}}" required>
                         <div class="valid-feedback"></div>
-                        <div class="invalid-feedback text-start">Por favor, ingrese su contraseña.</div>
+                        <div class="invalid-feedback text-start">{{__('messages.porfavorcontraseña')}}</div>
                     </div>
 
                     <div style="text-align: end">
-                        <a class="extra-link" href="{{ route('usuarios.recuperar') }}">¿Olvidó su contraseña?</a>
+                        <a class="extra-link" href="{{ route('usuarios.recuperar') }}">{{__('messages.olvidosucontraseña')}}</a>
                     </div>
 
                     {{-- BOTON INGRESAR --}}
@@ -353,7 +352,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Ingresar
+                        {{__('messages.ingresarr')}}
                     </button>
 
                     {{-- BOTON VOLVER --}}
@@ -362,16 +361,16 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Volver
+                        {{__('messages.volver')}}
                     </a>
 
                     <div style="text-align: center" class="footer mt-16">
-                        <a class="extra-link" href="{{ route('usuarios.register') }}">¿No tienes una cuenta? ¡Registrate!</a>
+                        <a class="extra-link" href="{{ route('usuarios.register') }}">{{__('messages.notienescuenta')}}</a>
                     </div>
 
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            La contraseña fue restablecida con éxito, ahora puede iniciar sesión.
+                            {{__('messages.contraseñaexito')}}
                         </div>
                     @endif
 
@@ -392,15 +391,6 @@
                             </div>
                         @endif
                     </div>
-
-                    {{-- MENSAJES DE ERROR --}}
-                    {{-- <div class="container mensajes mt-4">
-                        @if ($errors->any())
-                            <div class="alert alert-secondary padding-top 5">
-                                <li class="mt-1 text-start">{{ Session::get('message') }}</li>
-                            </div>
-                        @endif
-                    </div> --}}
                 </form>
             </div>
         </div>
