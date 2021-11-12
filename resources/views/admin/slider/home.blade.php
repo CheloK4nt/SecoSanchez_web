@@ -185,8 +185,8 @@
                                         <td class="body-td" width="120" height="60">{{ $slide->id_sli }}</td>
                                         <td class="body-td" width="180" height="60">{{ $slide->nom_sli }}</td>
                                         <td class="body-td" style="width: 64px">
-                                            <a href="{{url('/uploads/'.$slide->file_path_sli.'/'.$slide->file_name_sli)}}">
-                                                <img src="{{url('/uploads/'.$slide->file_path_sli.'/t_'.$slide->file_name_sli)}}" width="64px" data-fancybox="gallery">
+                                            <a href="{{url('/uploads/slides/'.$slide->file_path_sli.'/'.$slide->file_name_sli)}}">
+                                                <img src="{{url('/uploads/slides/'.$slide->file_path_sli.'/t_'.$slide->file_name_sli)}}" width="64px" data-fancybox="gallery">
                                             </a>                         
                                         </td>
                                         <td class="body-td" width="150" height="60">

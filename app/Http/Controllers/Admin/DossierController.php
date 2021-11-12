@@ -23,8 +23,7 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -33,8 +32,7 @@ class DossierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -49,7 +47,7 @@ class DossierController extends Controller
         // SE CREA PATH PARA IMAGENES
         $path = '/'.date('Y-m-d');
         $fileExt = trim($request->file('img_dossier')->getClientOriginalExtension());
-        $upload_path = Config::get('filesystems.disks.uploads.root');
+        $upload_path = Config::get('filesystems.disks.dossier.root');
         $name = Str::slug(str_replace($fileExt, '', $request->file('img_dossier')->getClientOriginalName()));
         $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
@@ -65,7 +63,7 @@ class DossierController extends Controller
         $dossier->save();
 
         if ($request->hasfile('img_dossier')) {
-            $fl = $request->img_dossier->storeAs($path, $filename, 'uploads');
+            $fl = $request->img_dossier->storeAs($path, $filename, 'dossier');
             $img = Image::make($file_file);
             /* $img->fit(500, 500, function($constraint){
                 $constraint->upsize();
@@ -82,8 +80,7 @@ class DossierController extends Controller
      * @param  \App\Dossier  $dossier
      * @return \Illuminate\Http\Response
      */
-    public function show(Dossier $dossier)
-    {
+    public function show(Dossier $dossier){
         //
     }
 
@@ -93,8 +90,7 @@ class DossierController extends Controller
      * @param  \App\Dossier  $dossier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dossier $dossier)
-    {
+    public function edit(Dossier $dossier){
         //
     }
 
@@ -112,7 +108,7 @@ class DossierController extends Controller
 
         $fp_borrar = $dossier->file_path;
         $img_borrar = $dossier->img_dossier;
-        $up_borrar = Config::get('filesystems.disks.uploads.root');
+        $up_borrar = Config::get('filesystems.disks.dossier.root');
 
 
         if ($request->hasFile('img_dossier')) {
@@ -123,7 +119,7 @@ class DossierController extends Controller
             // SE CREA PATH PARA IMAGENES
             $path = '/'.date('Y-m-d');
             $fileExt = trim($request->file('img_dossier')->getClientOriginalExtension());
-            $upload_path = Config::get('filesystems.disks.uploads.root');
+            $upload_path = Config::get('filesystems.disks.dossier.root');
             $name = Str::slug(str_replace($fileExt, '', $request->file('img_dossier')->getClientOriginalName()));
             $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
@@ -137,7 +133,7 @@ class DossierController extends Controller
         $dossier->save();
 
         if ($request->hasfile('img_dossier')) {
-            $fl = $request->img_dossier->storeAs($path, $filename, 'uploads');
+            $fl = $request->img_dossier->storeAs($path, $filename, 'dossier');
             $img = Image::make($file_file);
             /* $img->fit(256, 256, function($constraint){
                 $constraint->upsize();
@@ -157,8 +153,7 @@ class DossierController extends Controller
      * @param  \App\Dossier  $dossier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dossier $dossier, $id)
-    {
+    public function destroy(Dossier $dossier, $id){
         $dossier = Dossier::findOrFail($id);
         $dossier->save();
         $dossier->delete();
@@ -272,7 +267,7 @@ class DossierController extends Controller
             // SE CREA PATH PARA IMAGENES
             $path = '/'.date('Y-m-d');
             $fileExt = trim($request->file('img_dossi_gal')->getClientOriginalExtension());
-            $upload_path = Config::get('filesystems.disks.uploads.root');
+            $upload_path = Config::get('filesystems.disks.dossier.root');
             $name = Str::slug(str_replace($fileExt, '', $request->file('img_dossi_gal')->getClientOriginalName()));
             $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
@@ -286,7 +281,7 @@ class DossierController extends Controller
 
             $g->save();
                 if ($request->hasfile('img_dossi_gal')) {
-                    $fl = $request->img_dossi_gal->storeAs($path, $filename, 'uploads');
+                    $fl = $request->img_dossi_gal->storeAs($path, $filename, 'dossier');
                     $img = Image::make($file_file);
                     $img->save($upload_path.'/'.$path.'/t_'.$filename); 
                 }
@@ -298,7 +293,7 @@ class DossierController extends Controller
         $g = Galeria::findOrFail($gid);
         $path = $g->file_path;
         $file = $g->file_name;
-        $upload_path = Config::get('filesystems.disks.uploads.root');
+        $upload_path = Config::get('filesystems.disks.dossier.root');
         if($g->dossi_id != $id){
             return redirect()->route('admin.dossier')->with('danger',"La imagen no se puede eliminar");
         }else{

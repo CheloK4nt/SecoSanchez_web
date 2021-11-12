@@ -2,6 +2,7 @@
 <html lang="es">
     <meta name="routeName" content="{{ Route::currentRouteName() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth" content="{{ Auth::check() }}">
 
 <head>
     <title>Recuperar Contraseña</title>
@@ -303,6 +304,11 @@
 
         .extra-link:hover{
             color: rgb(0, 0, 0);
+        }
+
+        .form-label{
+            font-weight: bold;
+            color: rgb(49, 49, 49);
         }
 
     </style>

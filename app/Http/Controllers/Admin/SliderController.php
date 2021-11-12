@@ -54,7 +54,7 @@ class SliderController extends Controller
         // SE CREA PATH PARA IMAGENES
         $path = '/'.date('Y-m-d');
         $fileExt = trim($request->file('img_sli')->getClientOriginalExtension());
-        $upload_path = Config::get('filesystems.disks.uploads.root');
+        $upload_path = Config::get('filesystems.disks.slides.root');
         $name = Str::slug(str_replace($fileExt, '', $request->file('img_sli')->getClientOriginalName()));
         $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
@@ -72,7 +72,7 @@ class SliderController extends Controller
         $slider->save();
 
         if ($request->hasfile('img_sli')) {
-            $fl = $request->img_sli->storeAs($path, $filename, 'uploads');
+            $fl = $request->img_sli->storeAs($path, $filename, 'slides');
             $img = Image::make($file_file);
             $img->fit(256, 256, function($constraint){
                 $constraint->upsize();
@@ -88,7 +88,7 @@ class SliderController extends Controller
         $path = $slide->file_path_sli;
         $file = $slide->file_name_sli;
         $id_sli = $id;
-        $upload_path = Config::get('filesystems.disks.uploads.root');
+        $upload_path = Config::get('filesystems.disks.slides.root');
         if ($slide->delete()) {
             unlink($upload_path.'/'.$path.'/'.$file);
             unlink($upload_path.'/'.$path.'/t_'.$file);

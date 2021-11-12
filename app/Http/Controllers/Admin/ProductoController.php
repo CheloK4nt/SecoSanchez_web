@@ -49,7 +49,7 @@ class ProductoController extends Controller
         // SE CREA PATH PARA IMAGENES
         $path = '/'.date('Y-m-d');
         $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
-        $upload_path = Config::get('filesystems.disks.uploads.root');
+        $upload_path = Config::get('filesystems.disks.productos.root');
         $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
         $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
@@ -72,15 +72,21 @@ class ProductoController extends Controller
 
         // dd($producto);
 
-        $producto->save();
-
-        if ($request->hasfile('img_prod')) {
-            $fl = $request->img_prod->storeAs($path, $filename, 'uploads');
-            $img = Image::make($file_file);
-            $img->fit(256, 256, function($constraint){
-                $constraint->upsize();
-            });
-            $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+        if ($producto->save()) {
+            if ($request->hasfile('img_prod')) {
+                $fl = $request->img_prod->storeAs($path, $filename, 'productos');
+                $img = Image::make($file_file);
+                $img->fit(256, 256, function($constraint){
+                    $constraint->upsize();
+                });
+                $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+    
+                $img = Image::make($file_file);
+                $img->fit(64, 64, function($constraint){
+                    $constraint->upsize();
+                });
+                $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
+            }
         }
 
         return redirect()->route('admin.productos','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
@@ -90,8 +96,9 @@ class ProductoController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Producto  $producto
-     * @return \Illuminate\Http\Response
-     */
+     * @return \Illuminate\Http\Response 
+    */
+
     public function show(Producto $producto){
         //
     }
@@ -101,7 +108,8 @@ class ProductoController extends Controller
      *
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
-     */
+    */
+
     public function edit(Producto $producto){
         //
     }
@@ -112,7 +120,8 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
-     */
+    */
+
     public function update(Request $request, Producto $producto, $id)    {
         $producto = Producto::findOrFail($id);
         $producto->id_prod = $request->id_prod;
@@ -121,7 +130,7 @@ class ProductoController extends Controller
 
         $fp_borrar = $producto->file_path;
         $img_borrar = $producto->img_prod;
-        $up_borrar = Config::get('filesystems.disks.uploads.root');
+        $up_borrar = Config::get('filesystems.disks.productos.root');
 
 
         if ($request->hasFile('img_prod')) {
@@ -132,7 +141,7 @@ class ProductoController extends Controller
             // SE CREA PATH PARA IMAGENES
             $path = '/'.date('Y-m-d');
             $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
-            $upload_path = Config::get('filesystems.disks.uploads.root');
+            $upload_path = Config::get('filesystems.disks.productos.root');
             $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
             $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
@@ -156,7 +165,7 @@ class ProductoController extends Controller
         $producto->save();
 
         if ($request->hasfile('img_prod')) {
-            $fl = $request->img_prod->storeAs($path, $filename, 'uploads');
+            $fl = $request->img_prod->storeAs($path, $filename, 'productos');
             $img = Image::make($file_file);
             $img->fit(256, 256, function($constraint){
                 $constraint->upsize();
@@ -175,7 +184,7 @@ class ProductoController extends Controller
      *
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
-     */
+    */
 
     public function destroy(Producto $producto, $id)    {
         $producto = Producto::findOrFail($id);
@@ -298,7 +307,7 @@ class ProductoController extends Controller
             $path = '/'.date('Y-m-d');
             $fileExt = trim($request->file('img_prod_gal')->getClientOriginalExtension());
             // dd($fileExt);
-            $upload_path = Config::get('filesystems.disks.uploads.root');
+            $upload_path = Config::get('filesystems.disks.productos.root');
             $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod_gal')->getClientOriginalName()));
             $filename = rand(1,999).'-'.$name.'.'.$fileExt;
             // dd($filename);
@@ -315,12 +324,18 @@ class ProductoController extends Controller
 
             $g->save();
                 if ($request->hasfile('img_prod_gal')) {
-                    $fl = $request->img_prod_gal->storeAs($path, $filename, 'uploads');
+                    $fl = $request->img_prod_gal->storeAs($path, $filename, 'productos');
                     $img = Image::make($file_file);
                     $img->fit(256, 256, function($constraint){
                         $constraint->upsize();
                     });
                     $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+
+                    $img = Image::make($file_file);
+                    $img->fit(64, 64, function($constraint){
+                        $constraint->upsize();
+                    });
+                    $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
                 }
                 return redirect()->route('admin.productos','p')->with('success',"Galería de $id MODIFICADA exitosamente");
         } 
@@ -330,13 +345,14 @@ class ProductoController extends Controller
         $g = Galeria::findOrFail($gid);
         $path = $g->file_path;
         $file = $g->file_name;
-        $upload_path = Config::get('filesystems.disks.uploads.root');
+        $upload_path = Config::get('filesystems.disks.productos.root');
         if($g->prod_id != $id){
             return redirect()->route('admin.productos')->with('danger',"La imagen no se puede eliminar");
         }else{
             if ($g->delete()) {
                 unlink($upload_path.'/'.$path.'/'.$file);
                 unlink($upload_path.'/'.$path.'/t_'.$file);
+                unlink($upload_path.'/'.$path.'/mt_'.$file);
                 return redirect()->route('admin.productos','p')->with('success',"IMAGEN BORRADA exitosamente");
             }
         }

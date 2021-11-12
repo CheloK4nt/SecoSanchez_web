@@ -2,6 +2,7 @@
 <html lang="en">
     <meta name="routeName" content="{{ Route::currentRouteName() }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="auth" content="{{ Auth::check() }}">
 <head>
     <title>Contacto</title>
 
@@ -22,7 +23,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     {{-- HOJAS ESTILO --}}
-    <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}">
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -332,6 +332,11 @@
             font-family: 'Raleway', sans-serif;
         }
 
+        .form-label{
+            font-weight: bold;
+            color: rgb(49, 49, 49);
+        }
+
     </style>
 </head>
 
@@ -371,7 +376,7 @@
                     <div class="row">
                         {{-- INPUT NOMBRE --}}
                         <div class="col-md-6">
-                            <label for="nombre" style="color: black">Nombre:</label>
+                            <label class="form-label" for="nombre" style="color: black">Nombre:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" id="nombre" name="nombre"
@@ -383,7 +388,7 @@
 
                         {{-- INPUT APELLIDO --}}
                         <div class="col-md-6">
-                            <label for="apellido" style="color: black">Apellido:</label>
+                            <label class="form-label" for="apellido" style="color: black">Apellido:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                 <input type="text" class="form-control" id="apellido" name="apellido"
@@ -397,7 +402,7 @@
                     <div class="row">
                         {{-- INPUT CORREO --}}
                         <div class="col-md-6">
-                            <label for="email" style="color: black">Correo electrónico:</label>
+                            <label class="form-label" for="email" style="color: black">Correo electrónico:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="far fa-envelope"></i></span>
                                 <input type="text" class="form-control" id="email" name="email"
@@ -409,7 +414,7 @@
 
                         {{-- INPUT TELÉFONO --}}
                         <div class="col-md-6">
-                            <label for="telefono" style="color: black">Teléfono:</label>
+                            <label class="form-label" for="telefono" style="color: black">Teléfono:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone-alt"></i></i></span>
                                 <input type="text" class="form-control" id="telefono" name="telefono"
@@ -422,18 +427,17 @@
 
                     {{-- INPUT MENSAJE --}}
                     <div class="col-md-12">
-                        <label for="mensaje" style="color: black">Mensaje:</label>
-                        <div class="input-group mb-3">
-                            <textarea type="text" style="height: 100px" class="form-control" id="mensaje"
-                                name="mensaje" placeholder="Ingrese su mensaje... " required></textarea>
+                        <label class="form-label" for="mensaje" style="color: black">Mensaje:</label>
+                        <div class="input-group">
+                            <textarea onKeyPress="return taLimit(this)" onKeyUp="return taCount(this,'myCounter')" type="text" style="height: 100px" class="form-control" id="mensaje" name="Description" placeholder="Ingrese su mensaje... " required></textarea>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Por favor, ingrese su mensaje.</div>
                         </div>
-                        <small class="form-text text-muted">Carácteres restantes:<span class="text-danger" id="CaracteresRestantes"></span></small>
+                        <small class="form-text text-muted">Carácteres restantes: <b><span style="color: red;" id=myCounter>255</span></b> <span class="text-danger" id="CaracteresRestantes"></span></small>
                     </div>
 
                     {{-- BOTON ENVIAR --}}
-                    <button type="submit" class="btn btn-light enviar-btn">
+                    <button type="submit" class="btn btn-light enviar-btn mt-3">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -491,29 +495,36 @@
         })()
     </script>
 
-    {{--
-		Función para contar carácteres restantes del mensaje a enviar
-	--}}
-	<script type="text/javascript">
-
-		var max_caracteres = 200;
-		var mensaje_input = document.getElementById("mensaje");
-		var caracteres_restantes = document.getElementById("CaracteresRestantes");
-
-		caracteres_restantes.innerHTML = max_caracteres;
-
-		mensaje_input.addEventListener("keydown",contar);
-
-		function contar(e){
-			var cant_caracteres = mensaje_input.value.length;
-			if (cant_caracteres >= max_caracteres){
-				e.preventDefault();
-			} else{
-				caracteres_restantes.innerHTML = max_caracteres - (cant_caracteres);
-			}
-		}
-
-	</script>
+    <script language = "Javascript">
+        /**
+         * DHTML textbox character counter script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+         */
+        
+        maxL=255;
+        var bName = navigator.appName;
+        function taLimit(taObj) {
+            if (taObj.value.length==maxL) return false;
+            return true;
+        }
+        
+        function taCount(taObj,Cnt) { 
+            objCnt=createObject(Cnt);
+            objVal=taObj.value;
+            if (objVal.length>maxL) objVal=objVal.substring(0,maxL);
+            if (objCnt) {
+                if(bName == "Netscape"){	
+                    objCnt.textContent=maxL-objVal.length;}
+                else{objCnt.innerText=maxL-objVal.length;}
+            }
+            return true;
+        }
+        function createObject(objId) {
+            if (document.getElementById) return document.getElementById(objId);
+            else if (document.layers) return eval("document." + objId);
+            else if (document.all) return eval("document.all." + objId);
+            else return eval("document." + objId);
+        }
+    </script>
 </body>
 
 </html>
