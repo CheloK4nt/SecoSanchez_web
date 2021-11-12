@@ -113,6 +113,9 @@
     <div class="main">
         <ul>
             <li>
+                <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Cerrar sesión y salir</a>
+            </li>
+            <li>
                 <a href="{{ url('/admin') }}" class="lk-admin.dashboard"><i class="fas fa-laptop-house"></i>Dashboard</a>
             </li>
             <li>

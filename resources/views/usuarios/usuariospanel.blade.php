@@ -200,13 +200,13 @@
                 <form class="col-12">
                     @csrf
                     <div class="form-group">
-                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">MIS DATOS:</h1>
+                        <h1 class="text-ligh titulo-login" style="color: rgb(0, 0, 0)">{{__('messages.misdatos')}}</h1>
                         <hr>
                     </div>
                     {{-- ------------- MENSAJE SUCCESS ------------- --}}
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            <strong>Datos Modificados!</strong> Sus datos se han modificado correctamente.
+                            <strong>{{__('messages.datosmodificados')}}</strong> {{__('messages.susdatoscorrectos')}}
                         </div>
                     @endif
                     <script>
@@ -222,9 +222,8 @@
                         <div class="col-md-4">
                             <label for="nombre" style="color: black"></label>
                             <div class="input-group mb-3">
-                                {{-- <span class="input-group-text" id="basic-addon1"></span> --}}
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="nombre" name="nombre" value="Nombre" disabled="disabled">
+                                    id="nombre" name="nombre" value="{{__('messages.nombre')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -248,7 +247,7 @@
                             <div class="input-group mb-3">
                                 {{-- <span class="input-group-text" id="basic-addon1"></span> --}}
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="direccion" name="direccion" value="Dirección" disabled="disabled">
+                                    id="direccion" name="direccion" value="{{__('messages.direccion')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -272,7 +271,7 @@
                             <div class="input-group mb-3">
                                 {{-- <span class="input-group-text" id="basic-addon1"></span> --}}
                                 <input style="font-weight: bold" type="text" class="form-control text-center" id="email"
-                                    name="email" value="Email" disabled="disabled">
+                                    name="email" value="{{__('messages.correoelectronico')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -295,7 +294,7 @@
                             <div class="input-group mb-3">
                                 {{-- <span class="input-group-text" id="basic-addon1"></span> --}}
                                 <input style="font-weight: bold" type="text" class="form-control text-center"
-                                    id="telefono" name="telefono" value="Teléfono" disabled="disabled">
+                                    id="telefono" name="telefono" value="{{__('messages.telefono')}}" disabled="disabled">
                             </div>
                         </div>
 
@@ -313,7 +312,7 @@
                     </div>
                     <br>
                     <div class="col text-center">
-                        <a class="btn btn-success" href="{{ route('usuarios.panelEdit') }}">Modificar datos</a>
+                        <a class="btn btn-success" href="{{ route('usuarios.panelEdit') }}">{{__('messages.modificardatos')}}</a>
                     </div>
                 </form>
             </div>

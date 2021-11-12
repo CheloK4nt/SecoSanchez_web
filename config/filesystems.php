@@ -75,6 +75,21 @@ return [
             'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\dossier',
         ],
 
+        'productos' => [
+            'driver' => 'local',
+            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\productos',
+        ],
+
+        'slides' => [
+            'driver' => 'local',
+            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\slides',
+        ],
+
+        'dossier' => [
+            'driver' => 'local',
+            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\dossier',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

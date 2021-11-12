@@ -19,6 +19,11 @@ Route::view('/welcome','welcome')->name('welcome');
 
 Route::view('','home.index')->name('inicio');
 
+Route::get('locale/{locale}',function ($locale){
+    session()->put('locale',$locale);
+    return Redirect::back();
+});
+
 
 // -------------------- U S U A R I O S -------------------- //
 
