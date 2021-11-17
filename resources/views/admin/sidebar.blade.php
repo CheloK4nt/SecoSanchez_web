@@ -113,14 +113,14 @@
     <div class="main">
         <ul>
             <li>
-                <a href="{{ route('usuarios.logout') }}"><i class="fas fa-sign-out-alt"></i>Cerrar sesión y salir</a>
-            </li>
-            <li>
                 <a href="{{ url('/admin') }}" class="lk-admin.dashboard"><i class="fas fa-laptop-house"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ url('/admin/productos/p') }}" class="lk-admin.productos lk-producto.edit lk-producto.agregar"><i class="fas fa-box-open"></i></i>Productos</a>
+                <a href="{{ url('/admin/productos') }}" class="lk-admin.productos.menu lk-admin.productos.poleras lk-productos.polera.agregar lk-polera.edit"><i class="fas fa-box-open"></i></i>Productos</a>
             </li>
+            {{-- <li>
+                <a href="{{ url('/admin/productos/p') }}" class="lk-admin.productos.menu lk-admin.productos lk-producto.edit lk-producto.agregar"><i class="fas fa-box-open"></i></i>Productos</a>
+            </li> --}}
             <li>
                 <a href="{{ url('/admin/categorias') }}" class="lk-admin.categorias lk-categoria.edit"><i class="far fa-folder-open"></i>Categorías</a>
             </li>
