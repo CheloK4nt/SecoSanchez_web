@@ -372,13 +372,13 @@
         </li>
 
         <li class="nav-item">
-        <a href="{{ route('tienda') }}" class="nav-btns">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          {{__('messages.tienda')}}
-        </a>
+          <a href="{{ route('tienda') }}" class="nav-btns">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            {{__('messages.tienda')}}
+          </a>
         </li>
 
         <li class="nav-item">

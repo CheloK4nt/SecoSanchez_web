@@ -19,7 +19,7 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
             };
         }
 
-        if (route == "producto.edit") {
+        if (route == "polera.edit") {
             var img_prod_gal = document.getElementById('img_prod_gal');
             var btn_img_prod_gal = document.getElementById('btn_img_prod_gal');
             btn_img_prod_gal.addEventListener('click', function(){
@@ -51,7 +51,7 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
         var path = this.getAttribute('data-path');
         console.log(object, path, url);
 
-        // IF ELIMINAR PRODUCTO
+        // IF ELIMINAR PROD
         if (action == "delete_prod") {
             action = "delete";
             var title = "¿Eliminar producto?";
@@ -64,7 +64,35 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
             var url = base + '/' + path + '/' + object + '/' + action;
         }
 
-        // IF ELIMINAR PRODUCTO
+        // =============================POLERA=============================//
+        // IF ELIMINAR POLERA
+        if (action == "delete_polera") {
+            action = "delete";
+            var title = "¿Eliminar producto?";
+            var text = "¡El producto será enviado a la papelera!";
+            var icon = "warning";
+            var cancel = "El producto no se ha eliminado";
+            var confBtn = "Eliminar";
+            var confColor = "#ff0000";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+
+        // IF RESTAURAR POLERA
+        if (action == "restore_polera") {
+            action = "restore";
+            var title = "¿Restaurar producto?";
+            var text = "¡El producto volverá a estar activo!";
+            var icon = "info";
+            var cancel = "El producto sigue en la papelera";
+            var confBtn = "Restaurar";
+            var confColor = "#92bb85";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+        // =============================FIN  POLERA=============================//
+
+        // IF ELIMINAR DOSSIER
         if (action == "delete_dossier") {
             action = "delete";
             var title = "¿Eliminar dossier?";

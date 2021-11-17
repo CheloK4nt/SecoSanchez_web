@@ -118,6 +118,7 @@
             background-color: rgb(170, 170, 170);
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.253);
             border-radius: 3px;
+            margin-top: .7vw;
         }
 
         .page{

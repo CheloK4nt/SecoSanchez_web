@@ -180,6 +180,8 @@
         @endforeach
     </section>
 </body>
+
+
 <footer>
     @include('partials.footer')
 </footer>

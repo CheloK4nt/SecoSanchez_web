@@ -65,6 +65,11 @@ return [
             'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\productos',
         ],
 
+        'poleras' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos\poleras',
+        ],
+
         'slides' => [
             'driver' => 'local',
             'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\slides',
