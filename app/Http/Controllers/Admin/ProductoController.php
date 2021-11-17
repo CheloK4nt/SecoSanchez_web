@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Producto;
 use App\Categoria;
 use App\Galeria;
+use App\Polera;
 Use Str, Config, Image;
 
 use App\Http\Controllers\Controller;
@@ -20,228 +21,77 @@ class ProductoController extends Controller
         $this->middleware('isadmin');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(){
-        //
+    public function getMenuProductos(){
+        return view('admin.productos.menu');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(){
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)    {
-
-        // SE CREA PATH PARA IMAGENES
-        $path = '/'.date('Y-m-d');
-        $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
-        $upload_path = Config::get('filesystems.disks.productos.root');
-        $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
-        $filename = rand(1,999).'-'.$name.'.'.$fileExt;
-        
-        $file_file = $upload_path.'/'.$path.'/'.$filename;
-        // dd($file_file);
-
-        $producto = new Producto();
-        $producto->id_prod = $request->id_prod;
-        $producto->nom_prod = $request->nom_prod;
-        $producto->cat_prod = $request->cat_prod;
-        $producto->file_path = date('Y-m-d');
-        $producto->img_prod = $filename;
-        $producto->precio_prod = str_replace(".", "", $request->precio_prod);
-        $producto->en_dcto_prod = $request->en_dcto_prod;
-        $producto->dcto_prod = $request->dcto_prod;
-        $producto->stock_prod = $request->stock_prod;
-        $producto->crit_prod = $request->crit_prod;
-        $producto->descr_prod = $request->descr_prod;
-        $producto->estado_prod = $request->estado_prod;
-
-        // dd($producto);
-
-        if ($producto->save()) {
-            if ($request->hasfile('img_prod')) {
-                $fl = $request->img_prod->storeAs($path, $filename, 'productos');
-                $img = Image::make($file_file);
-                $img->fit(256, 256, function($constraint){
-                    $constraint->upsize();
-                });
-                $img->save($upload_path.'/'.$path.'/t_'.$filename); 
-    
-                $img = Image::make($file_file);
-                $img->fit(64, 64, function($constraint){
-                    $constraint->upsize();
-                });
-                $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
-            }
-        }
-
-        return redirect()->route('admin.productos','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Producto  $producto
-     * @return \Illuminate\Http\Response 
-    */
-
-    public function show(Producto $producto){
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Producto  $producto
-     * @return \Illuminate\Http\Response
-    */
-
-    public function edit(Producto $producto){
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Producto  $producto
-     * @return \Illuminate\Http\Response
-    */
-
-    public function update(Request $request, Producto $producto, $id)    {
-        $producto = Producto::findOrFail($id);
-        $producto->id_prod = $request->id_prod;
-        $producto->nom_prod = $request->nom_prod;
-        $producto->cat_prod = $request->cat_prod;
-
-        $fp_borrar = $producto->file_path;
-        $img_borrar = $producto->img_prod;
-        $up_borrar = Config::get('filesystems.disks.productos.root');
-
-
-        if ($request->hasFile('img_prod')) {
-
-            unlink($up_borrar.'/'.$fp_borrar.'/'.$img_borrar);
-            unlink($up_borrar.'/'.$fp_borrar.'/t_'.$img_borrar);
-
-            // SE CREA PATH PARA IMAGENES
-            $path = '/'.date('Y-m-d');
-            $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
-            $upload_path = Config::get('filesystems.disks.productos.root');
-            $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
-            $filename = rand(1,999).'-'.$name.'.'.$fileExt;
-        
-            $file_file = $upload_path.'/'.$path.'/'.$filename;
-            // dd($file_file);
-
-            $producto->file_path = date('Y-m-d');
-            $producto->img_prod = $filename;
-        } 
-
-        $producto->precio_prod = str_replace(".", "", $request->precio_prod);
-        $producto->en_dcto_prod = $request->en_dcto_prod;
-        $producto->dcto_prod = $request->dcto_prod;
-        $producto->stock_prod = $request->stock_prod;
-        $producto->crit_prod = $request->crit_prod;
-        $producto->descr_prod = $request->descr_prod;
-        $producto->estado_prod = $request->estado_prod;
-
-        // dd($request->img_prod);
-
-        $producto->save();
-
-        if ($request->hasfile('img_prod')) {
-            $fl = $request->img_prod->storeAs($path, $filename, 'productos');
-            $img = Image::make($file_file);
-            $img->fit(256, 256, function($constraint){
-                $constraint->upsize();
-            });
-            $img->save($upload_path.'/'.$path.'/t_'.$filename);
-        }
-
-        $textColor = "red";
-
-
-        return redirect()->route('admin.productos','p')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Producto  $producto
-     * @return \Illuminate\Http\Response
-    */
-
-    public function destroy(Producto $producto, $id)    {
-        $producto = Producto::findOrFail($id);
-        $producto->estado_prod = 'P';
-        $producto->save();
-        $producto->delete();
-        $id_prod = $producto->id_prod;
-        return redirect()->route('admin.productos','p')->with('success',"Producto {$id_prod} se ha enviado a la papelera");
-    }
-
-    public function getProductoRestore(Producto $producto, $id)    {
-        $producto = Producto::onlyTrashed()->where('id_prod', $id)->first();
-        $producto->restore();
-        $id_prod = $producto->id_prod;
-        return redirect()->route('producto.edit',$id_prod)->with('success',"Producto {$id_prod} restaurado con éxito");
-    }
-
-    public function getProductos($status){
-
+    // ==================== POLERAS ==================== //
+    public function getProductosPoleras($status){
         switch ($status) {
             case 'p':
-                $productos = Producto::with('categoria')->where('estado_prod','P')->paginate(10);
+                $poleras = DB::table('productos')->select('*')
+                ->where('cat_prod', 'polera')
+                ->where('estado_prod','P')
+                ->whereNull('deleted_at')
+                ->paginate(10);
                 break;
             
             case 'b':
-                $productos = Producto::with('categoria')->where('estado_prod','B')->paginate(10);
+                $poleras = DB::table('productos')->select('*')
+                ->where('cat_prod', 'polera')
+                ->where('estado_prod','B')
+                ->whereNull('deleted_at')
+                ->paginate(10);
                 break;
 
             case 'all':
-                $productos = Producto::with('categoria')->paginate(10);
+                $poleras = DB::table('productos')->select('*')
+                ->where('cat_prod', 'polera')
+                ->whereNull('deleted_at')
+                ->paginate(10);
                 break;
 
             case 'trash':
-                $productos = Producto::with('categoria')->onlyTrashed()->paginate(10);
+                $poleras = DB::table('productos')->select('*')
+                ->where('cat_prod', 'polera')
+                ->whereNotNull('deleted_at')
+                ->paginate(10);
                 break;
 
             default:
-                $productos = Producto::with('categoria')->where('estado_prod','P')->paginate(10);
+                $poleras = DB::table('productos')->select('*')
+                ->where('cat_prod', 'polera')
+                ->where('estado_prod','P')
+                ->whereNull('deleted_at')
+                ->paginate(10);
                 break;
         }
         // dd($status);
 
-        return view('admin.productos.home', compact('productos'));
+        return view('admin.productos.poleras.home', compact('poleras'));
     }
 
-    public function getProductoAgregar(){
+    public function postPoleraSearch(Request $request){
+        $poleras = DB::table('productos')->select('*')
+        ->where('cat_prod', 'polera')
+        ->where('nom_prod', 'LIKE', '%'.$request->input('search').'%')
+        ->paginate(10);
 
-        $productos = DB::select('SELECT * FROM productos');
-        $cantidad_productos = 0;
+        return view('admin.productos.poleras.home', compact('poleras'));
+    }
 
-        foreach ($productos as $producto) {
-            $cantidad_productos = $cantidad_productos + 1;
+    public function getPoleraAgregar(){
+
+        $poleras = DB::select('SELECT * FROM poleras');
+        $cantidad_poleras = 0;
+
+        foreach ($poleras as $polera) {
+            $cantidad_poleras = $cantidad_poleras + 1;
         }
 
-        // Se genera el código de Producto //
-        $valor_numerico = $cantidad_productos + 1;
-        $id_producto = 'PRO';
+        // Se genera el código de POLERA //
+        $valor_numerico = $cantidad_poleras + 1;
+        $id_polera = 'PLR';
         $parte_numerica = '';
 
         if ($valor_numerico < 10){
@@ -254,28 +104,146 @@ class ProductoController extends Controller
             $parte_numerica = '';
         }
 
-        $id_producto = $id_producto . $parte_numerica . $valor_numerico;
+        $id_polera = $id_polera . $parte_numerica . $valor_numerico;
+
+        return view('admin.productos.poleras.agregar', compact('id_polera'));
+    }
+
+    public function poleraStore(Request $request)    {
+
+        // SE CREA PATH PARA IMAGENES
+        $path = '/'.date('Y-m-d');
+        $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
+        $upload_path = Config::get('filesystems.disks.poleras.root');
+        $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
+        $filename = rand(1,999).'-'.$name.'.'.$fileExt;
         
+        $file_file = $upload_path.'/'.$path.'/'.$filename;
+        // dd($file_file);
 
-        $categorias = DB::table('categorias')->select('*')
-        ->whereNull('deleted_at')
-        ->get();
+        // STORE PRODUCTO
+        $producto = new Producto();
+        $producto->id_prod = $request->id_prod;
+        $producto->nom_prod = $request->nom_prod;
+        $producto->cat_prod = "polera";
+        $producto->file_path = date('Y-m-d');
+        $producto->img_prod = $filename;
+        $producto->precio_prod = str_replace(".", "", $request->precio_prod);
+        $producto->stock_prod = $request->total;
+        $producto->crit_prod = $request->crit_prod;
+        $producto->descr_prod = $request->descr_prod;
+        $producto->estado_prod = $request->estado_prod;
 
-        return view('admin.productos.agregar', compact('categorias','id_producto'));
+        $polera = new Polera();
+        $polera->id_polera = $request->id_prod;
+        $polera->s = $request->s_plr;
+        $polera->m = $request->m_plr;
+        $polera->l = $request->l_plr;
+        $polera->xl = $request->xl_plr;
+        $polera->xxl = $request->xxl_plr;
+
+
+
+        if ($producto->save()) {
+            // STORE POLERA
+            $polera->save();
+            if ($request->hasfile('img_prod')) {
+
+                // guarda imagen original
+                $fl = $request->img_prod->storeAs($path, $filename, 'poleras');
+                
+                // guarda imagen t_
+                $img = Image::make($file_file);
+                $img->fit(256, 256, function($constraint){
+                    $constraint->upsize();
+                });  
+                $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+
+                // guarda imagen mt_
+                $img = Image::make($file_file);
+                $img->fit(64, 64, function($constraint){
+                    $constraint->upsize();
+                });
+                $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
+            }
+        }
+
+        return redirect()->route('admin.productos.poleras','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
     }
 
-    public function getProductoEdit($id){
+    public function getPoleraEdit($id){
         $prod = Producto::findOrFail($id);
-        $data = ['prod' => $prod];
+        $polera = Polera::findOrFail($id);
 
-        $categorias = DB::table('categorias')->select('*')
-        ->whereNull('deleted_at')
-        ->get();
-
-        return view('admin.productos.edit', compact('prod', 'categorias'));
+        return view('admin.productos.poleras.edit', compact('prod','polera'));
     }
 
-    public function postProductoGaleriaAgregar($id, Request $request){
+    public function poleraUpdate(Request $request, Producto $producto, Polera $polera, $id){
+        $producto = Producto::findOrFail($id);
+        $producto->nom_prod = $request->nom_prod;
+        $producto->precio_prod = str_replace(".", "", $request->precio_prod);
+        $producto->stock_prod = $request->total;
+        $producto->crit_prod = $request->crit_prod;
+        $producto->descr_prod = $request->descr_prod;
+        $producto->estado_prod = $request->estado_prod;
+
+        $polera = Polera::findOrFail($id);
+        $polera->s = $request->s_plr;
+        $polera->m = $request->m_plr;
+        $polera->l = $request->l_plr;
+        $polera->xl = $request->xl_plr;
+        $polera->xxl = $request->xxl_plr;
+
+        $fp_borrar = $producto->file_path;
+        $img_borrar = $producto->img_prod;
+        $up_borrar = Config::get('filesystems.disks.poleras.root');
+
+
+        if ($request->hasFile('img_prod')) {
+
+            // Se borran imagen original
+            unlink($up_borrar.'/'.$fp_borrar.'/'.$img_borrar);
+            unlink($up_borrar.'/'.$fp_borrar.'/t_'.$img_borrar);
+            unlink($up_borrar.'/'.$fp_borrar.'/mt_'.$img_borrar);
+
+            // SE CREA PATH PARA IMAGENES
+            $path = '/'.date('Y-m-d');
+            $fileExt = trim($request->file('img_prod')->getClientOriginalExtension());
+            $upload_path = Config::get('filesystems.disks.poleras.root');
+            $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod')->getClientOriginalName()));
+            $filename = rand(1,999).'-'.$name.'.'.$fileExt;
+        
+            $file_file = $upload_path.'/'.$path.'/'.$filename;
+
+            $producto->file_path = date('Y-m-d');
+            $producto->img_prod = $filename;
+        } 
+
+        $producto->save();
+
+        if ($request->hasfile('img_prod')) {
+            // guarda imagen original
+            $fl = $request->img_prod->storeAs($path, $filename, 'poleras');
+                
+            // guarda imagen t_
+            $img = Image::make($file_file);
+            $img->fit(256, 256, function($constraint){
+                $constraint->upsize();
+            });  
+            $img->save($upload_path.'/'.$path.'/t_'.$filename); 
+
+            // guarda imagen mt_
+            $img = Image::make($file_file);
+            $img->fit(64, 64, function($constraint){
+                $constraint->upsize();
+            });
+            $img->save($upload_path.'/'.$path.'/mt_'.$filename);
+        }
+
+        return redirect()->route('admin.productos.poleras','p')->with('success',"Producto $request->id_prod MODIFICADO exitosamente");
+    }
+
+    public function postPoleraGaleriaAgregar($id, Request $request){
 
         $galerias = DB::select('SELECT * FROM galerias');
         $cantidad_galerias = 0;
@@ -307,7 +275,7 @@ class ProductoController extends Controller
             $path = '/'.date('Y-m-d');
             $fileExt = trim($request->file('img_prod_gal')->getClientOriginalExtension());
             // dd($fileExt);
-            $upload_path = Config::get('filesystems.disks.productos.root');
+            $upload_path = Config::get('filesystems.disks.poleras.root');
             $name = Str::slug(str_replace($fileExt, '', $request->file('img_prod_gal')->getClientOriginalName()));
             $filename = rand(1,999).'-'.$name.'.'.$fileExt;
             // dd($filename);
@@ -324,7 +292,7 @@ class ProductoController extends Controller
 
             $g->save();
                 if ($request->hasfile('img_prod_gal')) {
-                    $fl = $request->img_prod_gal->storeAs($path, $filename, 'productos');
+                    $fl = $request->img_prod_gal->storeAs($path, $filename, 'poleras');
                     $img = Image::make($file_file);
                     $img->fit(256, 256, function($constraint){
                         $constraint->upsize();
@@ -337,30 +305,49 @@ class ProductoController extends Controller
                     });
                     $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
                 }
-                return redirect()->route('admin.productos','p')->with('success',"Galería de $id MODIFICADA exitosamente");
+                return redirect()->route('admin.productos.poleras','p')->with('success',"Galería de $id MODIFICADA exitosamente");
         } 
     }
 
-    public function getProductoGaleriaEliminar($id, $gid){
+    public function getPoleraGaleriaEliminar($id, $gid){
         $g = Galeria::findOrFail($gid);
         $path = $g->file_path;
         $file = $g->file_name;
-        $upload_path = Config::get('filesystems.disks.productos.root');
+        $upload_path = Config::get('filesystems.disks.poleras.root');
         if($g->prod_id != $id){
-            return redirect()->route('admin.productos')->with('danger',"La imagen no se puede eliminar");
+            return redirect()->route('admin.productos.poleras')->with('danger',"La imagen no se puede eliminar");
         }else{
             if ($g->delete()) {
                 unlink($upload_path.'/'.$path.'/'.$file);
                 unlink($upload_path.'/'.$path.'/t_'.$file);
                 unlink($upload_path.'/'.$path.'/mt_'.$file);
-                return redirect()->route('admin.productos','p')->with('success',"IMAGEN BORRADA exitosamente");
+                return redirect()->route('admin.productos.poleras','p')->with('success',"IMAGEN BORRADA exitosamente");
             }
         }
     }
 
-    public function postProductoSearch(Request $request){
-        $productos = Producto::withTrashed('categoria')->where('nom_prod', 'LIKE', '%'.$request->input('search').'%')->paginate(10);
-
-        return view('admin.productos.home', compact('productos'));
+    public function destroyPolera(Producto $producto, Polera $polera, $id){
+        $producto = Producto::findOrFail($id);
+        $polera = Polera::findOrFail($id);
+        $producto->estado_prod = 'P';
+        $producto->save();
+        $producto->delete();
+        $polera->delete();
+        $id_prod = $producto->id_prod;
+        return redirect()->route('admin.productos.poleras','p')->with('success',"Producto {$id_prod} se ha enviado a la papelera");
     }
+
+    public function getPoleraRestore(Producto $producto, Polera $polera, $id){
+        $producto = Producto::onlyTrashed()->where('id_prod', $id)->first();
+        $producto->restore();
+        $polera = Polera::onlyTrashed()->where('id_polera', $id)->first();
+        $polera->restore();
+        $id_prod = $producto->id_prod;
+        return redirect()->route('polera.edit',$id_prod)->with('success',"Producto {$id_prod} restaurado con éxito");
+    }
+    // ==================== FIN POLERAS ==================== //
+
+
+
+    
 }

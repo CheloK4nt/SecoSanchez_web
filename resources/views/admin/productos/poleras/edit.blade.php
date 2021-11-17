@@ -1,7 +1,7 @@
 
 @extends('admin.master')
 
-@section('title','Editar Producto')
+@section('title', "$prod->id_prod - Editar")
 
 <style>
     .panel{
@@ -124,8 +124,8 @@
 </style>
 
 @section('breadcrumb')
-<a class="breadcrumb-item" href="{{ url('/admin/productos/p') }}">Productos</a>
-<a class="breadcrumb-item id-prod-bc" href="{{ route('producto.edit',$prod -> id_prod) }}">{{$prod -> id_prod}}</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/poleras/p') }}">Poleras</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/polera/agregar') }}">Agregar Polera</a>
 @endsection
 
 @section('content')
@@ -136,24 +136,23 @@
 
 <div class="container-fluid">
     <div class="row">
-        {{-- FORMULARIO IZQUIERDA --}}
         <div class="col-md-9">
             <div class="panel shadow">
                 <div class="header">
-                    <div class="row row-head">
-                        <div class="col">
-                            <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Producto</h2>
+                    <div style="padding-inline-end: 10px;" class="row">
+                        <div class="col-11">
+                            <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Polera</h2>
                         </div>
-                        <div class="col">
-                            <ul class="float-end">
-                                <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly>
-                            </ul>
+                        <div class="col-1">
+                            <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$polera->id_polera}}" value="{{$polera->id_polera}}" readonly>
                         </div>
-                    </div>    
+                    </div>
+                    
+                    
                 </div>
         
                 <div class="inside">
-                    <form class="col-12 needs-validation" action="{{ route('producto.update', $prod->id_prod) }}" method="POST" enctype="multipart/form-data" novalidate>
+                    <form class="col-12 needs-validation" action="{{ route('polera.update', $polera->id_polera) }}" method="POST" enctype="multipart/form-data" novalidate>
                     @csrf
                     @method('PUT')
                         <div class="row">
@@ -161,81 +160,100 @@
                                 <label for="nombre">Nombre:</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-tag"></i></span>
-                                    <input type="text" class="form-control" id="nom_prod" name="nom_prod" value="{{$prod->nom_prod}}"
-                                        placeholder="Nombre del producto" maxlength="55" required>
+                                    <input type="text" class="form-control" id="nom_prod" name="nom_prod" value="{{ $prod->nom_prod }}"
+                                        placeholder="Nombre de producto" maxlength="55" required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">Por favor, ingrese nombre del producto.</div>
                                 </div>
                             </div>
         
-                            <div class="col-md-2">
-                                <label for="categoria">Categoría:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1"><i class="far fa-folder-open"></i></span>
-                                    <select class="form-select" id="cat_prod" name="cat_prod" required>
-                                      @foreach ($categorias as $categoria)
-                                            @if ($categoria->id_cat == $prod->cat_prod)
-                                                <option value="{{$categoria->id_cat}}" selected >{{$categoria->nom_cat}}</option>
-                                            @else
-                                                <option value="{{$categoria->id_cat}}">{{$categoria->nom_cat}}</option>
-                                            @endif   
-                                      @endforeach
-                                    </select>
-                                    <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">Por favor, seleccione categoría.</div>
-                                </div>
-                            </div>
-        
                             <div class="col-md-5">
-                                <label for="imagen">Imagen destacada (opcional):</label>
+                                <label for="imagen">Imagen destacada:</label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="img_prod" name="img_prod" accept="image/*">
                                     <div class="valid-feedback"></div>
                                 </div>
                             </div>
+        
+                            <div class="col-md-2">
+                                <label for="estado_prod">Estado:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-toggle-on"></i></span>
+                                    <select class="form-select" id="estado_prod" name="estado_prod" value="P" value="{{ $prod->estado_prod }}" required>
+                                      <option value="P">Público</option>
+                                      <option value="B">Borrador</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
         
-                        <div class="row mt-2">
+                        <div class="row mt-3">
                             <div class="col-md-2">
                                 <label for="precio">Precio:</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
-                                    <input class="form-control" id="precio_prod" name="precio_prod" min="0" value="{{$prod->precio_prod}}"
+                                    <input class="form-control" id="precio_prod" name="precio_prod" min="0" value="{{ $prod->precio_prod }}"
                                         placeholder="Precio del producto" required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">Por favor, ingrese precio del producto.</div>
                                 </div>
                             </div>
         
-                            <div class="col-md-2">
-                                <label for="endescuento">¿En descuento?</label>
+                            <div class="col-md-1"></div>
+        
+                            <div class="col-md-1">
+                                <label for="stock-critico">Talla S:</label>
                                 <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-hand-holding-usd"></i></span>
-                                    <select class="form-select" id="en_dcto_prod" name="en_dcto_prod" value="{{$prod->en_dcto_prod}}" required>
-                                      <option value="no">No</option>
-                                      <option value="si">Si</option>
-                                    </select>
+                                    <input type="number" class="form-control monto" id="s_plr" name="s_plr" min="0" onchange="sumar()" value="{{ $polera->s }}"
+                                        placeholder="S" required>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-1">
+                                <label for="stock-critico">Talla M:</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control monto" id="m_plr" name="m_plr" min="0" onchange="sumar()" value="{{ $polera->m }}"
+                                        placeholder="M" required>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-1">
+                                <label for="stock-critico">Talla L:</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control monto" id="l_plr" name="l_plr" min="0" onchange="sumar()" value="{{ $polera->l }}"
+                                        placeholder="L" required>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-1">
+                                <label for="stock-critico">Talla XL:</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control monto" id="xl_plr" name="xl_plr" min="0" onchange="sumar()" value="{{ $polera->xl }}"
+                                        placeholder="XL" required>
+                                    <div class="valid-feedback"></div>
+                                </div>
+                            </div>
+        
+                            <div class="col-md-1">
+                                <label for="stock-critico">Talla XXL:</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control monto" id="xxl_plr" name="xxl_plr" min="0" onchange="sumar()" value="{{ $polera->xxl }}"
+                                        placeholder="XXL" required>
+                                    <div class="valid-feedback"></div>
                                 </div>
                             </div>
         
                             <div class="col-md-2">
-                                <label for="descuento">Descuento:</label>
+                                <label for="stock-critico">Stock:</label>
                                 <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-percentage"></i></span>
-                                    <input width="50" type="number" class="form-control" id="dcto_prod" name="dcto_prod" min="0" max="100" value="{{$prod->dcto_prod}}"
-                                        placeholder="Descuento del producto" required>
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-sort-numeric-up-alt"></i></span>
+                                    <input type="number" class="form-control text-end" id="total" name="total" min="0" value="{{ $prod->stock_prod }}" readonly
+                                        required>
                                     <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">Por favor, ingrese descuento del producto.</div>
-                                </div>
-                            </div>
-        
-                            <div class="col-md-2">
-                                <label for="stock">Stock:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-list-ol"></i></span>
-                                    <input type="number" class="form-control" id="stock_prod" name="stock_prod" min="0" placeholder="Stock" required value="{{$prod->stock_prod}}">
-                                    <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">STOCK.</div>
+                                    <div class="invalid-feedback">Valide el STOCK.</div>
                                 </div>
                             </div>
         
@@ -243,36 +261,24 @@
                                 <label for="stock-critico">Crítico:</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-sort-amount-down"></i></span>
-                                    <input type="number" class="form-control" id="crit_prod" name="crit_prod" min="0" value="{{$prod->crit_prod}}"
+                                    <input type="number" class="form-control" id="crit_prod" name="crit_prod" min="0" value="{{ $prod->crit_prod }}" placeholder="{{ $prod->stock_prod }}"
                                         placeholder="Stock crítico" required>
                                     <div class="valid-feedback"></div>
-                                    <div class="invalid-feedback">STOCK CRÍTICO.</div>
+                                    <div class="invalid-feedback">Ingrese STOCK CRÍTICO.</div>
                                 </div>
                             </div>
-
-                            <div class="col-md-2">
-                                <label for="estado_prod">Estado:</label>
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-toggle-on"></i></span>
-                                    <select class="form-select" id="estado_prod" name="estado_prod" value="{{$prod->estado_prod}}" required>
-                                      <option value="P">Público</option>
-                                      <option value="B">Borrador</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
         
                         </div>
         
-                        <div class="row mt-2">
+                        <div class="row mt-3">
                             <label for="descr_prod">Descripción (opcional) :</label> 
                             <div class="col-md-12">
-                                <input type="textarea" name="descr_prod" id="descr_prod" class="form-control" value="{{$prod->descr_prod}}">                   
+                                <input type="textarea" name="descr_prod" id="descr_prod" class="form-control" value="{{ $prod->descr_prod }}">                   
                             </div>
                         </div>
-                        <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$prod->id_prod}}" value="{{$prod->id_prod}}" readonly hidden>
+                        <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$polera->id_polera}}" value="{{$polera->id_polera}}" readonly hidden>
                         <div class="d-flex flex-row-reverse mt-2">
-                            <button type="submit" class="btn btn-secondary">Guardar Modificación</button>
+                            <button type="submit" class="btn btn-secondary" data-path="admin/producto" data-action="agregar_producto">Guardar Producto</button>
                         </div>
                     </form>
                 </div>
@@ -295,7 +301,7 @@
                     <h2 class="title"><i class="fas fa-images logo-addprod"></i>Galería</h2>
                 </div>
                 <div class="inside product_gallery">
-                    <form class="col-12 needs-validation" action="{{ route('producto.galeria.agregar', $prod->id_prod) }}" method="POST" enctype="multipart/form-data" id="form_galeria" novalidate>
+                    <form class="col-12 needs-validation" action="{{ route('polera.galeria.agregar', $prod->id_prod) }}" method="POST" enctype="multipart/form-data" id="form_galeria" novalidate>
                     @csrf
                         <div class="input-group">
                             <input style="display: none" type="file" class="form-control" id="img_prod_gal" name="img_prod_gal" accept="image/*">
@@ -310,11 +316,8 @@
                     <div class="tumbs">
                         @foreach ($prod->getGaleria as $img)
                         <div class="tumb">
-                            <a class="btn btn-info" href="{{ url('/admin/producto/poleras/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-info" href="{{ url('/admin/producto/polera/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
                             <img src="{{ url('/uploads/productos/poleras/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
-                            {{-- @php
-                                dd(url('/uploads/'.$img->file_path.'/t_'.$img->file_name));
-                            @endphp --}}
                         </div>
                         @endforeach
                     </div>
@@ -322,6 +325,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 {{-- SCRIPT VALIDATION --}}
@@ -360,6 +364,20 @@
         });
     }
 });
+</script>
+
+<script>
+    function sumar()
+    {
+    const $total = document.getElementById('total');
+    let subtotal = 0;
+    [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+        if(element.value !== '') {
+        subtotal += parseFloat(element.value);
+        }
+    });
+    $total.value = subtotal;
+    }
 </script>
 @endsection
 

@@ -4,15 +4,21 @@ Route::prefix('/admin')->group(function(){
     Route::get('/', 'Admin\DashboardController@getDashboard')->name('admin.dashboard');
     
     // modulo productos
-    Route::get('/productos/{status}', 'Admin\ProductoController@getProductos')->name('admin.productos');
-    Route::get('/producto/agregar', 'Admin\ProductoController@getProductoAgregar')->name('producto.agregar');
-    Route::post('/producto/search', 'Admin\ProductoController@postProductoSearch')->name('producto.search');
-    Route::post('/producto/store', 'Admin\ProductoController@store')->name('producto.store');
-    Route::get('/producto/{id}/edit', 'Admin\ProductoController@getProductoEdit')->name('producto.edit');
-    Route::get('/producto/{id}/restore', 'Admin\ProductoController@getProductoRestore')->name('producto.restore');
-    Route::put('/producto/{id}/update', 'Admin\ProductoController@update')->name('producto.update');
-    Route::get('/producto/{id}/delete', 'Admin\ProductoController@destroy')->name('producto.destroy');
+    Route::get('/productos', 'Admin\ProductoController@getMenuProductos')->name('admin.productos.menu');
 
+    // productos polera
+    Route::get('/productos/poleras/{status}', 'Admin\ProductoController@getProductosPoleras')->name('admin.productos.poleras'); // Inicio Poleras //
+    Route::post('/productos/polera/search', 'Admin\ProductoController@postPoleraSearch')->name('polera.search'); // Search Polera //
+    Route::get('/productos/polera/agregar', 'Admin\ProductoController@getPoleraAgregar')->name('productos.polera.agregar'); // Agregar Polera //    
+    Route::post('/producto/polera/store', 'Admin\ProductoController@poleraStore')->name('polera.store'); // Store Polera - Producto //
+    Route::get('/producto/polera/{id}/edit', 'Admin\ProductoController@getPoleraEdit')->name('polera.edit'); // Editar Polera //
+    Route::put('/producto/polera/{id}/update', 'Admin\ProductoController@poleraUpdate')->name('polera.update'); // Update Polera //
+    Route::post('/producto/polera/{id}/galeria/agregar', 'Admin\ProductoController@postPoleraGaleriaAgregar')->name('polera.galeria.agregar'); // Agregar galeria polera //
+    Route::get('/producto/polera/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getPoleraGaleriaEliminar')->name('polera.galeria.eliminar'); // Eliminar galeria polera //
+    Route::get('/producto/polera/{id}/delete', 'Admin\ProductoController@destroyPolera')->name('polera.destroy'); // eliminar polera //
+    Route::get('/producto/polera/{id}/restore', 'Admin\ProductoController@getPoleraRestore')->name('polera.restore'); // restaurar polera //
+
+    // galeria
     Route::post('/producto/{id}/galeria/agregar', 'Admin\ProductoController@postProductoGaleriaAgregar')->name('producto.galeria.agregar');
     Route::get('/producto/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getProductoGaleriaEliminar')->name('producto.galeria.eliminar');
 

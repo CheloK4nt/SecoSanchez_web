@@ -427,9 +427,8 @@
                     {{-- INPUT MENSAJE --}}
                     <div class="col-md-12">
                         <label for="mensaje" style="color: black">{{__('messages.mensaje')}}</label>
-                        <div class="input-group mb-3">
-                            <textarea type="text" style="height: 100px" class="form-control" id="mensaje"
-                                name="mensaje" placeholder="{{__('messages.ingresesumensaje')}}" required></textarea>
+                        <div class="input-group">
+                            <textarea  onKeyPress="return taLimit(this)" onKeyUp="return taCount(this,'myCounter')" type="text" style="height: 100px" class="form-control" id="mensaje" name="mensaje" placeholder="{{__('messages.ingresesumensaje')}}" required></textarea>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">{{__('messages.porfavormensaje')}}</div>
                         </div>
@@ -437,7 +436,7 @@
                     </div>
 
                     {{-- BOTON ENVIAR --}}
-                    <button type="submit" class="btn btn-light enviar-btn mt-3">
+                    <button type="submit" class="btn btn-light enviar-btn mt-4">
                         <span></span>
                         <span></span>
                         <span></span>
