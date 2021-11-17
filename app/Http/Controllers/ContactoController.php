@@ -26,13 +26,13 @@ class ContactoController extends Controller
         ];
 
         $messages = [
-            'email.email' => 'El formato de su correo electrónico es inválido.',
+            'email.email' => __('messages.formatoemail'),
         ];
 
         
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) :
-            return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
+            return back()->withErrors($validator)->with('message', __('messages.sehaproducido'))->with('typealert', 'danger');
         else :
             $correo = new ContactoMailable($request->all());
             Mail::to('gerardo.pincheira.98@gmail.com')->send($correo);

@@ -72,6 +72,23 @@ return[
     'porfavorcontraseñaa'=> "Please, confirm your password.",
     'porfavorcodigo'   => "Please, enter the recovery code.",
 
+    'emailunique'   => 'There is already a registered user with this email.',
+    'passwordmin'   => 'The password must be at least 8 characters long.',
+    'cpasswordmin'  => 'Password confirmation must be at least 8 characters long.',
+    'cpasswordsame' => 'Passwords do not match.',
+    'sehaproducido' => 'An error has occurred.',
+    'correoerroneo' => 'Wrong email or password.',
+    'formatoemail'  => 'The format of your email is invalid.',
+    'noregistrado'  => 'This email is not registered.',
+    'codigorecuinco'=> 'The recovery code is incorrect.',
+    'nombrerequired'   => 'Por favor ingrese su nombre.',
+    'apellidorequired' => 'Por favor ingrese su apellido.',
+    'direccionrequired'=> 'Por favor ingrese su dirección',
+    'telefonorequired' => 'Por favor ingrese su teléfono',
+    'nuevapasswordmin' => 'The new password must be at least 8 characters long.',
+
+
+
     
     
 

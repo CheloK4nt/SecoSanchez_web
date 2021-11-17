@@ -18,7 +18,7 @@ class DossierController extends Controller
     public function index(){
 
         /* $dossier = DB::table('dossier')->select('*')->paginate(10); */
-        $dossier = DB::table('dossier')->get()/* ->paginate(10) */;
+        $dossier = DB::table('dossier')->whereNull('deleted_at')->get()/* ->paginate(10) */;
         /* dd($productos); */
         return view('home.dossier', compact(['dossier']));
     }
