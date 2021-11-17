@@ -64,6 +64,19 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
             var url = base + '/' + path + '/' + object + '/' + action;
         }
 
+        // IF ELIMINAR PRODUCTO
+        if (action == "delete_dossier") {
+            action = "delete";
+            var title = "¿Eliminar dossier?";
+            var text = "¡El dossier será enviado a la papelera!";
+            var icon = "warning";
+            var cancel = "El dossier no se ha eliminado";
+            var confBtn = "Eliminar";
+            var confColor = "#ff0000";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+
         // IF RESTAURAR PRODUCTO
         if (action == "restore_prod") {
             action = "restore";

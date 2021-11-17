@@ -250,7 +250,7 @@
                                             <td class="body-td" style="background-color: rgb(220, 220, 220)" width="150"
                                                 height="60">
                                                 @if ($dossi->deleted_at == null)
-                                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="delete"
+                                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="delete_dossier"
                                                         data-path="admin/dossier" data-object="{{ $dossi->id_dossier }}"><i
                                                             class="fas fa-trash"></i></a>
                                                     <a class="btn btn-secondary"

@@ -80,7 +80,7 @@
                 text-align: end;
             }
 
-            .dropdown{
+            .dropdown-selector{
                 padding-top: 20px;
                 text-align: end;
                 padding-right: 50px;
@@ -94,7 +94,7 @@
 </header>
 
 <body>
-    <div class="dropdown">
+    <div class="dropdown-selector">
         <button class="dropdown-toggle inline-flex justify center w-full rounded-md border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-offset-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           {{__('messages.idiomas')}}
         </button>

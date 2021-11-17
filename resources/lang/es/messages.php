@@ -71,7 +71,18 @@ return[
     'porfavormensaje'   => "Por favor, ingrese su mensaje.",
     'porfavorcontraseña' => "Por favor, ingrese su contraseña.",
     'porfavorcontraseñaa'=> "Por favor, confirme su contraseña.",
-    'porfavorcodigo'   => "Por favor, ingrese el código de recuperación."
+    'porfavorcodigo'   => "Por favor, ingrese el código de recuperación.",
+
+    'emailunique'   => 'Ya existe un usuario registrado con este correo electrónico.',
+    'passwordmin'   => 'La contraseña debe tener al menos 8 carácteres.',
+    'cpasswordmin'  => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
+    'cpasswordsame' => 'Las contraseñas no coinciden.',
+    'sehaproducido' => 'Se ha producido un error.',
+    'correoerroneo' => 'Correo o contraseña errónea.',
+    'formatoemail'  => 'El formato de su correo electrónico es inválido.',
+    'noregistrado'  => 'Este correo electrónico no se encuentra registrado.',
+    'codigorecuinco'=> 'El código de recuperación es incorrecto.',
+    'nuevapasswordmin' => 'La nueva contraseña debe tener al menos 8 carácteres.',
 
     
     
