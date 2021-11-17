@@ -56,15 +56,15 @@ class UsuarioController extends Controller
 
         $messages = [
             // 'email.email' => 'El formato de su correo electrónico es inválido.',
-            'email.unique' => 'Ya existe un usuario registrado con este correo electrónico.',
-            'password.min' => 'La contraseña debe tener al menos 8 carácteres.',
+            'email.unique' => __('messages.emailunique'),
+            'password.min' => __('messages.passwordmin'),
             'cpassword.min' => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
             'cpassword.same' => 'Las contraseñas no coinciden.'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) :
-            return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
+            return back()->withErrors($validator)->with('message', __('messages.sehaproducido'))->with('typealert', 'danger');
         else :
             $usuarios = new Usuario();
             $usuarios->nombre = $request->nombre;
@@ -137,7 +137,7 @@ class UsuarioController extends Controller
             
         } else {
             //credenciales incorrectas
-            return redirect()->route('login')->with('message','Correo o contraseña errónea.')->with('typealert','danger');
+            return redirect()->route('login')->with('message',__('messages.correoerroneo'))->with('typealert','danger');
         }
     }
 
@@ -158,7 +158,7 @@ class UsuarioController extends Controller
         ];
 
         $messages = [
-            'email.email' => 'El formato de su correo electrónico es inválido.',
+            'email.email' => __('messages.formatoemail'),
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -195,9 +195,9 @@ class UsuarioController extends Controller
         ];
 
         $messages = [
-            'password.min' => 'La contraseña debe tener al menos 8 carácteres.',
-            'cpassword.min' => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
-            'cpassword.same' => 'Las contraseñas no coinciden.'
+            'password.min' => __('messages.passwordmin'),
+            'cpassword.min' => __('messages.cpasswordmin'),
+            'cpassword.same' => __('messages.cpasswordsame')
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -239,15 +239,15 @@ class UsuarioController extends Controller
         ];
 
         $messages = [
-            'nombre.required' => 'Por favor ingrese su nombre.',
-            'apellido.required' => 'Por favor ingrese su apellido.',
-            'direccion.required' => 'Por favor ingrese su dirección',
-            'telefono.required' => 'Por favor ingrese su teléfono',
+            'nombre.required' => __('messages.porfavornombre'),
+            'apellido.required' => __('messages.porfavorapellido'),
+            'direccion.required' => __('messages.porfavordireccion'),
+            'telefono.required' => __('messages.porfavortelefono'),
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) :
-            return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
+            return back()->withErrors($validator)->with('message', __('messages.sehaproducido'))->with('typealert', 'danger');
         else :
             $usuarios = Usuario::where('email',$request->input('email'))->first();
             $usuarios->nombre = $request->nombre;
@@ -263,14 +263,14 @@ class UsuarioController extends Controller
                 ];
         
                 $messages = [
-                    'passwordantigua.min' => 'La contraseña debe tener al menos 8 carácteres.',
-                    'nuevapassword.min' => 'La nueva contraseña debe tener al menos 8 carácteres.',
-                    'cpassword.min' => 'La confirmación de la contraseña debe tener al menos 8 carácteres.',
-                    'cpassword.same' => 'Las contraseñas no coinciden.'
+                    'passwordantigua.min' => __('messages.passwordmin'),
+                    'nuevapassword.min' => __('messages.nuevapasswordmin'),
+                    'cpassword.min' => __('messages.cpasswordmin'),
+                    'cpassword.same' => __('messages.cpasswordsame')
                 ];
                 $validator = Validator::make($request->all(), $rules, $messages);
                 if ($validator->fails()) :
-                    return back()->withErrors($validator)->with('message', 'Se ha producido un error.')->with('typealert', 'danger');
+                    return back()->withErrors($validator)->with('message', __('messages.sehaproducido'))->with('typealert', 'danger');
                 else:
                     $old_password = DB::table('usuarios')->select('password')->where('email',Auth::user()->email)->get();
                     $input_old_password = $request->input('passwordantigua');
@@ -281,7 +281,7 @@ class UsuarioController extends Controller
                         $new_password = $request->input('nuevapassword');
                         $usuarios->password = Hash::make($new_password);
                     else:
-                        return back()->with('message','Las contraseñas no coinciden')->with('typealert','danger');
+                        return back()->with('message',__('messages.cpasswordsame'))->with('typealert','danger');
                     endif;
                 endif;
             }

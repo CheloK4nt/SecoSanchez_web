@@ -74,7 +74,6 @@
             padding: 0px !important;
             overflow: hidden;
             margin-top: 0px !important;
-            
         }
         .containers > a{
             display: block;

@@ -455,7 +455,7 @@
           <span></span>
           <span></span>
           <span></span>
-          Tienda
+          {{__('messages.tienda')}}
         </a>
         </li>
 
@@ -465,7 +465,7 @@
           <span></span>
           <span></span>
           <span></span>
-          Contacto
+          {{__('messages.contacto')}}
         </a>
         </li>
       </ul>
