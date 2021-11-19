@@ -18,6 +18,30 @@ Route::prefix('/admin')->group(function(){
     Route::get('/producto/polera/{id}/delete', 'Admin\ProductoController@destroyPolera')->name('polera.destroy'); // eliminar polera //
     Route::get('/producto/polera/{id}/restore', 'Admin\ProductoController@getPoleraRestore')->name('polera.restore'); // restaurar polera //
 
+    // productos cuadro
+    Route::get('/productos/cuadros/{status}', 'Admin\ProductoController@getProductosCuadros')->name('admin.productos.cuadros'); // Inicio Cuadros //
+    Route::post('/productos/cuadro/search', 'Admin\ProductoController@postCuadroSearch')->name('cuadro.search'); // Search Cuadro //
+    Route::get('/productos/cuadro/agregar', 'Admin\ProductoController@getCuadroAgregar')->name('productos.cuadro.agregar'); // Agregar Cuadro //    
+    Route::post('/producto/cuadro/store', 'Admin\ProductoController@cuadroStore')->name('cuadro.store'); // Store Cuadro - Producto //
+    Route::get('/producto/cuadro/{id}/edit', 'Admin\ProductoController@getCuadroEdit')->name('cuadro.edit'); // Editar Cuadro //
+    Route::put('/producto/cuadro/{id}/update', 'Admin\ProductoController@cuadroUpdate')->name('cuadro.update'); // Update Cuadro //
+    Route::post('/producto/cuadro/{id}/galeria/agregar', 'Admin\ProductoController@postCuadroGaleriaAgregar')->name('cuadro.galeria.agregar'); // Agregar galeria cuadro //
+    Route::get('/producto/cuadro/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getCuadroGaleriaEliminar')->name('cuadro.galeria.eliminar'); // Eliminar galeria cuadro //
+    Route::get('/producto/cuadro/{id}/delete', 'Admin\ProductoController@destroyCuadro')->name('cuadro.destroy'); // eliminar cuadro //
+    Route::get('/producto/cuadro/{id}/restore', 'Admin\ProductoController@getCuadroRestore')->name('cuadro.restore'); // restaurar cuadro //
+
+    // productos spray
+    Route::get('/productos/sprays/{status}', 'Admin\ProductoController@getProductosSprays')->name('admin.productos.sprays'); // Inicio Sprays //
+    Route::post('/productos/spray/search', 'Admin\ProductoController@postSpraySearch')->name('spray.search'); // Search Spray //
+    Route::get('/productos/spray/agregar', 'Admin\ProductoController@getSprayAgregar')->name('productos.spray.agregar'); // Agregar Spray //    
+    Route::post('/producto/spray/store', 'Admin\ProductoController@sprayStore')->name('spray.store'); // Store Spray - Producto //
+    Route::get('/producto/spray/{id}/edit', 'Admin\ProductoController@getSprayEdit')->name('spray.edit'); // Editar Spray //
+    Route::put('/producto/spray/{id}/update', 'Admin\ProductoController@sprayUpdate')->name('spray.update'); // Update Spray //
+    Route::post('/producto/spray/{id}/galeria/agregar', 'Admin\ProductoController@postSprayGaleriaAgregar')->name('spray.galeria.agregar'); // Agregar galeria spray //
+    Route::get('/producto/spray/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getSprayGaleriaEliminar')->name('spray.galeria.eliminar'); // Eliminar galeria spray //
+    Route::get('/producto/spray/{id}/delete', 'Admin\ProductoController@destroySpray')->name('spray.destroy'); // eliminar spray //
+    Route::get('/producto/spray/{id}/restore', 'Admin\ProductoController@getSprayRestore')->name('spray.restore'); // restaurar spray //
+
     // galeria
     Route::post('/producto/{id}/galeria/agregar', 'Admin\ProductoController@postProductoGaleriaAgregar')->name('producto.galeria.agregar');
     Route::get('/producto/{id}/galeria/{gid}/eliminar', 'Admin\ProductoController@getProductoGaleriaEliminar')->name('producto.galeria.eliminar');
