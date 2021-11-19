@@ -155,10 +155,10 @@
                     <a href="{{ url('/admin/productos/poleras/p') }}" class="menu-prod-btn"><i class="fas fa-tshirt"></i>Poleras</a>
                 </div>
                 <div class="col text-center">
-                    <a href="{{ url('/admin/productos/cuadros') }}" class="menu-prod-btn"><i class="far fa-image"></i>Cuadros</a>
+                    <a href="{{ url('/admin/productos/cuadros/p') }}" class="menu-prod-btn"><i class="far fa-image"></i>Cuadros</a>
                 </div>
                 <div class="col text-center">
-                    <a href="{{ url('/admin/productos/sprays') }}" class="menu-prod-btn"><i class="fas fa-spray-can"></i>Sprays</a>
+                    <a href="{{ url('/admin/productos/sprays/p') }}" class="menu-prod-btn"><i class="fas fa-spray-can"></i>Sprays</a>
                 </div>       
             </div>
         </div>

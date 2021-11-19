@@ -172,9 +172,9 @@
                         </div>
                     </div>
 
-                    <div class="col-md-1"></div>
+                    {{-- <div class="col-md-1"></div> --}}
 
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <label for="stock-critico">Stock:</label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-sort-numeric-up-alt"></i></span>
