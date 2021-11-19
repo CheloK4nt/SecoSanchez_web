@@ -29,6 +29,16 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
             img_prod_gal.addEventListener('change', function(){
             document.getElementById('form_galeria').submit();
             });
+        }else if(route == "cuadro.edit"){
+            var img_prod_gal = document.getElementById('img_prod_gal');
+            var btn_img_prod_gal = document.getElementById('btn_img_prod_gal');
+            btn_img_prod_gal.addEventListener('click', function(){
+            img_prod_gal.click();
+            }, false);
+    
+            img_prod_gal.addEventListener('change', function(){
+            document.getElementById('form_galeria').submit();
+            });
         }
         route_active = document.getElementsByClassName('lk-'+route)[0].classList.add('active');
 // FIN SECCION
@@ -91,6 +101,62 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
             var url = base + '/' + path + '/' + object + '/' + action;
         }
         // =============================FIN  POLERA=============================//
+
+        // =============================CUADRO=============================//
+        // IF ELIMINAR CUADRO
+        if (action == "delete_cuadro") {
+            action = "delete";
+            var title = "¿Eliminar producto?";
+            var text = "¡El producto será enviado a la papelera!";
+            var icon = "warning";
+            var cancel = "El producto no se ha eliminado";
+            var confBtn = "Eliminar";
+            var confColor = "#ff0000";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+
+        // IF RESTAURAR CUADRO
+        if (action == "restore_cuadro") {
+            action = "restore";
+            var title = "¿Restaurar producto?";
+            var text = "¡El producto volverá a estar activo!";
+            var icon = "info";
+            var cancel = "El producto sigue en la papelera";
+            var confBtn = "Restaurar";
+            var confColor = "#92bb85";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+        // =============================FIN  CUADRO=============================//
+
+        // =============================SPRAY=============================//
+        // IF ELIMINAR SPRAY
+        if (action == "delete_spray") {
+            action = "delete";
+            var title = "¿Eliminar producto?";
+            var text = "¡El producto será enviado a la papelera!";
+            var icon = "warning";
+            var cancel = "El producto no se ha eliminado";
+            var confBtn = "Eliminar";
+            var confColor = "#ff0000";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+
+        // IF RESTAURAR CUADRO
+        if (action == "restore_spray") {
+            action = "restore";
+            var title = "¿Restaurar producto?";
+            var text = "¡El producto volverá a estar activo!";
+            var icon = "info";
+            var cancel = "El producto sigue en la papelera";
+            var confBtn = "Restaurar";
+            var confColor = "#92bb85";
+            var cnclBtn = "Cancelar";
+            var url = base + '/' + path + '/' + object + '/' + action;
+        }
+        // =============================FIN  CUADRO=============================//
 
         // IF ELIMINAR DOSSIER
         if (action == "delete_dossier") {

@@ -124,8 +124,8 @@
 </style>
 
 @section('breadcrumb')
-<a class="breadcrumb-item" href="{{ url('/admin/productos/poleras/p') }}">Poleras</a>
-<a class="breadcrumb-item" href="{{ url('/admin/productos/polera/agregar') }}">Agregar Polera</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/sprays/p') }}">Sprays</a>
+<a class="breadcrumb-item" href="{{ url('/admin/productos/spray/agregar') }}">Agregar Spray</a>
 @endsection
 
 @section('content')
@@ -141,10 +141,10 @@
                 <div class="header">
                     <div style="padding-inline-end: 10px; margin-right: 20px;" class="row">
                         <div class="col-11">
-                            <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Polera</h2>
+                            <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Spray</h2>
                         </div>
                         <div class="col-1">
-                            <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$polera->id_polera}}" value="{{$polera->id_polera}}" readonly>
+                            <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$spray->id_spray}}" value="{{$spray->id_spray}}" readonly>
                         </div>
                     </div>
                     
@@ -152,7 +152,7 @@
                 </div>
         
                 <div class="inside">
-                    <form class="col-12 needs-validation" action="{{ route('polera.update', $polera->id_polera) }}" method="POST" enctype="multipart/form-data" novalidate>
+                    <form class="col-12 needs-validation" action="{{ route('spray.update', $spray->id_spray) }}" method="POST" enctype="multipart/form-data" novalidate>
                     @csrf
                     @method('PUT')
                         <div class="row">
@@ -199,63 +199,52 @@
                                 </div>
                             </div>
         
-                            <div class="col-md-1"></div>
-        
-                            <div class="col-md-1">
-                                <label for="stock-critico">Talla S:</label>
+                            <div class="col-md-2">
+                                <label for="alto">Marca:</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control monto" id="s_plr" name="s_plr" min="0" onchange="sumar()" value="{{ $polera->s }}"
-                                        placeholder="S" required>
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-signature"></i></span>
+                                    <input class="form-control" id="marca_spr" name="marca_spr" min="0"
+                                        placeholder="Marca del producto" value="{{ $spray->marca }}" required>
                                     <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, ingrese marca del producto.</div>
                                 </div>
                             </div>
         
-                            <div class="col-md-1">
-                                <label for="stock-critico">Talla M:</label>
+                            <div class="col-md-2">
+                                <label for="ancho">Cantidad (ml.):</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control monto" id="m_plr" name="m_plr" min="0" onchange="sumar()" value="{{ $polera->m }}"
-                                        placeholder="M" required>
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-sort-amount-up-alt"></i></span>
+                                    <input class="form-control" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="cantidad_spr" name="cantidad_spr" min="0"
+                                        placeholder="Cantidad del producto" value="{{ $spray->cantidad }}" required>
                                     <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, ingrese cantidad del producto.</div>
                                 </div>
                             </div>
         
-                            <div class="col-md-1">
-                                <label for="stock-critico">Talla L:</label>
+                            <div class="col-md-2">
+                                <label for="largo">Color:</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control monto" id="l_plr" name="l_plr" min="0" onchange="sumar()" value="{{ $polera->l }}"
-                                        placeholder="L" required>
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-paint-roller"></i></span>
+                                    <input class="form-control" id="color_spr" name="color_spr" min="0"
+                                        placeholder="Color del producto" value="{{ $spray->color }}" required>
                                     <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, ingrese color del producto.</div>
                                 </div>
                             </div>
         
-                            <div class="col-md-1">
-                                <label for="stock-critico">Talla XL:</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control monto" id="xl_plr" name="xl_plr" min="0" onchange="sumar()" value="{{ $polera->xl }}"
-                                        placeholder="XL" required>
-                                    <div class="valid-feedback"></div>
-                                </div>
-                            </div>
-        
-                            <div class="col-md-1">
-                                <label for="stock-critico">Talla XXL:</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control monto" id="xxl_plr" name="xxl_plr" min="0" onchange="sumar()" value="{{ $polera->xxl }}"
-                                        placeholder="XXL" required>
-                                    <div class="valid-feedback"></div>
-                                </div>
-                            </div>
+                            {{-- <div class="col-md-1"></div> --}}
         
                             <div class="col-md-2">
                                 <label for="stock-critico">Stock:</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-sort-numeric-up-alt"></i></span>
-                                    <input type="number" class="form-control text-end" id="total" name="total" min="0" value="{{ $prod->stock_prod }}" readonly
+                                    <input type="number" class="form-control text-end" id="total" name="total" min="0" value="{{ $prod->stock_prod }}"
                                         required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">Valide el STOCK.</div>
                                 </div>
                             </div>
+        
         
                             <div class="col-md-2">
                                 <label for="stock-critico">Crítico:</label>
@@ -276,7 +265,7 @@
                                 <input type="textarea" name="descr_prod" id="descr_prod" class="form-control" value="{{ $prod->descr_prod }}">                   
                             </div>
                         </div>
-                        <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$polera->id_polera}}" value="{{$polera->id_polera}}" readonly hidden>
+                        <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$spray->id_spray}}" value="{{$spray->id_spray}}" readonly hidden>
                         <div class="d-flex flex-row-reverse mt-2">
                             <button type="submit" class="btn btn-secondary" data-path="admin/producto" data-action="agregar_producto">Guardar Producto</button>
                         </div>
@@ -292,7 +281,7 @@
                     <h2 class="title"><i class="fas fa-image logo-addprod"></i>Imagen Destacada</h2>
                 </div>
                 <div class="inside">
-                    <img src="{{url('/uploads/productos/poleras/'.$prod->file_path.'/t_'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
+                    <img src="{{url('/uploads/productos/sprays/'.$prod->file_path.'/t_'.$prod->img_prod)}}" class="img-fluid" data-fancybox="gallery">
                 </div>
             </div>
 
@@ -301,7 +290,7 @@
                     <h2 class="title"><i class="fas fa-images logo-addprod"></i>Galería</h2>
                 </div>
                 <div class="inside product_gallery">
-                    <form class="col-12 needs-validation" action="{{ route('polera.galeria.agregar', $prod->id_prod) }}" method="POST" enctype="multipart/form-data" id="form_galeria" novalidate>
+                    <form class="col-12 needs-validation" action="{{ route('spray.galeria.agregar', $prod->id_prod) }}" method="POST" enctype="multipart/form-data" id="form_galeria" novalidate>
                     @csrf
                         <div class="input-group">
                             <input style="display: none" type="file" class="form-control" id="img_prod_gal" name="img_prod_gal" accept="image/*">
@@ -316,8 +305,8 @@
                     <div class="tumbs">
                         @foreach ($prod->getGaleria as $img)
                         <div class="tumb">
-                            <a class="btn btn-info" href="{{ url('/admin/producto/polera/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
-                            <img src="{{ url('/uploads/productos/poleras/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
+                            <a class="btn btn-info" href="{{ url('/admin/producto/spray/'.$prod->id_prod.'/galeria/'.$img->id_gal.'/eliminar') }}"><i class="fas fa-trash"></i></a>
+                            <img src="{{ url('/uploads/productos/sprays/'.$img->file_path.'/t_'.$img->file_name) }}" alt="" data-fancybox="gallery">
                         </div>
                         @endforeach
                     </div>
@@ -351,7 +340,7 @@
     })()
 </script>
 
-<script>
+{{-- <script>
     $("#precio_prod").on({
     "focus": function (event) {
         $(event.target).select();
@@ -378,6 +367,6 @@
     });
     $total.value = subtotal;
     }
-</script>
+</script> --}}
 @endsection
 

@@ -116,7 +116,7 @@
                 <a href="{{ url('/admin') }}" class="lk-admin.dashboard"><i class="fas fa-laptop-house"></i>Dashboard</a>
             </li>
             <li>
-                <a href="{{ url('/admin/productos') }}" class="lk-admin.productos.menu lk-admin.productos.poleras lk-productos.polera.agregar lk-polera.edit"><i class="fas fa-box-open"></i></i>Productos</a>
+                <a href="{{ url('/admin/productos') }}" class="lk-admin.productos.menu lk-admin.productos.poleras lk-productos.polera.agregar lk-polera.edit lk-admin.productos.cuadros lk-productos.cuadro.agregar lk-cuadro.edit lk-admin.productos.sprays lk-productos.spray.agregar lk-spray.edit"><i class="fas fa-box-open"></i></i>Productos</a>
             </li>
             {{-- <li>
                 <a href="{{ url('/admin/productos/p') }}" class="lk-admin.productos.menu lk-admin.productos lk-producto.edit lk-producto.agregar"><i class="fas fa-box-open"></i></i>Productos</a>
