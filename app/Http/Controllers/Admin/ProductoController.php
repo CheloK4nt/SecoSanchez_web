@@ -222,6 +222,7 @@ class ProductoController extends Controller
         } 
 
         $producto->save();
+        $polera->save();
 
         if ($request->hasfile('img_prod')) {
             // guarda imagen original

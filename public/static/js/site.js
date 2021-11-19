@@ -69,20 +69,39 @@ function load_products(section) {
                 favorite_list.push(producto.id_prod);
                 var precio_prod = addCommas(producto.precio_prod);
                 var div = "";
-                div += "<div class=\"product\">";
-                div += "<div class=\"image\">";
-                div += "<div class=\"overlay\">";
-                div += "<div class=\"btns\">";
-                if (auth == 1) {
-                    div += "<a href=\"\" id=\"favorito_" + producto.id_prod + "\" onclick=\"agregar_a_favoritos('" + producto.id_prod + "'); return false\" ><i class=\"fas fa-heart\"></i></a>";
-                } else {
-                    div += "<a href=\"\" id=\"favorito_" + producto.id_prod + "\" onclick=\"Swal.fire({title:':(', text:'¡Debes iniciar sesión para agregar productos a tus favoritos!', icon:'warning'}); return false\"><i class=\"fas fa-heart\"></i></a>";
-                }
-                div += "<br>";
-                div += "<a href=\"\"><i class=\"fas fa-cart-plus\"></i></a>";
-                div += "<br>";
-                div += "<a href=\"" + base + "/product/" + producto.id_prod + "\"><i class=\"far fa-eye\"></i></a>";
-                div += "<br>";
+                div += "<div class=\"product\">";                    
+                    div += "<div class=\"image\">";
+                        div += "<div class=\"overlay\">";
+                            div += "<div class=\"btns\">";
+                                if (auth == 1) {
+                                    div += "<a href=\"\" id=\"favorito_"+producto.id_prod+"\" onclick=\"agregar_a_favoritos('"+producto.id_prod+"'); return false\" ><i class=\"fas fa-heart\"></i></a>";
+                                }else{
+                                    div += "<a href=\"\" id=\"favorito_"+producto.id_prod+"\" onclick=\"Swal.fire({title:':(', text:'¡Debes iniciar sesión para agregar productos a tus favoritos!', icon:'warning'}); return false\"><i class=\"fas fa-heart\"></i></a>";
+                                }                                
+                                div += "<br>";
+                                div += "<a href=\"\"><i class=\"fas fa-cart-plus\"></i></a>";
+                                div += "<br>";
+                                div += "<a href=\""+base+"/product/"+producto.id_prod+"\"><i class=\"far fa-eye\"></i></a>";
+                                div += "<br>";
+                            div += "</div>";
+                        div += "</div>";
+                        // IMAGEN
+                        if (producto.cat_prod == "polera") {
+                            div += "<img src=\""+base+"/uploads/productos/poleras/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
+                        }
+                    div += "</div>";
+                    div += "<a href=\""+base+"/product/"+producto.id_prod+"\"  title=\""+producto.nom_prod+"\">";  
+                        div += "<div class=\"title\">"+producto.nom_prod+"</div>";
+                        // PRECIO
+                        if (producto.en_dcto_prod == "si") {
+                            div += "<div class=\"price\">"+"$"+precio_prod+" Oferta </div>";
+                        }else{
+                            div += "<div class=\"price\">"+"$"+precio_prod+"</div>";
+                        }
+                        
+
+                        div += "<div class=\"options\"></div>";
+                    div += "</a>";
                 div += "</div>";
                 div += "</div>";
                 
