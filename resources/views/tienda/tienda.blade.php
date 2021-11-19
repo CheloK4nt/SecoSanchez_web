@@ -59,6 +59,9 @@
             margin-top: 20px;
             padding: 5px;
             }
+            .tienda_action_bar form{
+                
+            }
             .tienda_action_bar .categorias{
                 position: relative;
                 transition: 0.2s;
@@ -257,7 +260,7 @@
         .products_list{
             display: block;
             padding: 17px;
-            margin-top: 32px;
+            margin-top: 0.5vw;
             overflow: hidden;
             width: 100%;     
             }
@@ -266,7 +269,6 @@
                 border-radius: 4px;
                 background-color: rgba(0, 0, 0, 0.137);
                 display: inline-block;
-                /* float: left; */
                 margin-bottom: 15px;
                 margin-right: 1.25%;
                 position: relative;
@@ -314,23 +316,28 @@
                             border-bottom-right-radius: 4px;
                             display: inline-block;
                             margin: 1px;
-                            padding: 15px;
+                            padding: 0.6vw;
                             transition: 0.2s;
                             }
                             .products_list .product:hover .overlay .btns{
                                 transition: 0.2s;
                             }
                             .products_list .product .image .overlay .btns a{  
-                                background-color: rgba(255, 255, 255, 1);
+                                background-color: rgb(255, 255, 255);
                                 border-radius: 4px;
-                                margin-bottom: 8px;
-                                padding: 10px;
-                                font-size: 24px;  
+                                margin-bottom: 0.4vw;
+                                padding: 0.5vw;
+                                font-size: 1.5vw;  
                                 display: block;
                                 float: left;
                                 text-align: center;      
                                 width: 100%;                      
                                 color: black;
+                                }
+                                .products_list .product .image .overlay .btns a:hover{
+                                    background-color: rgb(112, 112, 112);
+                                    color: white;
+                                    border-color: white;
                     }
                     .products_list .product .image img{
                         display: block;
@@ -418,6 +425,72 @@
             background-color: red !important;
             color: white !important;
         }
+
+        hr{
+            margin: 0vw 5vw;
+            padding: 0.05vw;
+        }
+
+        .h2-prods{
+            margin-top: 2vw;
+            letter-spacing: 1vw;
+            font-weight: bolder;
+        }
+
+
+
+        /* cambios responsivos  */
+
+@media (max-width: 768px) {
+
+    .tienda_action_bar form{
+        margin-top: 1vw;
+    }
+
+    .load_more_products a{
+        margin: 0px;
+        width: 100%;
+    }
+
+    .products_list .product .image .overlay .btns a{  
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 4px;
+        margin-bottom: 3px;
+        padding: 1vw;
+        font-size: 3.5vw;  
+        display: block;
+        float: left;
+        text-align: center;      
+        width: 100%;                      
+        color: black;
+    }
+
+    .products_list .product .image .overlay .btns{
+        background-color: rgba(0, 0, 0, 0.8);
+        border-bottom-right-radius: 4px;
+        display: inline-block;
+        margin: 1px;
+        padding: 2vw;
+        transition: 0.2s;
+    }
+
+    .products_list{
+        /* product list */
+        }
+        .products_list .product{
+            margin-right: 2%;
+            width: 49% !important;
+            }
+            .products_list .product:nth-child(even){
+                margin-right: 0px;
+            }
+            .products_list .product:nth-child(5n){
+                margin-right: 2%;
+            }
+}
+    
+        
+
     </style>
   </head>
 
@@ -436,11 +509,20 @@
                         <div class="categorias">
                             <a href=""><i class="fas fa-stream"></i>Categorías</a>
                             <ul class="shadow">
-                                @foreach ($categorias as $cat)
+                                <li>
+                                    <a href="#">Cuadros</a>
+                                </li>
+                                <li>
+                                    <a href="#">Poleras</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sprays</a>
+                                </li>
+                                {{-- @foreach ($categorias as $cat)
                                     <li>
                                         <a href="{{ url('/tienda/categoria/'.$cat->id_cat) }}"> {{ $cat->nom_cat }}</a>
                                     </li>
-                                @endforeach
+                                @endforeach --}}
                             </ul>
                         </div>                    
                     </div>  
@@ -468,7 +550,9 @@
     </section>
 
     <section>
-        <div class="container-fluid container-pl mt-3">
+        <h2 class="text-center h2-prods" >PRODUCTOS</h2>
+        <hr>
+        <div class="container-fluid container-pl">
             <div class="products_list" id="products_list"></div>
             <div class="load_more_products">
                 <a href="#" id="load_more_products">Ver más productos</a>
