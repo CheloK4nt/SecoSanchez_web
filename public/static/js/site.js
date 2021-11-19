@@ -85,11 +85,21 @@ function load_products(section){
                                 div += "<br>";
                             div += "</div>";
                         div += "</div>";
-                        div += "<img src=\""+base+"/uploads/productos/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
+                        // IMAGEN
+                        if (producto.cat_prod == "polera") {
+                            div += "<img src=\""+base+"/uploads/productos/poleras/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
+                        }
                     div += "</div>";
                     div += "<a href=\""+base+"/product/"+producto.id_prod+"\"  title=\""+producto.nom_prod+"\">";  
                         div += "<div class=\"title\">"+producto.nom_prod+"</div>";
-                        div += "<div class=\"price\">"+"$"+precio_prod+"</div>";
+                        // PRECIO
+                        if (producto.en_dcto_prod == "si") {
+                            div += "<div class=\"price\">"+"$"+precio_prod+" Oferta </div>";
+                        }else{
+                            div += "<div class=\"price\">"+"$"+precio_prod+"</div>";
+                        }
+                        
+
                         div += "<div class=\"options\"></div>";
                     div += "</a>";
                 div += "</div>";

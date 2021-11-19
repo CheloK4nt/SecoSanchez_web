@@ -139,11 +139,11 @@
         <div class="col-md-9">
             <div class="panel shadow">
                 <div class="header">
-                    <div style="padding-inline-end: 10px;" class="row">
-                        <div class="col-11">
+                    <div style="padding-inline-end: 10px; margin-right:20px;" class="row">
+                        <div class="col-10">
                             <h2 class="title"><i class="fas fa-plus-square logo-addprod"></i>Editar Polera</h2>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <input class="form-control form-id-prod text-center" type="text" id="id_prod" name="id_prod" placeholder="{{$polera->id_polera}}" value="{{$polera->id_polera}}" readonly>
                         </div>
                     </div>

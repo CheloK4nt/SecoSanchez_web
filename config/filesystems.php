@@ -57,12 +57,22 @@ return [
 
         'uploads' => [
             'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads',
+        ],
+
+        'slides' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\slides',
+        ],
+
+        'dossier' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\dossier',
         ],
 
         'productos' => [
             'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\productos',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos',
         ],
 
         'poleras' => [
@@ -70,15 +80,7 @@ return [
             'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos\poleras',
         ],
 
-        'slides' => [
-            'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\slides',
-        ],
-
-        'dossier' => [
-            'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\dossier',
-        ],
+        
 
         's3' => [
             'driver' => 's3',

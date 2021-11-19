@@ -172,9 +172,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-1"></div>
-
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <label for="stock-critico">Stock:</label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-sort-numeric-up-alt"></i></span>
@@ -201,7 +199,7 @@
                 <div class="row mt-3">
                     <label for="descr_prod">Descripción (opcional) :</label> 
                     <div class="col-md-12">
-                        <input type="textarea" name="descr_prod" id="descr_prod" class="form-control">                   
+                        <input type="textarea" name="descr_prod" id="descr_prod" class="form-control" maxlength="200">                   
                     </div>
                 </div>
                 <input class="form-control form-id-prod" type="text" id="id_prod" name="id_prod" placeholder="{{$id_polera}}" value="{{$id_polera}}" readonly hidden>
