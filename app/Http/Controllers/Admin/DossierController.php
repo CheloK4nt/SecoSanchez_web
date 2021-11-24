@@ -18,30 +18,6 @@ class DossierController extends Controller
         $this->middleware('isadmin');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(){
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(){
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)    {
 
         // SE CREA PATH PARA IMAGENES
@@ -55,52 +31,24 @@ class DossierController extends Controller
 
         $dossier = new Dossier();
         $dossier->id_dossier = $request->id_dossier;
-        /* $dossier->nom_dossier = $request->nom_dossier; */
+        $dossier->titulo_dossier = $request->titulo_dossier;
+        $dossier->tipo = $request->tipo_dossier;
+        $dossier->descripcion_es = $request->desc_dossier_es;
+        $dossier->descripcion_en = $request->desc_dossier_en;
         $dossier->file_path = date('Y-m-d');
         $dossier->img_dossier = $filename;
-        /* $dossier->texto_dossier = $request->texto_dossier; */
 
         $dossier->save();
 
         if ($request->hasfile('img_dossier')) {
             $fl = $request->img_dossier->storeAs($path, $filename, 'dossier');
             $img = Image::make($file_file);
-            /* $img->fit(500, 500, function($constraint){
-                $constraint->upsize();
-            }); */
             $img->save($upload_path.'/'.$path.'/t_'.$filename); 
         }
 
         return redirect()->route('admin.dossier')->with('success',"Publicación {$request->id_dossier} CREADA exitosamente");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Dossier  $dossier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Dossier $dossier){
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Dossier  $dossier
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dossier $dossier){
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dossier  $dossier
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Dossier $dossier, $id)    {
         $dossier = Dossier::findOrFail($id);
         $dossier->id_dossier = $request->id_dossier;
@@ -135,9 +83,6 @@ class DossierController extends Controller
         if ($request->hasfile('img_dossier')) {
             $fl = $request->img_dossier->storeAs($path, $filename, 'dossier');
             $img = Image::make($file_file);
-            /* $img->fit(256, 256, function($constraint){
-                $constraint->upsize();
-            }); */
             $img->save($upload_path.'/'.$path.'/t_'.$filename);
         }
 
@@ -147,12 +92,6 @@ class DossierController extends Controller
         return redirect()->route('admin.dossier')->with('success',"Publicación $request->id_dossier MODIFICADO exitosamente");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Dossier  $dossier
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Dossier $dossier, $id){
         $dossier = Dossier::findOrFail($id);
         $dossier->save();
@@ -162,12 +101,6 @@ class DossierController extends Controller
     }
 
     public function getDossier(){
-
-        /* $dossier = DB::table('dossier')->select('*')->paginate(10); */
-        /* $dossier = DB::table('dossier')->paginate(7); */
-        /* dd($productos); */
-        /* return view('admin.dossier.home', compact(['dossier'])); */
-
         $dossier = DB::select('SELECT * FROM dossier');
         $cantidad_dossier = 0;
 

@@ -38,6 +38,7 @@
 
     {{-- HOJAS ESTILO --}}
     {{-- <link rel="stylesheet" href="{{ url('/static/css/connect.css?v=' . time()) }}"> --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- FONT AWESOME --}}
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
@@ -64,10 +65,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        
-        .containers{
+        .containers {
             display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             width: 95%;
             margin: auto;
             grid-gap: 10px;
@@ -75,67 +75,72 @@
             overflow: hidden;
             margin-top: 0px !important;
         }
-        .containers > a{
+
+        .containers>a {
             display: block;
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 6px rgba(0, 0, 0, .5);
-            
+
         }
-        .containers img{
+
+        .containers img {
             width: 100%;
             vertical-align: top;
             height: 300px;
             object-fit: cover;
             transition: transform 0.5s;
         }
-        .containers a:hover img{
+
+        .containers a:hover img {
             filter: blur(5px);
             transform: rotate(10deg) scale(1.3);
         }
-        {
+
+            {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        .containers a{
+        .containers a {
             text-decoration: none;
             border: 2px solid;
             border-color: black;
         }
 
-        .titulo-dossier{
+        .titulo-dossier {
             background-color: rgba(0, 0, 0, 0.719);
             bottom: 0px;
             color: white;
             display: block;
             margin: 0px !important;
             padding: 5px !important;
-            position: absolute;            
+            position: absolute;
             text-align: center;
             width: 100%;
             z-index: 2 !important;
         }
 
-        .containers a:hover .titulo-dossier{
+        .containers a:hover .titulo-dossier {
             background-color: rgba(255, 255, 255, 0.719);
             color: rgb(0, 0, 0);
         }
+
         .fancybox__caption {
             font-size: 30px;
             text-align: center;
         }
 
-        .container-titulo{
+        .container-titulo {
             width: 100%;
             text-align: center;
             padding: 0px;
-            margin-top:calc(10px + 1vw);
+            margin-top: calc(10px + 1vw);
         }
 
-        .title-dossier{
-            font-size:calc(10px + 3.5vw);
+        .title-dossier {
+            font-size: calc(10px + 3.5vw);
             /* font-size: 3.5vw; */
             font-family: 'Raleway', sans-serif;
             margin-bottom: 0px;
@@ -149,10 +154,7 @@
 </header>
 
 <body>
-
     @include('partials.preloader')
-
-
     {{-- BUNDLE --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
@@ -165,39 +167,88 @@
 
     @endif
 
+    {{-- -------------------- CUADROS -------------------- --}}
     <div class="container container-fluid container-titulo">
-        <h2 class="title-dossier">DOSSIER</h2>
+        <h2 class="title-dossier">CUADROS</h2>
     </div>
-    
-
     <br>
     <section class="containers">
         @foreach ($dossier as $dossi)
-            <a href="{{ url('/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
-                <img class="img-dossier" src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}" {{-- width="430px" --}} data-fancybox="gallery" data-caption="{{ $dossi->titulo_dossier }}">
-                <h4 class="title titulo-dossier">{{ $dossi->titulo_dossier }}</h4>
-            </a>
+            @if ($dossi->tipo == 'Cuadro')
+                <a href="#">
+                    <img class="img-dossier"
+                        src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
+                        data-fancybox="gallery" data-caption="{{ $dossi->titulo_dossier }}">
+                    <h4 class="title titulo-dossier">{{ $dossi->titulo_dossier }}</h4>
+                </a>
+            @endif
         @endforeach
     </section>
+    {{-- ------------------ FIN CUADROS ------------------ --}}
+
+    {{-- -------------------- MURALES -------------------- --}}
+    <div class="container container-fluid container-titulo">
+        <h2 class="title-dossier">MURALES</h2>
+    </div>
+    <br>
+    <section class="containers">
+        @foreach ($dossier as $dossi)
+            @if ($dossi->tipo == 'Mural')
+                <a href="#" data-img="{{ '/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier }}"
+                    data-titulo="{{ $dossi->titulo_dossier }}" data-descripcion_es="{{ $dossi->descripcion_es }}"
+                    class="boton-prueba">
+                    <img class="img-dossier"
+                        src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}">
+                    <h4 class="title titulo-dossier">{{ $dossi->titulo_dossier }}</h4>
+                </a>
+            @endif
+        @endforeach
+    </section>
+    {{-- ------------------ FIN MURALES ------------------ --}}
 </body>
 
+{{-- @php
+    $lenguaje = app()->getLocale();
+    dd($lenguaje);
+@endphp --}}
 
 <footer>
     @include('partials.footer')
 </footer>
+
 </html>
 
 <svg>
     <defs>
-      <filter id='goo'>
-        <feGaussianBlur in='SourceGraphic' 
-        stdDeviation='10' result='name'/>
-         <feColorMatrix in='name' mode='matrix'
-             values='1 0 0 0 0
+        <filter id='goo'>
+            <feGaussianBlur in='SourceGraphic' stdDeviation='10' result='name' />
+            <feColorMatrix in='name' mode='matrix' values='1 0 0 0 0
                      0 1 0 0 0 
                      0 0 1 0 0
-                     0 0 0 30 -15 ' result='aab'/>
-         <feBlend in='SourceGraphic' in2='aab'/>
-      </filter>
+                     0 0 0 30 -15 ' result='aab' />
+            <feBlend in='SourceGraphic' in2='aab' />
+        </filter>
     </defs>
 </svg>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        btn_confirmar_modal = document.getElementsByClassName('boton-prueba');
+        for (i = 0; i < btn_confirmar_modal.length; i++) {
+            btn_confirmar_modal[i].addEventListener('click', confirmar_modal);
+        }
+    });
+
+    function confirmar_modal(e) {
+        var img = this.getAttribute('data-img');
+        var titulo = this.getAttribute('data-titulo');
+        var descripcion_es = this.getAttribute('data-descripcion_es');
+        swal.fire({
+            title: titulo,
+            text: descripcion_es,
+            imageUrl: img,
+            padding: '2rem',
+            imageAlt: 'Custom image',
+        })
+    }
+</script>

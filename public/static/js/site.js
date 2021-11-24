@@ -88,6 +88,10 @@ function load_products(section) {
                         // IMAGEN
                         if (producto.cat_prod == "polera") {
                             div += "<img src=\""+base+"/uploads/productos/poleras/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
+                        }else if(producto.cat_prod == "cuadro"){
+                            div += "<img src=\""+base+"/uploads/productos/cuadros/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
+                        }else if(producto.cat_prod == "spray"){
+                            div += "<img src=\""+base+"/uploads/productos/sprays/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
                         }
                     div += "</div>";
                     div += "<a href=\""+base+"/product/"+producto.id_prod+"\"  title=\""+producto.nom_prod+"\">";  
@@ -105,21 +109,21 @@ function load_products(section) {
                 div += "</div>";
                 div += "</div>";
                 
-                if (producto.cat_prod == "polera") {
+                /* if (producto.cat_prod == "polera") {
                     div += "<img src=\""+base+"/uploads/productos/poleras/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
                 }else if(producto.cat_prod == "cuadro"){
                     div += "<img src=\""+base+"/uploads/productos/cuadros/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
                 }else if(producto.cat_prod == "spray"){
                     div += "<img src=\""+base+"/uploads/productos/sprays/"+producto.file_path+"/t_"+producto.img_prod+"\" class=\"img-fluid\">";
-                }
+                } */
 
-                div += "</div>";
+                /* div += "</div>";
                 div += "<a href=\"" + base + "/product/" + producto.id_prod + "\"  title=\"" + producto.nom_prod + "\">";
                 div += "<div class=\"title\">" + producto.nom_prod + "</div>";
                 div += "<div class=\"price\">" + "$" + precio_prod + "</div>";
                 div += "<div class=\"options\"></div>";
                 div += "</a>";
-                div += "</div>";
+                div += "</div>"; */
                 products_list.innerHTML += div;
             });
 

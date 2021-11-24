@@ -71,11 +71,11 @@
         padding: 12px;
     }
 
-    .logo-addprod{
+    .logo-addprod {
         padding: 5px;
     }
 
-    .logo-cats{
+    .logo-cats {
         padding: 5px;
     }
 
@@ -161,15 +161,16 @@
 
     .form-search {}
 
-    .form-id-doss{
+    .form-id-doss {
         font-family: 'consolas';
         padding: 0px !important;
         padding-inline: 5px !important;
         background-color: rgb(85, 85, 85) !important;
         color: white !important;
-        font-size:calc(10px + 0.2vw) !important;
+        font-size: calc(10px + 0.2vw) !important;
         text-align: center;
     }
+
     /* .w-5{
         display: none;
     } */
@@ -188,88 +189,201 @@
 
     <div class="container-fluid">
         <div class="row">
-                {{-- PANEL AGREGAR CATEGORIA --}}
-                <div class="col-md-4">
-                    <div class="panel shadow">
-                        <div class="header">
-                            <h2 class="title" style="font-weight: bold"><i
-                                    class="fas fa-plus-square logo-addprod"></i>Agregar Publicación</h2>
-                        </div>
-                        <div class="inside">
-                            <form class="needs-validation" action="{{ url('admin/dossier/store') }}" method="POST" enctype="multipart/form-data" novalidate>
-                                @csrf
-                                <div class="row">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="col-4">
-                                            <label for="nom_cat">Publicación:</label>
-                                        </div>
-                                        <div class="col-3">
-                                            <input class="form-control form-id-doss" type="text" id="id_dossier"
-                                                name="id_dossier" placeholder="{{$id_dossier}}" value="{{$id_dossier}}" readonly>
-                                        </div>
+            {{-- PANEL AGREGAR DOSSIER --}}
+            <div class="col-md-4">
+                <div class="panel shadow">
+                    <div class="header">
+                        <h2 class="title" style="font-weight: bold"><i
+                                class="fas fa-plus-square logo-addprod"></i>Agregar Publicación</h2>
+                    </div>
+                    <div class="inside">
+                        <form class="needs-validation" action="{{ url('admin/dossier/store') }}" method="POST"
+                            enctype="multipart/form-data" novalidate>
+                            @csrf
+                            {{-- TÍTULO DOSSIER --}}
+                            <div class="row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="col-4">
+                                        <label for="titulo_dossier">Título:</label>
                                     </div>
-                                    <div class="input-group mt-2">
-                                        <input type="file" class="form-control" id="img_dossier" name="img_dossier" accept="image/*" required>
-                                        <div class="valid-feedback"></div>
-                                        <div class="invalid-feedback">Por favor, seleccione imagen de la publicación.</div>
-                                    </div>
-
-                                    <div class="d-flex flex-row-reverse mt-2">
-                                        <button type="submit" class="btn btn-secondary">Guardar Publicación</button>
+                                    <div class="col-3">
+                                        <input class="form-control form-id-doss" type="text" id="id_dossier"
+                                            name="id_dossier" placeholder="{{ $id_dossier }}" value="{{ $id_dossier }}"
+                                            readonly>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="input-group mt-2">
+                                    <input type="text" class="form-control" id="titulo_dossier" name="titulo_dossier"
+                                        required>
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, ingrese nombre de la publicación.</div>
+                                </div>
+                            </div>
+                            {{-- TÍTULO DOSSIER --}}
+                            <br>
+                            {{-- IMÁGEN DOSSIER --}}
+                            <div class="row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="col-4">
+                                        <label for="nom_cat">Foto:</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mt-2">
+                                    <input type="file" class="form-control" id="img_dossier" name="img_dossier"
+                                        accept="image/*" required>
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, seleccione imagen de la publicación.</div>
+                                </div>
+                            </div>
+                            {{-- IMÁGEN DOSSIER --}}
+                            <br>
+                            {{-- TIPO DOSSIER --}}
+                            <div class="row">
+                                <div class="d-flex justify-content-between">
+                                    <div class="col-4">
+                                        <label for="tipo_dossier">Tipo:</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mt-2">
+                                    <select style="padding: 5px" name="tipo_dossier" id="tipo_dossier" 
+                                        onchange="showHide(this.value)" required>
+                                        {{-- <option value="0">--Seleccione Tipo--</option> --}}
+                                        <option default>Seleccione una opción</option>
+                                        <option value="Cuadro">Cuadro</option>
+                                        <option value="Mural">Mural</option>
+                                    </select>
+                                </div>
+                                <script>
+                                    element_es = document.getElementById('desc_dossier_es');
+                                    element_en = document.getElementById('desc_dossier_en');
+                                    element_es.style.display = 'none'; 
+                                    element_en.style.display = 'none'; 
+
+                                    function showHide(value) {
+                                        if (value == 'Cuadro') {
+                                            document.getElementById('desc_dossier_es').style.display = 'none';
+                                            document.getElementById('desc_dossier_en').style.display = 'none';
+                                        } else {
+                                            document.getElementById('desc_dossier_es').style.display = 'block';
+                                            document.getElementById('desc_dossier_en').style.display = 'block';
+                                        }
+                                    }
+                                    /* function showHide(estado) {
+                                        element = document.getElementById('desc_dossier');
+                                        estado = element.style.display;
+                                        if(estado == 'none'){
+                                        element.style.display='block'
+                                        }else{
+                                        element.style.display = 'none';
+                                        } 
+                                    } */
+                                </script>
+                            </div>
+                            {{-- TIPO DOSSIER --}}
+                            <br>
+                            {{-- DESCRIPCIÓN ESPAÑOL DOSSIER --}}
+                            <div class="row" id="desc_dossier_es">
+                                <div class="d-flex justify-content-between">
+                                    <div class="col-5">
+                                        <label for="desc_dossier_es">Descripción (Español):</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mt-2">
+                                    <textarea type="text" style="height: 100px" class="form-control" id="desc_dossier_es"
+                                        name="desc_dossier_es" placeholder="Ingrese descripción..." {{-- required --}}></textarea>
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, ingrese descripción en español del Mural.</div>
+                                </div>
+                            </div>
+                            {{-- DESCRIPCIÓN ESPAÑOL DOSSIER --}}
+                            <br>
+                            {{-- DESCRIPCIÓN INGLÉS DOSSIER --}}
+                            <div class="row" id="desc_dossier_en">
+                                <div class="d-flex justify-content-between">
+                                    <div class="col-5">
+                                        <label for="desc_dossier_en">Descripción (Inglés):</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mt-2">
+                                    <textarea type="text" style="height: 100px" class="form-control" id="desc_dossier_en"
+                                        name="desc_dossier_en" placeholder="Ingrese descripción..." {{-- required --}}></textarea>
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">Por favor, ingrese descripción en Inglés del Mural.</div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse mt-2">
+                                <button type="submit" class="btn btn-secondary">Guardar Publicación</button>
+                            </div>
+                            {{-- DESCRIPCIÓN ESPAÑOL DOSSIER --}}
+                        </form>
                     </div>
                 </div>
+            </div>
 
-                {{-- LISTA DOSSIER --}}
-                <div class="col-md-6">
-                    <div class="panel shadow">
-                        <div class="inside">
-                            <table class="table mt-2">
-                                <thead>
+            {{-- LISTA DOSSIER --}}
+            <div class="col-md-6">
+                <div class="panel shadow">
+                    <div class="inside">
+                        <table class="table mt-2">
+                            <thead>
+                                <tr>
+                                    <th class="head-td" width="120">ID</th>
+                                    <th class="head-td" width="120">Título</th>
+                                    <th class="head-td" width="180">Foto</th>
+                                    <th class="head-td" width="120">Tipo</th>
+                                    <th class="head-td" width="150">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($dossier as $dossi)
                                     <tr>
-                                        <th class="head-td" width="120">ID</th>
-                                        <th class="head-td" width="180">Foto</th>
-                                        <th class="head-td" width="150">Acciones</th>
+                                        {{--ID--}}
+                                        <td class="body-td" style="background-color: rgb(220, 220, 220)" width="120"
+                                            height="60">{{ $dossi->id_dossier }}
+                                        </td>
+                                        {{--TÍTULO--}}
+                                        <td class="body-td" style="background-color: rgb(220, 220, 220)" width="120"
+                                            height="60">{{ $dossi->titulo_dossier }}
+                                        </td>
+                                        {{--FOTO--}}
+                                        <td class="body-td text-center"
+                                            style="width: 64px; background-color: rgb(220, 220, 220)" width="180"
+                                            height="60">
+                                            <a
+                                                href="{{ url('/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
+                                                <img src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
+                                                    width="100px" data-fancybox="gallery">
+                                            </a>
+                                        </td>
+                                        {{--TIPO--}}
+                                        <td class="body-td" style="background-color: rgb(220, 220, 220)" width="120"
+                                            height="60">{{ $dossi->tipo }}
+                                        </td>
+                                        {{--ACCIONES--}}
+                                        <td class="body-td" style="background-color: rgb(220, 220, 220)" width="150"
+                                            height="60">
+                                            @if ($dossi->deleted_at == null)
+                                                <a class="btn btn-secondary btn-confirmar-modal" href="#"
+                                                    data-action="delete_dossier" data-path="admin/dossier"
+                                                    data-object="{{ $dossi->id_dossier }}"><i
+                                                        class="fas fa-trash"></i></a>
+                                                <a class="btn btn-secondary"
+                                                    href="{{ route('dossier.edit', $dossi->id_dossier) }}"><i
+                                                        class="fas fa-edit"></i></a>
+                                            @endif
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($dossier as $dossi)
-                                        <tr>
-                                            <td class="body-td" style="background-color: rgb(220, 220, 220)" width="120"
-                                                height="60">{{ $dossi->id_dossier }}</td>
-                                            <td class="body-td text-center" style="width: 64px; background-color: rgb(220, 220, 220)"
-                                                width="180" height="60">
-                                                <a href="{{ url('/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier) }}">
-                                                    <img src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
-                                                        width="100px" data-fancybox="gallery">
-                                                </a>
-                                            </td>
-                                            <td class="body-td" style="background-color: rgb(220, 220, 220)" width="150"
-                                                height="60">
-                                                @if ($dossi->deleted_at == null)
-                                                    <a class="btn btn-secondary btn-confirmar-modal" href="#" data-action="delete_dossier"
-                                                        data-path="admin/dossier" data-object="{{ $dossi->id_dossier }}"><i
-                                                            class="fas fa-trash"></i></a>
-                                                    <a class="btn btn-secondary"
-                                                        href="{{ route('dossier.edit', $dossi->id_dossier) }}"><i
-                                                            class="fas fa-edit"></i></a>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            {{-- <tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{-- <tr>
                                 <td colspan="10" >{!! $dossier->render() !!}</td>
                             </tr> --}}
-                            {{$dossier->links()}}
-                        </div>
-                        
+                        {{ $dossier->links() }}
                     </div>
+
                 </div>
+            </div>
         </div>
 
         {{-- SCRIPT VALIDATION --}}
