@@ -154,10 +154,7 @@
 </header>
 
 <body>
-
     @include('partials.preloader')
-
-
     {{-- BUNDLE --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
@@ -170,26 +167,50 @@
 
     @endif
 
+    {{-- -------------------- CUADROS -------------------- --}}
     <div class="container container-fluid container-titulo">
-        <h2 class="title-dossier">DOSSIER</h2>
+        <h2 class="title-dossier">CUADROS</h2>
     </div>
-
-
     <br>
     <section class="containers">
         @foreach ($dossier as $dossi)
-            <a href="#" 
-                data-img="{{'/uploads/dossier/'.$dossi->file_path.'/'. $dossi->img_dossier}}" data-titulo="{{ $dossi->titulo_dossier }}"
-                class="boton-prueba">
-                <img class="img-dossier"  
-                    src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
-                    {{-- width="430px" --}} {{-- data-fancybox="gallery" data-caption="{{ $dossi->titulo_dossier }}" --}}>
-                <h4 class="title titulo-dossier">{{ $dossi->titulo_dossier }}</h4>
-            </a>
+            @if ($dossi->tipo == 'Cuadro')
+                <a href="#">
+                    <img class="img-dossier"
+                        src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
+                        data-fancybox="gallery" data-caption="{{ $dossi->titulo_dossier }}">
+                    <h4 class="title titulo-dossier">{{ $dossi->titulo_dossier }}</h4>
+                </a>
+            @endif
         @endforeach
     </section>
+    {{-- ------------------ FIN CUADROS ------------------ --}}
+
+    {{-- -------------------- MURALES -------------------- --}}
+    <div class="container container-fluid container-titulo">
+        <h2 class="title-dossier">MURALES</h2>
+    </div>
+    <br>
+    <section class="containers">
+        @foreach ($dossier as $dossi)
+            @if ($dossi->tipo == 'Mural')
+                <a href="#" data-img="{{ '/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier }}"
+                    data-titulo="{{ $dossi->titulo_dossier }}" data-descripcion_es="{{ $dossi->descripcion_es }}"
+                    class="boton-prueba">
+                    <img class="img-dossier"
+                        src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}">
+                    <h4 class="title titulo-dossier">{{ $dossi->titulo_dossier }}</h4>
+                </a>
+            @endif
+        @endforeach
+    </section>
+    {{-- ------------------ FIN MURALES ------------------ --}}
 </body>
 
+{{-- @php
+    $lenguaje = app()->getLocale();
+    dd($lenguaje);
+@endphp --}}
 
 <footer>
     @include('partials.footer')
@@ -211,20 +232,20 @@
 </svg>
 
 <script>
-
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function() {
         btn_confirmar_modal = document.getElementsByClassName('boton-prueba');
-        for(i=0; i < btn_confirmar_modal.length; i++){
+        for (i = 0; i < btn_confirmar_modal.length; i++) {
             btn_confirmar_modal[i].addEventListener('click', confirmar_modal);
         }
     });
 
-    function confirmar_modal(e){
+    function confirmar_modal(e) {
         var img = this.getAttribute('data-img');
         var titulo = this.getAttribute('data-titulo');
+        var descripcion_es = this.getAttribute('data-descripcion_es');
         swal.fire({
             title: titulo,
-            text: 'Modal with a custom image.',
+            text: descripcion_es,
             imageUrl: img,
             padding: '2rem',
             imageAlt: 'Custom image',
