@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Favorito extends Model
 {
     use HasFactory;
-    protected $dates = ['deleted_at'];
+    protected $primaryKey = "id_favoritos";
     protected $table = 'usuario_favoritos';
     public $timestamps = false;
 }

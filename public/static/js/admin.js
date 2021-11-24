@@ -45,13 +45,13 @@ var route = document.getElementsByName('routeName')[0].getAttribute('content');
             btn_img_prod_gal.addEventListener('click', function(){
             img_prod_gal.click();
             }, false);
-    
+
             img_prod_gal.addEventListener('change', function(){
             document.getElementById('form_galeria').submit();
             });
         }
         route_active = document.getElementsByClassName('lk-'+route)[0].classList.add('active');
-// FIN SECCION
+        // FIN SECCION
 
         // CONFIRMAR MODAL
         btn_confirmar_modal = document.getElementsByClassName('btn-confirmar-modal');
