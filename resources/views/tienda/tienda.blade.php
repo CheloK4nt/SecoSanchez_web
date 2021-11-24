@@ -82,6 +82,8 @@
                     }
                     .tienda_action_bar .categorias a:hover{
                         background-color: rgb(48, 48, 48);
+                        border-bottom-right-radius: 0px;
+                        border-bottom-left-radius: 0px;
                     }
                     .tienda_action_bar .categorias a i{
                         padding-inline: 10px;
@@ -264,6 +266,7 @@
             overflow: hidden;
             width: 100%;     
             }
+            /* PRODUCTO NORMAL */
             .products_list .product{
                 margin-top: 15px;
                 border-radius: 4px;
@@ -298,7 +301,8 @@
                     width: 100%;
                     position: relative;
                     overflow: hidden;
-                    padding: 10px;                   
+                    padding: 10px; 
+                    padding-bottom: 0px;                  
                     text-align: center;                    
                     }
                     .products_list .product .image .overlay{
@@ -344,21 +348,37 @@
                         width: 100%;
                         border-radius: 4px;
                         border: 4px solid;
-                        border-color: white;
+                        border-color: rgb(0, 0, 0);
                         transition: 0.2s;
                         }
                         .products_list .product:hover img{
                             transform: scale(1.02);
                             transition: 0.2s;
+                            border-bottom: 10px;
                 }
+
+                .products_list .product .categoria{
+                    z-index: -1;
+                    font-size: 14px;
+                    font-weight: bolder;
+                    padding-top: 8px;
+                    padding-inline: 10px;
+                    text-transform: uppercase;
+                }
+
+                .products_list .product:hover .categoria{
+                    color: white;
+                }
+
                 .products_list .product .title{
+                    background-color: white;
                     color: rgb(0, 0, 0);
                     display: block;
-                    /* font-weight: bolder; */
+                    font-weight: bolder;
                     font-size: 100%;
-                    margin-top: 8px;
+                    margin: 0px;
                     overflow: hidden;
-                    padding: 10px;
+                    padding: 0px 10px 0px 10px;
                     text-overflow: ellipsis;
                     transition: 0.3s;
                     text-align: center;
@@ -366,7 +386,7 @@
                     width: 100%;
                     }
                     .products_list .product:hover .title{
-                    color: white;
+                    /* color: white; */
                     transition: 0.2s;
                 }
                 .products_list .product .price{
@@ -392,6 +412,74 @@
                     display: block;
                     width: 100%;
             }
+            /* FIN PRODUCTO NORMAL */
+
+            /* PRODUCTO EN OFERTA */
+
+            .precios-oferta{
+                background-color: rgb(140, 140, 140);
+                border-bottom-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+                color: rgb(0, 0, 0);
+                display: inline-flex;
+                font-weight: bolder;
+                justify-content: space-between;
+                padding: 8px;
+                text-align: end;
+                width: 100%;
+                transition: 0.3s;
+            }
+
+            .product:hover .precios-oferta{
+                background-color: rgb(0, 0, 0);
+                color: white;
+                transition: 0.2s;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+            }
+
+            .price-tachado{
+                margin: 0;
+            }
+
+            .price-oferta{
+                background-color: black;
+                border-radius: 4px;
+                color: white;
+                margin: 0;
+                padding-inline: 8px;
+            }
+
+            .product:hover .price-oferta{
+                background-color: white;
+                color: black;
+                border-bottom-right-radius: 20px;
+                transition: .2s;
+            }
+
+            .descuento{
+                color: rgb(255, 198, 93);
+                margin: 0;
+                
+            }
+
+            span.inner {
+                vertical-align: middle;
+                color: black;
+                margin: 0;
+                font-size: 13px;
+            }
+
+            .product:hover span.inner{
+                color: white;
+            }
+
+            span.outer {
+                margin: 0;
+                color: red;
+                text-decoration: line-through;
+            }
+            /* FIN PRODUCTO EN OFERTA */
         
         /* FIN PRODUCT LIST */
 
@@ -426,6 +514,11 @@
             color: white !important;
         }
 
+        .favorite_active:hover{
+            background-color: rgb(255, 146, 146) !important;
+            color: white !important;
+        }
+
         hr{
             margin: 0vw 5vw;
             padding: 0.05vw;
@@ -441,56 +534,60 @@
 
         /* cambios responsivos  */
 
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
 
-    .tienda_action_bar form{
-        margin-top: 1vw;
-    }
+            span.outer {
+                visibility: hidden;
+                position: absolute;
+            }
 
-    .load_more_products a{
-        margin: 0px;
-        width: 100%;
-    }
+            .tienda_action_bar form{
+                margin-top: 1vw;
+            }
 
-    .products_list .product .image .overlay .btns a{  
-        background-color: rgba(255, 255, 255, 1);
-        border-radius: 4px;
-        margin-bottom: 3px;
-        padding: 1vw;
-        font-size: 3.5vw;  
-        display: block;
-        float: left;
-        text-align: center;      
-        width: 100%;                      
-        color: black;
-    }
+            .load_more_products a{
+                margin: 0px;
+                width: 100%;
+            }
 
-    .products_list .product .image .overlay .btns{
-        background-color: rgba(0, 0, 0, 0.8);
-        border-bottom-right-radius: 4px;
-        display: inline-block;
-        margin: 1px;
-        padding: 2vw;
-        transition: 0.2s;
-    }
+            /* PRODUCTO NORMAL */
+            .products_list .product .image .overlay .btns a{  
+                background-color: rgba(255, 255, 255, 1);
+                border-radius: 4px;
+                margin-bottom: 3px;
+                padding: 1vw;
+                font-size: 3.5vw;  
+                display: block;
+                float: left;
+                text-align: center;      
+                width: 100%;                      
+                color: black;
+            }
 
-    .products_list{
-        /* product list */
+            .products_list .product .image .overlay .btns{
+                background-color: rgba(0, 0, 0, 0.8);
+                border-bottom-right-radius: 4px;
+                display: inline-block;
+                margin: 1px;
+                padding: 2vw;
+                transition: 0.2s;
+            }
+
+            .products_list{
+                /* product list */
+                }
+                .products_list .product{
+                    margin-right: 2%;
+                    width: 49% !important;
+                    }
+                    .products_list .product:nth-child(even){
+                        margin-right: 0px;
+                    }
+                    .products_list .product:nth-child(5n){
+                        margin-right: 2%;
+                    }
+            }
         }
-        .products_list .product{
-            margin-right: 2%;
-            width: 49% !important;
-            }
-            .products_list .product:nth-child(even){
-                margin-right: 0px;
-            }
-            .products_list .product:nth-child(5n){
-                margin-right: 2%;
-            }
-}
-    
-        
-
     </style>
   </head>
 
@@ -499,6 +596,15 @@
 </header>
 
   <body>
+
+    @php
+        $categorias = [
+            'Cuadros',
+            'Poleras',
+            'Sprays',
+        ];
+        $i = 0;
+    @endphp
 
     @include('partials.preloader')
     <section>
@@ -509,20 +615,12 @@
                         <div class="categorias">
                             <a href=""><i class="fas fa-stream"></i>Categorías</a>
                             <ul class="shadow">
-                                <li>
-                                    <a href="#">Cuadros</a>
-                                </li>
-                                <li>
-                                    <a href="#">Poleras</a>
-                                </li>
-                                <li>
-                                    <a href="#">Sprays</a>
-                                </li>
-                                {{-- @foreach ($categorias as $cat)
-                                    <li>
-                                        <a href="{{ url('/tienda/categoria/'.$cat->id_cat) }}"> {{ $cat->nom_cat }}</a>
-                                    </li>
-                                @endforeach --}}
+                                @foreach ($categorias as $cat)
+                                    @php
+                                        $cat_min = strtolower($cat);
+                                    @endphp
+                                    <li><a href="{{ url('/tienda/'.$cat_min) }}">{{ $cat }}</a></li>
+                                @endforeach
                             </ul>
                         </div>                    
                     </div>  
