@@ -67,21 +67,7 @@ return [
 
         'dossier' => [
             'driver' => 'local',
-<<<<<<< HEAD
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\productos\poleras',
-        ],
-
-        'cuadros' => [
-            'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\productos\cuadros',
-        ],
-
-        'sprays' => [
-            'driver' => 'local',
-            'root' => 'D:\ProyectosWeb\SecoSanchez_web\public\uploads\productos\sprays',
-=======
             'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\dossier',
->>>>>>> marcelo
         ],
 
         'productos' => [
@@ -92,6 +78,16 @@ return [
         'poleras' => [
             'driver' => 'local',
             'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos\poleras',
+        ],
+
+        'cuadros' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos\cuadros',
+        ],
+
+        'sprays' => [
+            'driver' => 'local',
+            'root' => 'C:\Users\Chelo\Documents\SecoSanchez Store\Sistema Web\SecoSanchez_web\public\uploads\productos\sprays',
         ],
 
         

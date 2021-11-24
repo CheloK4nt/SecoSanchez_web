@@ -24,7 +24,7 @@
     <script src="https://kit.fontawesome.com/b297a15972.js" crossorigin="anonymous"></script>
 
     {{-- SWEET ALERT --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 
     {{-- FANCYBOX --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />

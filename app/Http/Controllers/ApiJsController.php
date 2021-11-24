@@ -18,6 +18,18 @@ class ApiJsController extends Controller
             case 'tienda':
                 $productos = Producto::where('estado_prod','P')->inRandomOrder()->paginate(15);
                 break;
+
+            case 'tienda.cuadros':
+                $productos = Producto::where('estado_prod','P')->where('cat_prod', 'cuadro')->orderBy('id_prod', 'Desc')->paginate(15);
+                break;
+
+            case 'tienda.poleras':
+                $productos = Producto::where('estado_prod','P')->where('cat_prod', 'polera')->orderBy('id_prod', 'Desc')->paginate(15);
+                break;
+
+            case 'tienda.sprays':
+                $productos = Producto::where('estado_prod','P')->where('cat_prod', 'spray')->orderBy('id_prod', 'Desc')->paginate(15);
+                break;
             
             default:
                 $productos = Producto::where('estado_prod','P')->inRandomOrder()->paginate(15);
@@ -33,6 +45,8 @@ class ApiJsController extends Controller
             $data = ['status' => "error", 'msg' => 'ya se encuentra en favorito'];
         else:
             $favorito = new Favorito;
+            $id_compuesta = $producto . Auth::user()->email;
+            $favorito->id_favoritos = $id_compuesta;
             $favorito->usuario_email = Auth::user()->email;
             $favorito->producto_id = $producto;
             if($favorito->save()):
@@ -51,5 +65,12 @@ class ApiJsController extends Controller
             $data = ['status' => "success", 'count' => count(collect($query))];
         endif;
         return response()->json($data);
+    }
+
+    public function getFavoriteRemove($id){
+        $id_compuesta = $id . Auth::user()->email;
+        // $data = ['id_compuesta' => $id_compuesta];
+        $favorito = Favorito::findOrFail($id_compuesta);
+        $favorito->delete();
     }
 }

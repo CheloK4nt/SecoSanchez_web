@@ -61,7 +61,10 @@ Route::post('/usuarios/register','UsuarioController@store')->name('usuarios.stor
 // --------------- F I N    U S U A R I O S ------------------ //
 
 // TIENDA
-Route::get('/tienda','ContentController@getTienda')->name('tienda');
+Route::get('/tienda','TiendaController@getTienda')->name('tienda');
+Route::get('/tienda/cuadros','TiendaController@getTiendaCuadros')->name('tienda.cuadros');
+Route::get('/tienda/poleras','TiendaController@getTiendaPoleras')->name('tienda.poleras');
+Route::get('/tienda/sprays','TiendaController@getTiendaSprays')->name('tienda.sprays');
 
 // DOSSIER
 Route::get('/dossier','DossierController@index')->name('dossier.index');
@@ -74,3 +77,4 @@ Route::get('/product/{id_prod}', 'ProductoController@getProducto');
 Route::get('/md/api/load/products/{section}','ApiJsController@getProductsSection');
 Route::post('/md/api/load/user/favorites','ApiJsController@postUserFavorites');
 Route::post('/md/api/favorites/add/{id_prod}','ApiJsController@postFavoriteAdd');
+Route::get('/md/api/favorites/remove/{id_prod}','ApiJsController@getFavoriteRemove');
