@@ -1,4 +1,3 @@
-
 @php
     $i = 1;
     $i_string = strval($i);

@@ -302,6 +302,7 @@
 
 <body>
     @include('partials.preloader')
+    @include('partials.idioma-btn');
     {{-- --------------------------- FORMULARIO -------------------- --}}
     <div class="row-1">
         <div class="col-md-7 col-10 main-section" style="background-color: black">
