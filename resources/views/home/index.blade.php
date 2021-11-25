@@ -84,12 +84,6 @@
             text-align: end;
         }
 
-        .dropdown-selector {
-            padding-top: 20px;
-            text-align: end;
-            padding-right: 50px;
-        }
-
     </style>
 </head>
 
@@ -100,27 +94,20 @@
 <body>
 
     @php
-        $lenguaje = app()->getLocale();
-        dd($lenguaje);
+        $locale = session()->get('locale');
+        if ($locale == null) {
+            session()->put('locale','es');
+        }
     @endphp
 
-    <div class="dropdown-selector">
-        <button
-            class="dropdown-toggle inline-flex justify center w-full rounded-md border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-offset-2"
-            type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ __('messages.idiomas') }}
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{{ url('locale/es') }}">Español</a></li>
-            <li><a class="dropdown-item" href="{{ url('locale/en') }}">Inglés</a></li>
-        </ul>
-    </div>
-
-
+    @include('partials.idioma-btn');
     @include('partials.preloader')
+
+    {{-- FIRMA --}}
     <div class="container-firma container-fluid" style="background-color: rgba(253, 253, 253, 0)">
         <img class="firma" src="/img/homepage/firma_seco.png" alt="" width="200px">
     </div>
+    {{-- FIN FIRMA --}}
 
     @if (session('success'))
         <script>

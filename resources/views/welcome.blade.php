@@ -13,6 +13,7 @@
     <style>
         body{
             background: blue;
+            /* color: #000000 */
         }
     </style>
   </head>

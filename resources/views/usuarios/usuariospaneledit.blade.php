@@ -115,6 +115,7 @@
 
 <body>
     @include('partials.preloader')
+    @include('partials.idioma-btn');
     {{-- -------------------------------------CAMBIO DATOS CLIENTE------------------------------------------------------ --}}
     <div class="container container-form col-md-7 col-10">
         <div class="col-md-9 col-10 main-section" style="background-color: black">

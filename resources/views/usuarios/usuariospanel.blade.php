@@ -56,34 +56,6 @@
             padding-top: 10px;
         }
 
-        /* body{
-                background-image: url(/img/homepage/2pac_bg.png);
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-                background-color: rgba(255, 255, 255, 0);
-                animation: change 12s infinite ease-out;
-            } */
-
-        /* @keyframes change {
-            33% {
-                background-image: url(/img/homepage/notorious_bg.png)
-            }
-
-            66% {
-                background-image: url(/img/homepage/mechon_bg.png)
-            }
-        } */
-
-        /* .container-firma{
-                padding: 5px;
-                position: absolute;
-                bottom: 50px;
-                text-align: end;
-            } */
-
-
         label {
             font-family: 'Raleway', sans-serif;
         }
@@ -92,13 +64,6 @@
             box-shadow: inset 0 0px 0px, 0 0 8px rgb(0, 0, 0);
             border-color: black !important;
         }
-
-        /* h1 {
-            font-family: consolas;
-            font-size: 25px;
-            font-weight: bold;
-            text-transform: uppercase;
-        } */
 
         body {
             /* padding-inline: 20px; */
@@ -162,7 +127,9 @@
 </header>
 
 <body>
+    @include('partials.idioma-btn');
     @include('partials.preloader')
+    
     {{-- <div class="container container-form col-md-7 col-10">
         <table class="table mt-4 table-responsive">
             <div class="form-group">

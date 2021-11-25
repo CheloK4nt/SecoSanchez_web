@@ -170,7 +170,7 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect()->route('admin.productos.poleras','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
+        return redirect()->route('polera.edit',$request->id_prod)->with('success',"Producto {$request->id_prod} CREADO exitosamente");
     }
 
     public function getPoleraEdit($id){
@@ -308,7 +308,7 @@ class ProductoController extends Controller
                     });
                     $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
                 }
-                return redirect()->route('admin.productos.poleras','p')->with('success',"Galería de $id MODIFICADA exitosamente");
+                return redirect()->back()->with('success',"Galería de $id MODIFICADA exitosamente");
         } 
     }
 
@@ -324,7 +324,7 @@ class ProductoController extends Controller
                 unlink($upload_path.'/'.$path.'/'.$file);
                 unlink($upload_path.'/'.$path.'/t_'.$file);
                 unlink($upload_path.'/'.$path.'/mt_'.$file);
-                return redirect()->route('admin.productos.poleras','p')->with('success',"IMAGEN BORRADA exitosamente");
+                return redirect()->back()->with('success',"IMAGEN BORRADA exitosamente");
             }
         }
     }
@@ -490,7 +490,7 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect()->route('admin.productos.cuadros','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
+        return redirect()->route('cuadro.edit',$request->id_prod)->with('success',"Producto {$request->id_prod} CREADO exitosamente");
     }
 
     public function getCuadroEdit($id){
@@ -625,7 +625,7 @@ class ProductoController extends Controller
                     });
                     $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
                 }
-                return redirect()->route('admin.productos.cuadros','p')->with('success',"Galería de $id MODIFICADA exitosamente");
+                return redirect()->back()->with('success',"Galería de $id MODIFICADA exitosamente");
         } 
     }
 
@@ -641,7 +641,7 @@ class ProductoController extends Controller
                 unlink($upload_path.'/'.$path.'/'.$file);
                 unlink($upload_path.'/'.$path.'/t_'.$file);
                 unlink($upload_path.'/'.$path.'/mt_'.$file);
-                return redirect()->route('admin.productos.cuadros','p')->with('success',"IMAGEN BORRADA exitosamente");
+                return redirect()->back()->with('success',"IMAGEN BORRADA exitosamente");
             }
         }
     }
@@ -806,7 +806,7 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect()->route('admin.productos.sprays','p')->with('success',"Producto {$request->id_prod} CREADO exitosamente");
+        return redirect()->route('spray.edit',$request->id_prod)->with('success',"Producto {$request->id_prod} CREADO exitosamente");
     }
 
     public function getSprayEdit($id){
@@ -941,7 +941,7 @@ class ProductoController extends Controller
                     });
                     $img->save($upload_path.'/'.$path.'/mt_'.$filename); 
                 }
-                return redirect()->route('admin.productos.sprays','p')->with('success',"Galería de $id MODIFICADA exitosamente");
+                return redirect()->back()->with('success',"Galería de $id MODIFICADA exitosamente");
         } 
     }
 
@@ -957,7 +957,7 @@ class ProductoController extends Controller
                 unlink($upload_path.'/'.$path.'/'.$file);
                 unlink($upload_path.'/'.$path.'/t_'.$file);
                 unlink($upload_path.'/'.$path.'/mt_'.$file);
-                return redirect()->route('admin.productos.sprays','p')->with('success',"IMAGEN BORRADA exitosamente");
+                return redirect()->back()->with('success',"IMAGEN BORRADA exitosamente");
             }
         }
     }

@@ -121,7 +121,7 @@ function load_products(section) {
                     div += "<div class=\"categoria\">";
                         div += producto.cat_prod;
                     div += "</div>";
-                    div += "<a href=\""+base+"/product/"+producto.id_prod+"\"  title=\""+producto.nom_prod+"\">";
+                    div += "<a class=\"a_enlace\" href=\""+base+"/product/"+producto.id_prod+"\"  title=\""+producto.nom_prod+"\">";
                         div += "<div class=\"title\">";
                             div += producto.nom_prod;
                         div += "</div>";
@@ -133,10 +133,13 @@ function load_products(section) {
                                     div+= "<span class=\"inner\">$"+precio+"</span>";
                                 div += "</span>";
                                 div += "<p class=\"descuento\">-"+producto.dcto_prod+"%</p>";
-                                div += "<p class=\"price-oferta\">$"+precio_oferta;"</p>";
+                                div += "<p class=\"price-oferta\">$"+precio_oferta+"</p>";
                             div += "</div>";
                         }else{
-                            div += "<div class=\"price\">"+"$"+precio_prod+"</div>";
+                            div += "<div class=\"price\">";
+                                div += "<p class=\"price_precio\">Precio:</p>";
+                                div += "<p class=\"price_valor\">"+"$"+precio_prod+"</p>";
+                            div += "</div>";
                         }
                         div += "<div class=\"options\"></div>";
                     div += "</a>";
