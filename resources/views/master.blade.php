@@ -68,6 +68,7 @@
 
 <body>
     @include('partials.preloader')
+    @include('partials.idioma-btn');
     @section('content')
     @show    
 

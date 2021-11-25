@@ -65,6 +65,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        body{
+            margin-top: 30px; 
+        }
+
         .containers {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -146,6 +150,82 @@
             margin-bottom: 0px;
         }
 
+        a:hover{
+            cursor: pointer;
+        }
+
+        .border-img-sw{
+            border: 4px solid !important;
+            border-color: black !important;
+        }
+
+        .btn-sw{
+            background-color: black !important;
+        }
+
+        .btn-sw:hover{
+            background-color: rgb(71, 71, 71) !important;
+        }
+
+        .btn-sw:focus{
+            background: rgb(59, 59, 59) !important;
+            color: white;
+        }
+
+        .fancybox__content img{
+            border: 4px solid !important;
+            border-color: white !important;
+        }
+
+        .btn-cuadros{
+            background-color: rgb(41, 41, 41);
+            box-shadow: 2px 2px 5px black;
+            border-color: white;
+            color: white;
+            display: flex;
+            position: fixed;
+            left: 20px;
+            top: 100px;
+            text-align: end;
+            z-index: 999;
+        }
+
+        .btn-cuadros:hover{
+            background-color: rgb(255, 255, 255);
+            box-shadow: 2px 2px 5px black;
+            color: black;
+        }
+
+        .btn-cuadros:focus{
+            background-color: rgb(124, 124, 124) !important;
+            box-shadow: 2px 2px 5px rgb(255, 255, 255);
+        }
+
+        .btn-murales{
+            background-color: rgb(41, 41, 41);
+            box-shadow: 2px 2px 5px black;
+            border-color: white;
+            color: white;
+            display: flex;
+            position: fixed;
+            left: 20px;
+            top: 150px;
+            text-align: end;
+            z-index: 999;
+        }
+
+        .btn-murales:hover{
+            background-color: rgb(255, 255, 255);
+            box-shadow: 2px 2px 5px black;
+            color: black;
+        }
+
+        .btn-murales:focus{
+            background-color: rgb(124, 124, 124) !important;
+            box-shadow: 2px 2px 5px rgb(255, 255, 255);
+        }
+
+
     </style>
 </head>
 
@@ -155,11 +235,19 @@
 
 <body>
     @include('partials.preloader')
-    {{-- BUNDLE --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
+    @include('partials.idioma-btn');
 
+<div class="dropdown-selector">
+    <button
+        class="dropdown-toggle inline-flex justify center w-full rounded-md border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-offset-2"
+        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ __('messages.idiomas') }}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="{{ url('locale/es') }}">Español</a></li>
+        <li><a class="dropdown-item" href="{{ url('locale/en') }}">Inglés</a></li>
+    </ul>
+</div>
     @if (session('success'))
         <script>
             alert("{{ session('success') }}");
@@ -167,15 +255,18 @@
 
     @endif
 
+    <a href="#seccion-cuadros" class="btn btn-cuadros">Cuadros</a>
+    <a href="#seccion-murales" class="btn btn-murales">Murales</a>
+
     {{-- -------------------- CUADROS -------------------- --}}
-    <div class="container container-fluid container-titulo">
+    <div class="container container-fluid container-titulo" id="seccion-cuadros">
         <h2 class="title-dossier">CUADROS</h2>
     </div>
     <br>
     <section class="containers">
         @foreach ($dossier as $dossi)
             @if ($dossi->tipo == 'Cuadro')
-                <a href="#">
+                <a>
                     <img class="img-dossier"
                         src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}"
                         data-fancybox="gallery" data-caption="{{ $dossi->titulo_dossier }}">
@@ -187,15 +278,19 @@
     {{-- ------------------ FIN CUADROS ------------------ --}}
 
     {{-- -------------------- MURALES -------------------- --}}
+    @php
+        $locale = session()->get('locale');
+    @endphp
+
     <div class="container container-fluid container-titulo">
-        <h2 class="title-dossier">MURALES</h2>
+        <h2 class="title-dossier" id="seccion-murales">MURALES</h2>
     </div>
     <br>
     <section class="containers">
         @foreach ($dossier as $dossi)
             @if ($dossi->tipo == 'Mural')
-                <a href="#" data-img="{{ '/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier }}"
-                    data-titulo="{{ $dossi->titulo_dossier }}" data-descripcion_es="{{ $dossi->descripcion_es }}"
+                <a data-img="{{ '/uploads/dossier/' . $dossi->file_path . '/' . $dossi->img_dossier }}"
+                    data-titulo="{{ $dossi->titulo_dossier }}" data-descripcion_es="{{ $dossi->descripcion_es }}" data-descripcion_en="{{ $dossi->descripcion_en }}" data-lang="{{$locale}}"
                     class="boton-prueba">
                     <img class="img-dossier"
                         src="{{ url('/uploads/dossier/' . $dossi->file_path . '/t_' . $dossi->img_dossier) }}">
@@ -206,11 +301,6 @@
     </section>
     {{-- ------------------ FIN MURALES ------------------ --}}
 </body>
-
-{{-- @php
-    $lenguaje = app()->getLocale();
-    dd($lenguaje);
-@endphp --}}
 
 <footer>
     @include('partials.footer')
@@ -240,15 +330,25 @@
     });
 
     function confirmar_modal(e) {
+        var locale = this.getAttribute('data-lang');
+        if (locale == "es") {
+            var descripcion = this.getAttribute('data-descripcion_es');
+        } else if (locale == "en"){
+            var descripcion = this.getAttribute('data-descripcion_en');
+        }
         var img = this.getAttribute('data-img');
         var titulo = this.getAttribute('data-titulo');
-        var descripcion_es = this.getAttribute('data-descripcion_es');
         swal.fire({
-            title: titulo,
-            text: descripcion_es,
-            imageUrl: img,
-            padding: '2rem',
             imageAlt: 'Custom image',
+            imageUrl: img,
+            width: 1200,
+            title: titulo,
+            text: descripcion,          
+            padding: '2rem',
+            customClass: {
+                image: 'border-img-sw',
+                confirmButton: 'btn-sw',
+            }
         })
     }
 </script>

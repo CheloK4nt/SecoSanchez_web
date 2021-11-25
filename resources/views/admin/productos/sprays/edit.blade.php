@@ -340,7 +340,7 @@
     })()
 </script>
 
-{{-- <script>
+<script>
     $("#precio_prod").on({
     "focus": function (event) {
         $(event.target).select();
@@ -355,18 +355,5 @@
 });
 </script>
 
-<script>
-    function sumar()
-    {
-    const $total = document.getElementById('total');
-    let subtotal = 0;
-    [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
-        if(element.value !== '') {
-        subtotal += parseFloat(element.value);
-        }
-    });
-    $total.value = subtotal;
-    }
-</script> --}}
 @endsection
 

@@ -310,6 +310,7 @@
 
 <body>
     @include('partials.preloader')
+    @include('partials.idioma-btn');
     {{----------------------------- FORMULARIO ----------------------}}
     <div class="modal-dialog">
         <div class="col-sm-9 main-section" style="background-color: black">

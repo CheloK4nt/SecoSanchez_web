@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Producto;
 use App\Favorito;
 
@@ -16,7 +17,9 @@ class ApiJsController extends Controller
     function getProductsSection($section, Request $request){
         switch ($section) {
             case 'tienda':
-                $productos = Producto::where('estado_prod','P')->inRandomOrder()->paginate(15);
+                $productos = Producto::where('estado_prod','P')
+                ->inRandomOrder('1234')
+                ->paginate(10);
                 break;
 
             case 'tienda.cuadros':
